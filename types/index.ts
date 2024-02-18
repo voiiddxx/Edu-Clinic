@@ -40,3 +40,17 @@ export type LoginOrganizationParams = {
 export type OrgCategoryParams = {
     categoryName: string
 }
+
+export type createServiceParams = {
+    service:{
+        serviceName:string,
+         serviceCategory:string
+    }
+}
+
+
+export type CreateServiceCategoryParams = {
+    category:{
+        name: string
+    }
+}

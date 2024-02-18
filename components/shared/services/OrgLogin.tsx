@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input"
 import { Building, Building2, GraduationCap, GripVertical, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import OrgDropDown from "./OrgDropDown"
 import { LoginOrganizatio } from "@/lib/database/actions/organization.auth.action"
+import { useRouter } from "next/navigation"
 
 
 
@@ -31,6 +32,8 @@ const OrgRegisterSchema = z.object({
 
 
 const OrgLogin = () => {
+
+  const router = useRouter();
     const form = useForm<z.infer<typeof OrgRegisterSchema>>({
         resolver: zodResolver(OrgRegisterSchema),
         defaultValues: {
@@ -43,7 +46,11 @@ const OrgLogin = () => {
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
         const response = await LoginOrganizatio({organization:{...values}});
-        console.log(response);
+        const token = localStorage.setItem('x-auth-token' , response.token);
+        if(response){
+          router.push(`serviceprovider/dashboard`)
+        }
+      
         
         
       }

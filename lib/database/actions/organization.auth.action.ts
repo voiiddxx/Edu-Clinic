@@ -45,6 +45,8 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
             }
             else{
                 const token = jwt.sign({id:existOrg._id} , `${process.env.AUTH_KEY}`);
+                console.log(token);
+                
                 return JSON.parse(JSON.stringify({...existOrg._doc , token}));
             }
         }
