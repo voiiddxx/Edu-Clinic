@@ -38,19 +38,9 @@ const StudentLoginForm = () => {
       });
 
      async function onSubmit(values: z.infer<typeof LoginStudentSchema>) {
-        alert("Func Working");
         const response = await LoginStudent({student:{...values}})
         console.log(response);
         const savedToken = localStorage.setItem("x-auth-token" , response.token);
-        
-        
-        // const response = await RegisterStudent({student:{...values}});
-        // console.log("this is response " , response);
-        
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-
-
       }
       return (
         <Form {...form}>
@@ -96,6 +86,10 @@ const StudentLoginForm = () => {
             />
            
             <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
+            <div className="mt-3 w-full flex justify-center items-center flex-col">
+                <div className="w-2 h-2"></div>
+                <p className="text-sm">Don't Have an account? <span className="text-blue-700 font-normal" >Register Now</span> </p>
+            </div>
           </form>
         </Form>
       )

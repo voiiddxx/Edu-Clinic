@@ -17,3 +17,13 @@ export type StudentLoginParams = {
     }
 }
 
+export type registerOrganizationParams = {
+    organization:{
+        orgName:string
+        orgEmail:string
+        orgPassword:string
+        orgCategory:string
+        orgPhone:string
+        orgHq:string
+    }
+}

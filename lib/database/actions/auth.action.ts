@@ -15,7 +15,7 @@ export const RegisterStudent =  async ({student} : RegisterStudentParams) => {
         }
         else{
             const hashedPassword = await bcrypt.hash(student.password , 10);
-            const createdStudent = await Student.create({name:student.name , email:student.email , password:hashedPassword , mobile:student.mobile});
+            const createdStudent = await Student.create({name:student.name , email:student.email , password:hashedPassword , instituion:student.instituion , mobile:student.mobile});
             console.log(createdStudent);
             
             return JSON.parse(JSON.stringify(createdStudent));
