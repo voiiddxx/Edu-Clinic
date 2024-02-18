@@ -27,3 +27,16 @@ export type registerOrganizationParams = {
         orgHq:string
     }
 }
+
+export type LoginOrganizationParams = {
+    organization:{
+        orgEmail:string
+        orgPassword:string
+    }
+}
+
+
+
+export type OrgCategoryParams = {
+    categoryName: string
+}

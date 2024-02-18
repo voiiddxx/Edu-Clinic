@@ -12,7 +12,7 @@ const organizationSchema = new Schema({
         type:String
     },
     orgCategory:{
-        type: String,
+        type: Schema.Types.ObjectId, ref:'Orgcategory'
     },
     orgPhone:{
         type:String,
