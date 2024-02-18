@@ -44,9 +44,7 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
                 return JSON.parse(JSON.stringify({message:"Wrong Password"}));
             }
             else{
-                const token = jwt.sign({id:existOrg._id} , `${process.env.AUTH_KEY}`);
-                console.log(token);
-                
+                const token = jwt.sign({id:existOrg._id} , 'x-auth-token-secure-key');
                 return JSON.parse(JSON.stringify({...existOrg._doc , token}));
             }
         }

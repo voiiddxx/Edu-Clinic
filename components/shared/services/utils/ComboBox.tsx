@@ -70,6 +70,8 @@ const frameworks = [
 
 export function ComboBox() {
 
+    const token = localStorage.getItem('x-auth-token');
+
 
     const [category, setcategory] = React.useState<IServicecategory[]>([])
 
@@ -81,7 +83,7 @@ export function ComboBox() {
 
    const handleService = () => {
     createService({
-        service:{serviceName:ServiceCategoryName , serviceCategory:ServiceCategory}
+        service:{serviceName:ServiceCategoryName , serviceCategory:ServiceCategory} , userToken:token
     }).then((res)=> {
         console.log(res);
         

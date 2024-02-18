@@ -4,6 +4,8 @@ import { CreateServiceCategoryParams, createServiceParams } from "@/types";
 import connectToDatabase from "..";
 import Service from "../models/service.model";
 import Servicecategory from "../models/service.category.model";
+import { userAvailableorNot } from "./middelware";
+import ServiceStore from "../models/service.model";
 
 
 // service category action //
@@ -33,17 +35,21 @@ export const getAllServiceCategory = async () => {
     }
 }
 
-export const createService = async ({service} : createServiceParams) => {
+export const createService = async ({service , userToken} : createServiceParams) => {
     try {
         await connectToDatabase();
-        const existService = await Service.findOne({serviceName:service.serviceName , serviceCategoryId:service.serviceCategory});
-        if(existService){
-           return JSON.parse(JSON.stringify({message:"Service Already Exist"})); 
-        }
-        else{
-            const createdService = await Service.create({...service});
-            return JSON.parse(JSON.stringify(createdService));
-        }
+        const userId = await userAvailableorNot(userToken);
+        const organizationID = userId.id;
+        console.log(organizationID);
+        const createdService = await ServiceStore.create({name:service.serviceName , category:service.serviceCategory , owner:organizationID});
+        console.log(createdService);
+        return JSON.parse(JSON.stringify(createdService));
+        
+
+        
+        
+        
+        
     } catch (error) {
         console.log(error);
         
