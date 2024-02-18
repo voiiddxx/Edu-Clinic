@@ -9,3 +9,11 @@ export type RegisterStudentParams = {
     mobile:string
     }
 }
+
+export type StudentLoginParams = {
+    student:{
+    email:string,
+    password:string,
+    }
+}
+

@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
-import React from 'react'
+import StudentLoginForm from '@/components/shared/LoginStudentForm'
+import StudentRegisterForm from '@/components/shared/StudentRegisterForm'
 
 const page = () => {
   return (
@@ -10,7 +10,9 @@ const page = () => {
         <p className='font-semibold text-xl text-blue-700'>EduClinic</p>
         <p className='font-semibold text-2xl mt-2 text-zinc-800'>Welcome Back!</p>
         <p className='text-sm mt-2 text-zinc-500'>Please Enter Your Details</p>
-       
+        <div>
+        <StudentLoginForm/>
+        </div>
 
       </div>
     </div>

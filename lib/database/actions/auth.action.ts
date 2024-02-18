@@ -1,6 +1,6 @@
 "use server"
 
-import { RegisterStudentParams } from "@/types";
+import { RegisterStudentParams, StudentLoginParams } from "@/types";
 import connectToDatabase from "..";
 import Student from "../models/user.model";
 import bcrypt from "bcrypt";
@@ -14,8 +14,10 @@ export const RegisterStudent =  async ({student} : RegisterStudentParams) => {
             return JSON.parse(JSON.stringify({message:"User Already Exists"}));
         }
         else{
-            const hashedPassword = bcrypt.hash(student.password , 10);
+            const hashedPassword = await bcrypt.hash(student.password , 10);
             const createdStudent = await Student.create({name:student.name , email:student.email , password:hashedPassword , mobile:student.mobile});
+            console.log(createdStudent);
+            
             return JSON.parse(JSON.stringify(createdStudent));
         }
 
@@ -26,7 +28,7 @@ export const RegisterStudent =  async ({student} : RegisterStudentParams) => {
     }
 }
 
-export const LoginStudent = async ({student} : RegisterStudentParams) => {
+export const LoginStudent = async ({student} : StudentLoginParams) => {
     try {
         await connectToDatabase();
         const existUser = await Student.findOne({email:student.email});
@@ -40,6 +42,10 @@ export const LoginStudent = async ({student} : RegisterStudentParams) => {
             }
             else{
                 const token = jwt.sign({id:existUser._id} , `${process.env.AUTH_KEY}`);
+                console.log("this is existing user" , existUser);
+                console.log("this is token of existing user" , token);
+                
+                
 
                 return JSON.parse(JSON.stringify({...existUser , token}));
             }
