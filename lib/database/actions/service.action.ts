@@ -2,7 +2,6 @@
 
 import { CreateServiceCategoryParams, createServiceParams } from "@/types";
 import connectToDatabase from "..";
-import Service from "../models/service.model";
 import Servicecategory from "../models/service.category.model";
 import { userAvailableorNot } from "./middelware";
 import ServiceStore from "../models/service.model";
@@ -13,7 +12,6 @@ import ServiceStore from "../models/service.model";
 export const createServiceCategory = async ({category} : CreateServiceCategoryParams) => {
     try {
         await connectToDatabase();
-
         const createdCategory = await Servicecategory.create({...category});
         return JSON.parse(JSON.stringify(createdCategory));
     } catch (error) {
@@ -43,12 +41,18 @@ export const createService = async ({service , userToken} : createServiceParams)
         console.log(organizationID);
         const createdService = await ServiceStore.create({name:service.serviceName , category:service.serviceCategory , owner:organizationID});
         console.log(createdService);
-        return JSON.parse(JSON.stringify(createdService));
+        return JSON.parse(JSON.stringify(createdService));   
+    } catch (error) {
+        console.log(error);
         
+    }
+}
 
-        
-        
-        
+
+export const getServices = async () => {
+    try {
+        const allServ = await ServiceStore.find({});
+        return JSON.parse(JSON.stringify(allServ));
         
     } catch (error) {
         console.log(error);

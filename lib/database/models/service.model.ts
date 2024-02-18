@@ -1,26 +1,21 @@
 // import { Schema, model, models } from "mongoose";
 
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models , Document } from "mongoose";
 
 
+export interface IService extends Document {
+    _id:string
+    name:string
+    category:{
+        _id:string,
+        name:string
+    }
+    owner:{
+        _id:string
+        orgName:string
 
-// const serviceSchema = new Schema({
-//     serviceName:{
-//         type: String,
-//     },
-//     serviceCategoryId:{
-//         type: Schema.Types.ObjectId , ref:'Organization'
-//     },
-//     organizationID:{
-//         type:Schema.Types.ObjectId , ref:'Organization'
-//     },
-   
-// });
-
-
-// const Service = models.Service || model('Service' , serviceSchema);
-
-// export default Service;
+    }
+}
 
 
 const ServiceStoreSchema = new Schema({

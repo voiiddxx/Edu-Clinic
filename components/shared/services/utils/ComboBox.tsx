@@ -1,9 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronsUpDown, Grip, Plus, Store } from "lucide-react"
+import { Check, ChevronsUpDown, CircleDot, Grip, Plus, Store } from "lucide-react"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -19,9 +18,6 @@ import {
 } from "@/components/ui/popover"
 
 import { Input } from "@/components/ui/input"
-import ServiceCategory from "./ServiceCategory"
-import { IOrgcategory } from "@/lib/database/models/category.model"
-import { addOrgCategory, getOrgCategory } from "@/lib/database/actions/orgcategory.action"
 
 import {
     Select,
@@ -30,7 +26,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import { startTransition, useEffect, useState } from "react"
+import { startTransition } from "react"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -43,39 +39,29 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { IServicecategory } from "@/lib/database/models/service.category.model"
-import { createService, createServiceCategory, getAllServiceCategory } from "@/lib/database/actions/service.action"
+import { createService, createServiceCategory, getAllServiceCategory, getServices } from "@/lib/database/actions/service.action"
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-]
+
+
 
 export function ComboBox() {
 
-    const token = localStorage.getItem('x-auth-token');
+    let usertoken = '';
 
+    if (typeof window !== 'undefined') {
+       const token = localStorage.getItem('x-auth-token');
+        if(token){
+            usertoken = token;
+        }
+      }
+   
 
     const [category, setcategory] = React.useState<IServicecategory[]>([])
+    const [serviceList , setserviceList] = React.useState<any[]>([])
+ 
 
     const [newcategory, setnewcategory] = React.useState('');
+    const [Header, setHeader] = React.useState('Select');
 
     const [ServiceCategory , setServiceCategory ] = React.useState('');
     const [ServiceCategoryName , setServiceCategoryName ] = React.useState('');
@@ -83,8 +69,9 @@ export function ComboBox() {
 
    const handleService = () => {
     createService({
-        service:{serviceName:ServiceCategoryName , serviceCategory:ServiceCategory} , userToken:token
+        service:{serviceName:ServiceCategoryName , serviceCategory:ServiceCategory} , userToken:usertoken
     }).then((res)=> {
+        setserviceList((prevState) => [...prevState , res]);
         console.log(res);
         
     })
@@ -105,7 +92,16 @@ export function ComboBox() {
             res && setcategory(res as IServicecategory[]);
         }
 
-        getAllcategoryList();
+
+        const getAllServiceNow = async ()=>{
+            const serviceRes = await getServices();
+            console.log(serviceRes);
+            
+            serviceRes && setserviceList(serviceRes);
+
+        }  
+        getAllServiceNow();
+         getAllcategoryList();
         
     } , [])
   const [open, setOpen] = React.useState(false)
@@ -120,12 +116,13 @@ export function ComboBox() {
           aria-expanded={open}
           className="w-[250px] justify-between"
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            :  <div  className="flex gap-2 items-center" >
-                <Grip size={16} />
-                <p className="text-[13px]" >Current service</p>
-            </div> }
+         
+
+            
+            <div className="flex gap-3 items-center" >
+                <Grip size={16}  />
+                <p>{Header}</p>
+            </div>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -134,26 +131,28 @@ export function ComboBox() {
           <CommandInput placeholder="Search framework..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
-              <CommandItem
-                key={framework.value}
-                value={framework.value}
-                onSelect={(currentValue: React.SetStateAction<string>) => {
-                  setValue(currentValue === value ? "" : currentValue)
-                  setOpen(false)
-                }}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === framework.value ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                {framework.label}
-
-              </CommandItem>
-              
-            ))}
+            {
+                serviceList.length > 1 && (
+                    <div>
+                        {
+                            serviceList.map((curr) => {
+                                return <CommandItem key={curr._id} value={curr.name}  onSelect={(currentValue: React.SetStateAction<string>) => {
+                                   setValue(currentValue == curr.name ? '' : currentValue);
+                                    setOpen(false);
+                                    setHeader(currentValue);
+                                    
+                                  }}  >
+                                    <div className="w-full flex items-center gap-3" >
+                                        <CircleDot className="text-zinc-700" size={15}/>
+                                    {curr.name}
+                                    </div>
+                                </CommandItem>
+                            })
+                        }
+                    </div>
+                )
+            }
+           
                   <AlertDialog>
   <AlertDialogTrigger className="pt-2 pb-2 pl-2 text-sm" ><div className="flex items-center gap-2 ml-2 " >
             <Plus size={16} />
