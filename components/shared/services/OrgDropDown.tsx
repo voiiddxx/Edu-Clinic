@@ -5,7 +5,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import { startTransition, useState } from "react"
+import { startTransition, useEffect, useState } from "react"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -18,7 +18,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { Input } from "@/components/ui/input"
-import { addOrgCategory } from "@/lib/database/actions/orgcategory.action"
+import { addOrgCategory, getOrgCategory } from "@/lib/database/actions/orgcategory.action"
 import { IOrgcategory } from "@/lib/database/models/category.model"
   
   
@@ -41,6 +41,16 @@ const OrgDropDown = ({value , onChange} : OrgDropDownProps) => {
             setcategory((prevState) => [...prevState , res]);
         })
     }
+
+    useEffect(()=>{
+        const getAllcategoryList = async () =>{
+            const res = await getOrgCategory();
+            res && setcategory(res as IOrgcategory[]);
+        }
+
+        getAllcategoryList();
+        
+    } , [])
   return (
     <Select onValueChange={onChange} defaultValue={value} >
     <SelectTrigger className="w-full">

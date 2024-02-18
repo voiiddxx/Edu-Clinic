@@ -5,6 +5,7 @@ import connectToDatabase from "..";
 import Organization from "../models/serviceprovider.model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Student from "../models/user.model";
 
 
 export const registerOrganization = async ({organization} : registerOrganizationParams) => {
@@ -34,7 +35,11 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
             return JSON.parse(JSON.stringify({message:"Organization Not Found"}));
         }
         else{
-            const isMatch = await bcrypt.compare(existOrg.orgPassword , organization.orgPassword);
+            console.log(organization.orgPassword);
+            console.log(existOrg.orgPassword);
+            
+            
+            const isMatch = await bcrypt.compare(organization.orgPassword , existOrg.orgPassword);
             if(!isMatch){
                 return JSON.parse(JSON.stringify({message:"Wrong Password"}));
             }

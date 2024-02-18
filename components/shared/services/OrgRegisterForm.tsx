@@ -15,19 +15,20 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Building, Building2, GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
+import { Building, Building2, GraduationCap, GripVertical, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { RegisterStudent } from "@/lib/database/actions/auth.action"
 import OrgDropDown from "./OrgDropDown"
+import { registerOrganization } from "@/lib/database/actions/organization.auth.action"
 
 
 
 const OrgRegisterSchema = z.object({
   orgName: z.string().min(2).max(50),
   orgEmail: z.string().email(),
-  orgPassword: z.string().min(6).max(10),
+  orgPassword: z.string().min(4).max(10),
   orgPhone: z.string().min(3).max(50),
-  orgHq: z.string().min(10).max(10),
-  orgCategory: z.string().min(10).max(10),
+  orgHq: z.string().min(3).max(30),
+  orgCategory: z.string().min(2).max(40),
   
 })
 
@@ -48,8 +49,9 @@ const OrgRegisterForm = () => {
       });
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
-       
-
+        const res = await registerOrganization({organization:{...values}});
+        console.log(res);
+        
         console.log(values)
       }
 
@@ -89,6 +91,25 @@ const OrgRegisterForm = () => {
                         <Mail className="text-yellow-400" size={20}/>
                 </div>
                     <Input type="email" placeholder="Your email addrerss" {...field} />
+                    </div>
+                  </FormControl>
+                 
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+             <FormField
+              control={form.control}
+              name="orgCategory"
+              render={({ field }) => (
+                <FormItem className="w-[400px] " >
+                  <FormLabel>Category</FormLabel>
+                  <FormControl>
+                    <div className="flex gap-2" >
+                    <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
+                        <GripVertical className="text-teal-600" size={20}/>
+                </div>
+                    <OrgDropDown onChange={field.onChange} value={field.value}/>
                     </div>
                   </FormControl>
                  
@@ -153,25 +174,7 @@ const OrgRegisterForm = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="orgPhone"
-              render={({ field }) => (
-                <FormItem className="w-[400px] " >
-                  <FormLabel>Mobile Number</FormLabel>
-                  <FormControl>
-                    <div className="flex gap-2" >
-                    <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
-                        <Phone className="text-teal-600" size={20}/>
-                </div>
-                    <OrgDropDown/>
-                    </div>
-                  </FormControl>
-                 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+           
             <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
             <div className="mt-3 w-full flex justify-center items-center flex-col">
                 <div className="w-2 h-2"></div>
