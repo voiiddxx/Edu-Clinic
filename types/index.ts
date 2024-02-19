@@ -74,3 +74,18 @@ export type getOrgModuleParams = {
     organizationId: string,
     serviceId: string
 }
+
+export type UpdateModuleParams = {
+    moduleId: string,
+    module:{
+        name?: string,
+        detail?:string,
+        image?:string
+        isPaid?: 'paid' | 'free'
+        fees?: string
+    }
+
+}
+export type DeleteModuleParams = {
+    moduleId: string,
+}

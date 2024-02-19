@@ -1,6 +1,6 @@
 "use server"
 
-import { createModuleParams, getOrgModuleParams } from "@/types";
+import { DeleteModuleParams, UpdateModuleParams, createModuleParams, getOrgModuleParams } from "@/types";
 import connectToDatabase from "..";
 import Module from "../models/module.model";
 import { model } from "mongoose";
@@ -44,6 +44,32 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
 
     } catch (error) {
         console.log(error);
+        
+    }
+}
+
+
+export const updateModule = async({ moduleId , module}: UpdateModuleParams) => {
+    try {
+        await connectToDatabase();
+        const updatedModule = await Module.findByIdAndUpdate(moduleId , {...module} , {new:true});
+        console.log("this is working");
+        
+        return JSON.parse(JSON.stringify({message:"Module Updated"}));
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const deleteModule = async ({moduleId} : DeleteModuleParams)=>{
+    try {
+        await connectToDatabase();
+        const deleted = await Module.findByIdAndDelete(moduleId);
+        return JSON.parse(JSON.stringify({message:"Module Deleted"}));
+
+    } catch (error) {
         
     }
 }

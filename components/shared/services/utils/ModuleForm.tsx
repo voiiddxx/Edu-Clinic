@@ -32,8 +32,9 @@ import { Input } from "@/components/ui/input"
   } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
-import { createModule } from "@/lib/database/actions/module.action"
+import { createModule, updateModule } from "@/lib/database/actions/module.action"
 import { UploadOnCloudinary } from "@/lib/utils"
+import { Edit } from "lucide-react"
   
  
 const ModuleFormSchema = z.object({
@@ -54,9 +55,11 @@ const ModuleFormSchema = z.object({
   
   type ModuleFormProps = {
     id: string
+    type:'ADD' | 'UPDATE'
+    moduleId?: any
   }
 
-const ModuleForm = ({id} : ModuleFormProps) => {
+const ModuleForm = ({id , type , moduleId} : ModuleFormProps) => {
 
   const [Image, setImage] = useState<any>(null);
   
@@ -67,7 +70,7 @@ const ModuleForm = ({id} : ModuleFormProps) => {
         defaultValues: {
           name: "",
           detail:'',
-          fees:''
+          url:'',
 
         },
 
@@ -75,26 +78,57 @@ const ModuleForm = ({id} : ModuleFormProps) => {
      
       // 2. Define a submit handler.
       async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
-        // alert(Image);
-        const imageurl = await UploadOnCloudinary(Image);
-        let userToken = '';
-        const token = localStorage.getItem('x-auth-token');
-        if(token){
-          userToken = token
-        }
-        const res = await createModule({module:{...values , image:imageurl} , creatorId:userToken , serviceId:id});
-        alert(res)
-        console.log(res);
+       
         
-        console.log(values)
-      }
+
+        if(type=="ADD"){
+          
+          try {
+            const imageurl = await UploadOnCloudinary(Image);
+            let userToken = '';
+            const token = localStorage.getItem('x-auth-token');
+            if(token){
+              userToken = token
+            }
+            const res = await createModule({module:{...values , image:imageurl} , creatorId:userToken , serviceId:id});
+            alert(res)
+            console.log(res);
+            
+            console.log(values)
+          } catch (error) {
+            console.log(error);
+            
+          }
+        }
+        else{
+          alert("ye to edit hai")
+          if(Image){
+            const ImageUrl = await UploadOnCloudinary(Image);
+            const res = await updateModule({module:{...values , image:ImageUrl} , moduleId:moduleId});
+            console.log(res);
+          }else{
+            const res = await updateModule({module:{...values} , moduleId:moduleId});
+            console.log(res);
+          }
+
+        }
+    }
+          
+      
 
       const PaidOrNot = form.watch("isPaid");
 
   return (
     <div>
       <AlertDialog >
-  <AlertDialogTrigger>Add Module</AlertDialogTrigger>
+  <AlertDialogTrigger>
+    {
+      type == "UPDATE" ?  <div className="flex gap-2 items-center mb-5" >
+      <Edit className="text-blue-800" size={18}/>
+      <p className=" text-blue-700" >Update</p>
+          </div> : 'Add Module'
+    }
+  </AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogHeader>
       <AlertDialogTitle>Add New Module</AlertDialogTitle>

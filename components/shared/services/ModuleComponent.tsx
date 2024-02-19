@@ -15,7 +15,7 @@ const ModuleComponent = ({serviceId} : moduleComponentProps) => {
         <h1 className='text-xl text-zinc-900 font-bold' >Your Modules(5)</h1>
         <Button className='bg-zinc-800 hover:bg-blue-700 font-normal' >
             <Plus className='mr-2' size={15}/> 
-             <ModuleForm id={serviceId} />
+             <ModuleForm id={serviceId} type='ADD' />
 
         </Button>
       </div>
