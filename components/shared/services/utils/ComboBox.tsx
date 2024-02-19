@@ -40,11 +40,14 @@ import {
   } from "@/components/ui/alert-dialog"
 import { IServicecategory } from "@/lib/database/models/service.category.model"
 import { createService, createServiceCategory, getAllServiceCategory, getServices } from "@/lib/database/actions/service.action"
+import { useRouter } from "next/navigation"
 
 
 
 
 export function ComboBox() {
+
+  const router = useRouter();
 
     let usertoken = '';
 
@@ -140,6 +143,7 @@ export function ComboBox() {
                                    setValue(currentValue == curr.name ? '' : currentValue);
                                     setOpen(false);
                                     setHeader(currentValue);
+                                    router.push(`/serviceprovider/dashboard/${curr._id}`)
                                     
                                   }}  >
                                     <div className="w-full flex items-center gap-3" >

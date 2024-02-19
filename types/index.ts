@@ -55,3 +55,16 @@ export type CreateServiceCategoryParams = {
         name: string
     }
 }
+
+
+export type createModuleParams = {
+    serviceId:string
+    creatorId:string
+    module:{
+        name: string,
+        detail:string,
+        image:string
+        isPaid: boolean
+        fees: number
+    }
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 import { ComboBox } from './utils/ComboBox'
+import OrgMainnav from './utils/OrgMainnav'
+import { LogOut, User } from 'lucide-react'
 
 const OrgNav = () => {
   return (
@@ -11,13 +13,20 @@ const OrgNav = () => {
 
         {/* Navbar for routes of particular services  */}
         <div>
-            routes 
+            <OrgMainnav/>
         </div>
 
 
         {/* //useavartar and logout button  */}
-        <div>
-            logout and username
+        <div className='flex gap-4' >
+          <div className='h-12 w-12 border-[1px] border-zinc-300 rounded-md flex justify-center items-center'>
+            <LogOut size={17}/>
+          </div>
+          <div className='h-12 w-12 border-[1px] border-zinc-300 rounded-full flex justify-center items-center'>
+            <User className='text-blue-700' size={17}/>
+          </div>
+          
+
         </div>
     </div>
   )
