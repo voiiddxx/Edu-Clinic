@@ -63,7 +63,7 @@ const ModulesMainUi = ({serviceId} : ModuleMainUiProps) => {
             </div>
         </div> : <div className="min-h-screen w-full pl-36 pt-7" >
             <p className="text-zinc-800" >Your Modules are Shown below</p>
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex gap-4 flex-wrap">
                 {
                     Modules.map((curr : IModule)=>{
                         return <div className="  border-[1px] border-zinc-300 rounded-lg" >
