@@ -17,6 +17,9 @@ const ModuleSchema = new Schema({
     fees:{
         type:Number,
     },
+    url:{
+        type: String
+    },
     image:{
         type: String,
     },

@@ -31,15 +31,18 @@ import { Input } from "@/components/ui/input"
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { useState } from "react"
   
  
 const ModuleFormSchema = z.object({
   name: z.string().min(2).max(50),
   detail:z.string().min(2).max(50),
-  isPaid:z.enum['free' , 'paid'],
-  fees:z.number(),
+  isPaid:z.enum(['free' , 'paid']),
+  url: z.string().min(7),
+  fees:z.string().min(2).max(7),
 }).refine((data)=>{
-    if(data.isPaid==true){
+    if(data.isPaid=="paid"){
         return !!data.fees
     }
     return true
@@ -50,13 +53,16 @@ const ModuleFormSchema = z.object({
   
 const ModuleForm = () => {
 
+  const [Image, setImage] = useState<any>(null);
+  
+
 
     const form = useForm<z.infer<typeof ModuleFormSchema>>({
         resolver: zodResolver(ModuleFormSchema),
         defaultValues: {
           name: "",
           detail:'',
-          fees:0
+          fees:''
 
         },
 
@@ -64,6 +70,7 @@ const ModuleForm = () => {
      
       // 2. Define a submit handler.
       function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
+        alert(Image);
         
         console.log(values)
       }
@@ -72,14 +79,14 @@ const ModuleForm = () => {
 
   return (
     <div>
-      <AlertDialog>
+      <AlertDialog >
   <AlertDialogTrigger>Add Module</AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogHeader>
       <AlertDialogTitle>Add New Module</AlertDialogTitle>
       <AlertDialogDescription>
         <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="name"
@@ -87,46 +94,88 @@ const ModuleForm = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Module Name" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              
               <FormMessage />
             </FormItem>
           )}
         />
-        <Select>
-  <SelectTrigger className="w-[180px]">
-    <SelectValue placeholder="Theme" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem>Light</SelectItem>
-    <SelectItem value="dark">Dark</SelectItem>
-    <SelectItem value="system">System</SelectItem>
-  </SelectContent>
-</Select>
-
-        {
-            PaidOrNot == true && (
-                <FormField
+        <div className="flex w-full">
+        <Input onChange={(e)=>{
+                  setImage(e.target.files);
+                }} type="file" />
+        </div>
+        <FormField
           control={form.control}
-          name="name"
+          name="detail"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Detail</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Textarea {...field} placeholder="Describe your module here" />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isPaid"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Paid/Free</FormLabel>
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="free" >Free</SelectItem>
+                    <SelectItem value="paid">Paid</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+           
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+
+        {
+            PaidOrNot == "paid" && (
+                <FormField
+          control={form.control}
+          name="fees"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Module Price</FormLabel>
+              <FormControl>
+                <Input  placeholder="Your Module Price" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
             )
         }
+
+      <FormField
+          control={form.control}
+          name="url"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Module Price</FormLabel>
+              <FormControl>
+                <Input  placeholder="Your Module Price" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button className="w-full bg-zinc-900 " type="submit">Submit</Button>
         <div className="w-full">
         <AlertDialogCancel>Cancel</AlertDialogCancel>
