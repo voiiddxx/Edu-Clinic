@@ -1,4 +1,18 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models  , Document} from "mongoose";
+
+
+export interface IModule extends Document{
+    _id:string,
+    name:string,
+    detail:string,
+    serviceId:string,
+    isPaid:string,
+    fees: string,
+    url: string,
+    image: string,
+    creatorId: string
+}
+
 
 
 const ModuleSchema = new Schema({

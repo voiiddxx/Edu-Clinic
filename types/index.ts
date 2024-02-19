@@ -68,3 +68,9 @@ export type createModuleParams = {
         fees: string
     }
 }
+
+
+export type getOrgModuleParams = {
+    organizationId: string,
+    serviceId: string
+}
