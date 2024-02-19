@@ -9,13 +9,13 @@ const ModuleSchema = new Schema({
         type: String,
     },
     serviceId:{
-        type: Schema.Types.ObjectId , ref:''
+        type: Schema.Types.ObjectId , ref:'ServiceStore'
     },
     isPaid:{
-        type: Boolean,
+        type: String,
     },
     fees:{
-        type:Number,
+        type: String,
     },
     url:{
         type: String
@@ -24,7 +24,7 @@ const ModuleSchema = new Schema({
         type: String,
     },
     creatorId:{
-        type:Schema.Types.ObjectId, ref:'',
+        type:Schema.Types.ObjectId, ref:'Organization',
     },
 
 });

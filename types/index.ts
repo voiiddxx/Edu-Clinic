@@ -64,7 +64,7 @@ export type createModuleParams = {
         name: string,
         detail:string,
         image:string
-        isPaid: boolean
-        fees: number
+        isPaid: 'paid' | 'free'
+        fees: string
     }
 }

@@ -19,7 +19,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -33,6 +32,8 @@ import { Input } from "@/components/ui/input"
   } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import { createModule } from "@/lib/database/actions/module.action"
+import { UploadOnCloudinary } from "@/lib/utils"
   
  
 const ModuleFormSchema = z.object({
@@ -51,7 +52,11 @@ const ModuleFormSchema = z.object({
     path:['fees']
 })
   
-const ModuleForm = () => {
+  type ModuleFormProps = {
+    id: string
+  }
+
+const ModuleForm = ({id} : ModuleFormProps) => {
 
   const [Image, setImage] = useState<any>(null);
   
@@ -69,8 +74,17 @@ const ModuleForm = () => {
       })
      
       // 2. Define a submit handler.
-      function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
-        alert(Image);
+      async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
+        // alert(Image);
+        const imageurl = await UploadOnCloudinary(Image);
+        let userToken = '';
+        const token = localStorage.getItem('x-auth-token');
+        if(token){
+          userToken = token
+        }
+        const res = await createModule({module:{...values , image:imageurl} , creatorId:userToken , serviceId:id});
+        alert(res)
+        console.log(res);
         
         console.log(values)
       }
@@ -86,13 +100,13 @@ const ModuleForm = () => {
       <AlertDialogTitle>Add New Module</AlertDialogTitle>
       <AlertDialogDescription>
         <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+             
               <FormControl>
                 <Input placeholder="Module Name" {...field} />
               </FormControl>
@@ -111,7 +125,7 @@ const ModuleForm = () => {
           name="detail"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Detail</FormLabel>
+            
               <FormControl>
                 <Textarea {...field} placeholder="Describe your module here" />
               </FormControl>
@@ -126,11 +140,11 @@ const ModuleForm = () => {
           name="isPaid"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Paid/Free</FormLabel>
+            
               <FormControl>
               <Select onValueChange={field.onChange} >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select" />
+                    <SelectValue placeholder="Paid/Free" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="free" >Free</SelectItem>
@@ -152,7 +166,6 @@ const ModuleForm = () => {
           name="fees"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Module Price</FormLabel>
               <FormControl>
                 <Input  placeholder="Your Module Price" {...field} />
               </FormControl>
@@ -168,7 +181,6 @@ const ModuleForm = () => {
           name="url"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Module Price</FormLabel>
               <FormControl>
                 <Input  placeholder="Your Module Price" {...field} />
               </FormControl>
@@ -178,7 +190,7 @@ const ModuleForm = () => {
         />
         <Button className="w-full bg-zinc-900 " type="submit">Submit</Button>
         <div className="w-full">
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogCancel className="w-full text-zinc-800" >Cancel</AlertDialogCancel>
         </div>
       </form>
     </Form>

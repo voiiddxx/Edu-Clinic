@@ -11,7 +11,7 @@ const page = ({
   return (
     <div>
       <OrgNav/>
-      <ModuleComponent/>
+      <ModuleComponent serviceId={id} />
     </div>
   )
 }
