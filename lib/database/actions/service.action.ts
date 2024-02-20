@@ -60,3 +60,21 @@ export const getAllServices = async () => {
     }
 }
 
+export const getAllServicearPerOrgId = async ( orgId:any) => {
+    try {
+        await connectToDatabase();
+        const conditions = {
+            owner:orgId
+        }
+        
+        const orgService = await ServiceStore.find(conditions);
+        if(!orgService){
+            return JSON.parse(JSON.stringify({message:"No Services"}))
+        }
+        return JSON.parse(JSON.stringify(orgService));
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

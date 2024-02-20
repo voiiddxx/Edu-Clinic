@@ -39,7 +39,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { IServicecategory } from "@/lib/database/models/service.category.model"
-import { createService, createServiceCategory, getAllServiceCategory, getServices } from "@/lib/database/actions/service.action"
+import { createService, createServiceCategory, getAllServiceCategory, getAllServices } from "@/lib/database/actions/service.action"
 import { useRouter } from "next/navigation"
 
 
@@ -97,7 +97,7 @@ export function ComboBox() {
 
 
         const getAllServiceNow = async ()=>{
-            const serviceRes = await getServices();
+            const serviceRes = await getAllServices();
             console.log(serviceRes);
             
             serviceRes && setserviceList(serviceRes);
@@ -118,11 +118,8 @@ export function ComboBox() {
           role="combobox"
           aria-expanded={open}
           className="w-[250px] justify-between"
-        >
-         
-
-            
-            <div className="flex gap-3 items-center" >
+        > 
+        <div className="flex gap-3 items-center" >
                 <Grip size={16}  />
                 <p>{Header}</p>
             </div>

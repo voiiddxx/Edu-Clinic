@@ -10,16 +10,24 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import StudentModule from '@/components/shared/student/StudentModule'
-import { getAllServices } from '@/lib/database/actions/service.action'
+import { getAllServicearPerOrgId, getAllServices } from '@/lib/database/actions/service.action'
 import { IService } from '@/lib/database/models/service.model'
 import { getAllModule } from '@/lib/database/actions/module.action'
 
 
-const page = async () => {
+const page = async ({
+  params:{ id },
+} : {params:{
+  id : string
+}}) => {
 
 
-  const allServices = await getAllServices();
+  const allServices = await getAllServicearPerOrgId(id);
   const allModules = await getAllModule();
+  console.log("services as per id" , allServices);
+  console.log("services as per id" , allServices);
+  
+  
   
   return (
     <div className='min-h-screen w-full ' >
