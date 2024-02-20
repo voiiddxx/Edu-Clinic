@@ -73,3 +73,18 @@ export const deleteModule = async ({moduleId} : DeleteModuleParams)=>{
         
     }
 }
+
+
+export const getAllModule = async () => {
+    try {
+        await connectToDatabase();
+        const AllModule = await Module.find({});
+        if(!AllModule){
+            return JSON.parse(JSON.stringify({message:"No Module found"}));
+        }
+        return JSON.parse(JSON.stringify(AllModule));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

@@ -49,7 +49,7 @@ export const createService = async ({service , userToken} : createServiceParams)
 }
 
 
-export const getServices = async () => {
+export const getAllServices = async () => {
     try {
         const allServ = await ServiceStore.find({});
         return JSON.parse(JSON.stringify(allServ));
@@ -59,3 +59,4 @@ export const getServices = async () => {
         
     }
 }
+

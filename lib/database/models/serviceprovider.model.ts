@@ -1,4 +1,15 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models , Document } from "mongoose";
+
+export interface IOrganization extends Document {
+    _id: string,
+    orgName:string,
+    orgEmail:string
+    orgCategory:string
+    orgPhone:string,
+    orgHq:string
+}
+
+
 
 
 const organizationSchema = new Schema({

@@ -54,3 +54,19 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
         
     }
 }
+
+
+export const getAllOrganization = async () =>{
+    try {
+        await connectToDatabase();
+        const allOrgs = await Organization.find({});
+        if(!allOrgs){
+            return JSON.parse(JSON.stringify({message:"No Organization found"}));
+        }
+        return JSON.parse(JSON.stringify(allOrgs));
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
