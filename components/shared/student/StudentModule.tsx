@@ -1,6 +1,7 @@
 import { IModule } from '@/lib/database/models/module.model'
 import { Flame, IndianRupee, Sparkle } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
     type StudentModuleProps = {
@@ -9,7 +10,7 @@ import React from 'react'
         serviceId?: string
         orgsId?: string
     }
-const StudentModule = ({allModule , type , orgsId , serviceId}: StudentModuleProps) => {
+const StudentModule = ({allModule }: StudentModuleProps) => {
     
   return (
     <div className='min-h-screen w-full px-40' >
@@ -23,7 +24,8 @@ const StudentModule = ({allModule , type , orgsId , serviceId}: StudentModulePro
           <div className='flex gap-4 flex-wrap mt-8'>
               {
                   allModule.map((curr: IModule)=>{
-                      return <div className="  border-[1px] border-zinc-300 rounded-lg" >
+                      return <Link href={`/student/home/module/${curr._id}`} >
+                      <div className="  border-[1px] border-zinc-300 rounded-lg" >
                       <div className="h-[250px] w-[280px] bg-blue-600 mx-2 my-2 rounded-md">
                         <Image className='h-[250px] w-[280px] object-cover rounded-sm' src={curr.image} height={800} width={800} alt='imagethatismentioned' />
                       </div>
@@ -54,6 +56,7 @@ const StudentModule = ({allModule , type , orgsId , serviceId}: StudentModulePro
                       
                       </div>
                   </div>
+                      </Link>
                   })
               }
           </div>
