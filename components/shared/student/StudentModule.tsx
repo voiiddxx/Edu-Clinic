@@ -1,19 +1,23 @@
 import { IModule } from '@/lib/database/models/module.model'
 import { Flame, IndianRupee, Sparkle } from 'lucide-react'
+import Image from 'next/image'
 import React from 'react'
 
     type StudentModuleProps = {
         allModule: any
+        type?: "ALL" | "ORGS"
+        serviceId?: string
+        orgsId?: string
     }
-const StudentModule = ({allModule}: StudentModuleProps) => {
+const StudentModule = ({allModule , type , orgsId , serviceId}: StudentModuleProps) => {
     
   return (
     <div className='min-h-screen w-full px-40' >
     <div className='flex gap-2 items-center' >
     <Flame/>
-    <h1 className='text-xl font-semibold text-zinc-800' >  Explore Organizations</h1>
+    <h1 className='text-xl font-semibold text-zinc-800' >  Explore Modules</h1>
     </div>
-    <p className='text-zinc-500 text-sm mt-2' >You Can explore all organization out here and explore their services</p>
+    <p className='text-zinc-500 text-sm mt-2' >You Can explore all the modules enlist with the services</p>
     {
       allModule.length > 1 && (
           <div className='flex gap-4 flex-wrap mt-8'>
@@ -21,6 +25,7 @@ const StudentModule = ({allModule}: StudentModuleProps) => {
                   allModule.map((curr: IModule)=>{
                       return <div className="  border-[1px] border-zinc-300 rounded-lg" >
                       <div className="h-[250px] w-[280px] bg-blue-600 mx-2 my-2 rounded-md">
+                        <Image className='h-[250px] w-[280px] object-cover rounded-sm' src={curr.image} height={800} width={800} alt='imagethatismentioned' />
                       </div>
                       <div className="mx-2 my-2 w-[280px]">
                       <p className="mt-4 font-semibold text-zinc-900" >{curr.name}</p>

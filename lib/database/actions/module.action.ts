@@ -31,14 +31,61 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
         await connectToDatabase();
         const user = await userAvailableorNot(organizationId);
         console.log(user.id);
-        
-        const conditions = {
-           serviceId:serviceId,
-           creatorId:user.id
-           
+        let condition = {}
+
+        if(serviceId && organizationId){
+            // condition = {
+            //     serviceId:serviceId,
+            //     creatorId:user.id
+                
+            //  }
+            console.log("both id are available"  , organizationId , serviceId);
+            
         }
-        const ServiceModules = await Module.find(conditions);
+        else if(serviceId){
+            console.log("only serbice id available" , serviceId);
+            
+        }   
+        else{
+            console.log("only orgs id available" , organizationId);
+            
+        }
+        const ServiceModules = await Module.find(condition);
         console.log(ServiceModules);
+        return JSON.parse(JSON.stringify(ServiceModules));
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const studentGetOrgsModule = async ({ organizationId , serviceId}:getOrgModuleParams) => {
+    try {
+        await connectToDatabase();
+        let condition = {}
+
+        if(serviceId && organizationId){
+            condition = {
+                serviceId:serviceId,
+                creatorId:organizationId  
+             }
+            
+        }
+        else if(serviceId){
+            condition = {
+                serviceId:serviceId
+            }
+        }   
+        else{
+            condition = {
+                creatorId:organizationId
+            }
+           
+            
+        }
+        const ServiceModules = await Module.find(condition);
         return JSON.parse(JSON.stringify(ServiceModules));
         
 

@@ -71,8 +71,8 @@ export type createModuleParams = {
 
 
 export type getOrgModuleParams = {
-    organizationId: string,
-    serviceId: string
+    organizationId?: string,
+    serviceId?: string
 }
 
 export type UpdateModuleParams = {

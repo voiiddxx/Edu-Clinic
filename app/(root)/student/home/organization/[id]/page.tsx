@@ -12,7 +12,7 @@ import {
 import StudentModule from '@/components/shared/student/StudentModule'
 import { getAllServicearPerOrgId, getAllServices } from '@/lib/database/actions/service.action'
 import { IService } from '@/lib/database/models/service.model'
-import { getAllModule } from '@/lib/database/actions/module.action'
+import { getAllModule, studentGetOrgsModule } from '@/lib/database/actions/module.action'
 
 
 const page = async ({
@@ -23,17 +23,34 @@ const page = async ({
 
 
   const allServices = await getAllServicearPerOrgId(id);
-  const allModules = await getAllModule();
-  console.log("services as per id" , allServices);
-  console.log("services as per id" , allServices);
-  
-  
+  const allModules = await studentGetOrgsModule({organizationId:id});
+
+
+
+
   
   return (
     <div className='min-h-screen w-full ' >
       <StudentNav/>
       <div className='h-[400px]  mx-8 my-4 bg-black rounded-lg bg-serviceBg flex justify-center items-center'>
         <h1 className='text-white font-semibold text-[50px]'>Explore The Intel Services</h1>
+      </div>
+
+      <div className='px-36 mt-10 text-zinc-900' >
+        <div className='flex items-center gap-2' >
+          <Flame/>
+        <h1 className='text-2xl font-semibold' >Services</h1>
+        </div>
+        <p className='text-zinc-500 text-sm mt-2' >You Can explore all the services offered by them</p>
+        <div className='flex mt-6 gap-6' >
+       {
+        allServices.map((curr : IService)=>{
+          return  <div className='h-28 w-28 bg-blue-600 rounded-full flex justify-center items-center cursor-pointer' >
+          <p className='text-white text-center' >{curr.name}</p>
+        </div>
+        })
+       }
+        </div>
       </div>
 
       <div className='flex justify-end px-8 py-16 items-center '>
@@ -45,7 +62,7 @@ const page = async ({
       <p className='text-zinc-500 text-sm mt-2' >You Can explore all organization out here and explore their services</p>
       </div> */}
       <div>
-            <Select >
+            <Select>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select Service" />
         </SelectTrigger>
@@ -53,7 +70,7 @@ const page = async ({
           
           {
             allServices.map((curr : IService)=> {
-              return <SelectItem  value="light">{curr.name}</SelectItem>
+              return <SelectItem  value={curr._id}>{curr.name}</SelectItem>
             })
           }
         </SelectContent>
@@ -63,7 +80,7 @@ const page = async ({
       </div>
 
 
-          <StudentModule allModule={allModules} />
+          <StudentModule allModule={allModules} type='ORGS' />
 
 
 
