@@ -1,18 +1,20 @@
+"use client"
+
 import { IOrganization } from '@/lib/database/models/serviceprovider.model'
 import { Flame} from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 
-const orgs = [
-    'd','d','d','d','d','d','d','d','d','d','d','d','d','d','d',
-]
+
 
 
 type StudentOrgsParams = {
   organization:any
 }
 const StudentOrg = ({organization} : StudentOrgsParams) => {
-  console.log("this is organizatu" , organization.length);
+  
+  const router = useRouter();
   
 
   console.log("this is otrgs length" , organization.length  );
@@ -29,7 +31,9 @@ const StudentOrg = ({organization} : StudentOrgsParams) => {
             <div className='flex gap-4 flex-wrap mt-8'>
                 {
                     organization.map((curr:IOrganization)=>{
-                        return <div className='flex flex-col gap-2 items-center justify-center' >
+                        return <div onClick={()=>{
+                          router.push(`/student/home/organization/${curr._id}`)
+                        }} className='flex flex-col gap-2 items-center justify-center cursor-pointer' >
                             <div className='h-28 w-28 rounded-full bg-blue-900' ></div>
                             <p>{curr.orgName}</p>
                         </div>

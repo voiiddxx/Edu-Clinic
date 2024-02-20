@@ -1,0 +1,45 @@
+<svg width="1606" height="731" viewBox="0 0 1606 731" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_17_2)">
+<rect width="1606" height="731" fill="#262626"/>
+<line x1="321.75" y1="1111" x2="321.75" y2="-17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<path d="M351.75 1111L351.75 -17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="381.75" y1="1111" x2="381.75" y2="-17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<path d="M981.75 1111L981.75 -17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="1011.75" y1="1111" x2="1011.75" y2="-17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<path d="M1041.75 1111L1041.75 -17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="291.75" y1="1111" x2="291.75" y2="-17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<path d="M321.75 1111L321.75 -17" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="211.75" x2="1651" y2="211.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="251.75" x2="1651" y2="251.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="271.75" x2="1651" y2="271.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="291.75" x2="1651" y2="291.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="311.75" x2="1651" y2="311.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="331.75" x2="1651" y2="331.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="331.75" x2="1651" y2="331.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="351.75" x2="1651" y2="351.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="391.75" x2="1651" y2="391.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="411.75" x2="1651" y2="411.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<line x1="13" y1="431.75" x2="1651" y2="431.75" stroke="#707070" stroke-opacity="0.19" stroke-width="0.5"/>
+<g filter="url(#filter0_f_17_2)">
+<circle cx="222" cy="252" r="148" fill="#6BFAFA" fill-opacity="0.45"/>
+</g>
+<g filter="url(#filter1_f_17_2)">
+<circle cx="1386" cy="420" r="148" fill="#6BFAFA" fill-opacity="0.45"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_17_2" x="-229" y="-199" width="902" height="902" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="151.5" result="effect1_foregroundBlur_17_2"/>
+</filter>
+<filter id="filter1_f_17_2" x="935" y="-31" width="902" height="902" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="151.5" result="effect1_foregroundBlur_17_2"/>
+</filter>
+<clipPath id="clip0_17_2">
+<rect width="1606" height="731" fill="white"/>
+</clipPath>
+</defs>
+</svg>
