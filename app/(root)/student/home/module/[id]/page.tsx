@@ -1,9 +1,17 @@
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Button } from '@/components/ui/button'
+import { getModuleWithId } from '@/lib/database/actions/module.action'
 import { Clock, Flame, IndianRupee, Sparkle, Zap } from 'lucide-react'
 import React from 'react'
 
-const page = () => {
+const page = async ({
+    params:{ id },
+  } : {params:{
+    id : string
+  }}) => {
+
+    const moduleDetails = await getModuleWithId({id:id});
+
   return (
     <div>
       <StudentNav/>
@@ -49,7 +57,7 @@ const page = () => {
                 </div>
                 <div>
                     <Button className='w-full mt-12 bg-zinc-800 hover:bg-blue-700'>
-                        Visit for more info
+                        Visit   for more info
                     </Button>
                 </div>
         </div>

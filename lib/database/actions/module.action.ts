@@ -1,6 +1,6 @@
 "use server"
 
-import { DeleteModuleParams, UpdateModuleParams, createModuleParams, getOrgModuleParams } from "@/types";
+import { DeleteModuleParams, UpdateModuleParams, createModuleParams, getModulewithid, getOrgModuleParams } from "@/types";
 import connectToDatabase from "..";
 import Module from "../models/module.model";
 import { model } from "mongoose";
@@ -130,6 +130,20 @@ export const getAllModule = async () => {
             return JSON.parse(JSON.stringify({message:"No Module found"}));
         }
         return JSON.parse(JSON.stringify(AllModule));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const getModuleWithId = async ({id} : getModulewithid) => {
+    try {
+        await connectToDatabase();
+        const moduleDetail = await Module.findById(id);
+        if(!moduleDetail){
+            return JSON.parse(JSON.stringify({message:"Not Found"}));
+        }
+        return JSON.parse(JSON.stringify(moduleDetail));
     } catch (error) {
         console.log(error);
         

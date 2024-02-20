@@ -89,3 +89,7 @@ export type UpdateModuleParams = {
 export type DeleteModuleParams = {
     moduleId: string,
 }
+
+export type  getModulewithid = {
+    id: string
+}
