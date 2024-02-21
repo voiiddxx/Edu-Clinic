@@ -48,7 +48,7 @@ const OrgLogin = () => {
         const response = await LoginOrganizatio({organization:{...values}});
         const token = localStorage.setItem('x-auth-token' , response.token);
         if(response){
-          router.push(`serviceprovider/dashboard`)
+          router.push(`/serviceprovider/dashboard`)
         }
       
         

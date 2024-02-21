@@ -19,6 +19,8 @@ import { Building, Building2, GraduationCap, GripVertical, Lock, Mail, PersonSta
 import { RegisterStudent } from "@/lib/database/actions/auth.action"
 import OrgDropDown from "./OrgDropDown"
 import { registerOrganization } from "@/lib/database/actions/organization.auth.action"
+import { useState } from "react"
+import { UploadOnCloudinary } from "@/lib/utils"
 
 
 
@@ -34,8 +36,9 @@ const OrgRegisterSchema = z.object({
 
 
 const OrgRegisterForm = () => {
-
+  const [orgImage, setorgImage] = useState<any>(null);
     
+  
     const form = useForm<z.infer<typeof OrgRegisterSchema>>({
         resolver: zodResolver(OrgRegisterSchema),
         defaultValues: {
@@ -49,7 +52,9 @@ const OrgRegisterForm = () => {
       });
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
-        const res = await registerOrganization({organization:{...values}});
+      console.log(orgImage);
+      const imageUrl = await UploadOnCloudinary(orgImage);
+        const res = await registerOrganization({organization:{...values , orgImage:imageUrl}});
         console.log(res);
         
         console.log(values)
@@ -98,6 +103,17 @@ const OrgRegisterForm = () => {
                 </FormItem>
               )}
             />
+
+
+            <FormLabel>Logo</FormLabel>
+            <div className="flex gap-2" >
+                    <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
+                        <Mail className="text-yellow-400" size={20}/>
+                </div>
+                    <Input onChange={(e)=>{
+                      setorgImage(e.target.files)
+                    }} type="file"/>
+                    </div>
              <FormField
               control={form.control}
               name="orgCategory"
@@ -174,8 +190,16 @@ const OrgRegisterForm = () => {
                 </FormItem>
               )}
             />
-           
-            <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
+             <Button 
+            type="submit"
+            size="lg"
+              disabled={form.formState.isSubmitting}
+           className="w-full bg-blue-700 hover:bg-zinc-800 mt-2"
+        >
+          {form.formState.isSubmitting ? (
+            'Registering...'
+          ): ` Register `}</Button>
+            {/* <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button> */}
             <div className="mt-3 w-full flex justify-center items-center flex-col">
                 <div className="w-2 h-2"></div>
                 <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Login Now</span> </p>

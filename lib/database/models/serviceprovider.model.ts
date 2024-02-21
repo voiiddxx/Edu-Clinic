@@ -3,6 +3,7 @@ import { Schema, model, models , Document } from "mongoose";
 export interface IOrganization extends Document {
     _id: string,
     orgName:string,
+    orgImage: string,
     orgEmail:string
     orgCategory:string
     orgPhone:string,
@@ -31,6 +32,9 @@ const organizationSchema = new Schema({
     orgHq:{
         type:String,
     },
+    orgImage:{
+        type: String,
+    }
 });
 
 

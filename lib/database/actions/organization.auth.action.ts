@@ -11,13 +11,15 @@ import Student from "../models/user.model";
 export const registerOrganization = async ({organization} : registerOrganizationParams) => {
     try {
         await connectToDatabase();
+        console.log(organization.orgImage);
+        
         const orgExist = await Organization.findOne({email:organization.orgEmail});
         if(orgExist){
             return JSON.parse(JSON.stringify({message:"Organization email already assigned"}));
         }
         else{
             const hashedPass = await bcrypt.hash(organization.orgPassword , 10);
-            const createdOrg = await Organization.create({orgName:organization.orgName , orgEmail:organization.orgEmail , orgPassword:hashedPass , orgCategory:organization.orgCategory , orgPhone:organization.orgPhone , orgHq:organization.orgHq});
+            const createdOrg = await Organization.create({orgName:organization.orgName , orgEmail:organization.orgEmail , orgPassword:hashedPass , orgCategory:organization.orgCategory , orgPhone:organization.orgPhone , orgHq:organization.orgHq , orgImage:organization.orgImage});
             return JSON.parse(JSON.stringify(createdOrg));
         }
     } catch (error) {

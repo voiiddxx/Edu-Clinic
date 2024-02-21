@@ -25,6 +25,7 @@ export type registerOrganizationParams = {
         orgCategory:string
         orgPhone:string
         orgHq:string
+        orgImage:string
     }
 }
 
