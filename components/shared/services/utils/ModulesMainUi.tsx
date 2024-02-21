@@ -10,6 +10,7 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import ModuleForm from "./ModuleForm";
+import Image from "next/image";
   
 
 
@@ -36,7 +37,6 @@ const ModulesMainUi = ({serviceId} : ModuleMainUiProps) => {
         }
       }
   
-      console.log("this is usertokn" , usertoken);
 
       useEffect(()=>{
         const fetchModule = async () =>{
@@ -67,7 +67,8 @@ const ModulesMainUi = ({serviceId} : ModuleMainUiProps) => {
                 {
                     Modules.map((curr : IModule)=>{
                         return <div className="  border-[1px] border-zinc-300 rounded-lg" >
-                            <div className="h-[250px] w-[280px] bg-blue-600 mx-2 my-2 rounded-md">
+                            <div className="h-[250px] w-[280px]  mx-2 my-2 rounded-md">
+                                <Image className="h-[250px] w-[280px] object-cover rounded-md" src={curr.image} height={600} width={700} alt="moduleimage"/>
                             </div>
                             <div className="mx-2 my-2 w-[280px]">
                             <p className="mt-4 font-semibold text-zinc-900" >{curr.name}</p>

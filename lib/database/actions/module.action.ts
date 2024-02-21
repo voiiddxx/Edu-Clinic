@@ -36,7 +36,7 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
         if(serviceId && organizationId){
             condition = {
                 serviceId:serviceId,
-                creatorId:organizationId  
+                creatorId:user.id
              }
             
         }
@@ -102,7 +102,7 @@ export const updateModule = async({ moduleId , module}: UpdateModuleParams) => {
     try {
         await connectToDatabase();
         const updatedModule = await Module.findByIdAndUpdate(moduleId , {...module} , {new:true});
-        console.log("this is working");
+  
         
         return JSON.parse(JSON.stringify({message:"Module Updated"}));
 

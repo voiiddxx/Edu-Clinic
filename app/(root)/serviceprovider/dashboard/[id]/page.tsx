@@ -10,31 +10,14 @@ const page = async ({
   } : {params:{
     id : string
   }}) => {
-    // let usertoken = '';
-
-    // if (typeof window !== 'undefined') {
-    //    const token = localStorage.getItem('x-auth-token');
-    //     if(token){
-    //         usertoken = token;
-    //     }
-    //   }
-  
-
-    //   useEffect(()=>{
-    //     const FetchModule = async ()=>{
-    //       const res = await getAllOrganizationModule({organizationId:usertoken , serviceId:id});
-    //     }
-    //     FetchModule();
-    //   } , [])
+   
       
       
   return (
     <div>
       <OrgNav/>
-      <ModuleComponent serviceId={id} />
-      <ModulesMainUi  serviceId={id}/>
-
-
+       <ModuleComponent serviceId={id} />
+      <ModulesMainUi  serviceId={id}/> 
     </div>
   )
 }
