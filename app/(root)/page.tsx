@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex gap-4 flex-col justify-center items-center mt-36" >
       <h1 className="text-4xl font-semibold text-zinc-900" >Unleash the Educationol </h1>
       <h1 className="text-4xl font-semibold text-zinc-900" > Sector with the platform <span>Educlinic</span> </h1>
-      <h1 className="text-4xl font-semibold text-zinc-900" > and <span className="text-blue-800" > Upskill YourSelf</span>  </h1>
+      <h1 className="text-4xl font-semibold text-zinc-900" > <span className="text-blue-800" > and  Upskill YourSelf</span>  </h1>
       <p className="mx-96 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sit reprehenderit culpa eligendi doloremque veritatis deleniti delectus. Consectetur autem delectus, similique tempore</p>
       </div>
 

@@ -38,7 +38,6 @@ export const createService = async ({service , userToken} : createServiceParams)
         await connectToDatabase();
         const userId = await userAvailableorNot(userToken);
         const organizationID = userId.id;
-        console.log(organizationID);
         const createdService = await ServiceStore.create({name:service.serviceName , category:service.serviceCategory , owner:organizationID});
         console.log(createdService);
         return JSON.parse(JSON.stringify(createdService));   
@@ -78,3 +77,24 @@ export const getAllServicearPerOrgId = async ( orgId:any) => {
         
     }
 }
+
+export const getUserServices = async (userToken : any) => {
+    try {
+
+        
+        await connectToDatabase();
+        const user =  await userAvailableorNot(userToken);
+        const conditions = {
+            owner:user.id
+        }
+        const orgsServices = await ServiceStore.find(conditions);
+        return JSON.parse(JSON.stringify(orgsServices));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+
+

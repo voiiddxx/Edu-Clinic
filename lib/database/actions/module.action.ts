@@ -34,20 +34,22 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
         let condition = {}
 
         if(serviceId && organizationId){
-            // condition = {
-            //     serviceId:serviceId,
-            //     creatorId:user.id
-                
-            //  }
-            console.log("both id are available"  , organizationId , serviceId);
+            condition = {
+                serviceId:serviceId,
+                creatorId:organizationId  
+             }
             
         }
         else if(serviceId){
-            console.log("only serbice id available" , serviceId);
+            condition = {
+                serviceId:serviceId
+            }
             
         }   
         else{
-            console.log("only orgs id available" , organizationId);
+            condition = {
+                creatorId:organizationId
+            }
             
         }
         const ServiceModules = await Module.find(condition);

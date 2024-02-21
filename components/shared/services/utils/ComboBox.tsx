@@ -39,7 +39,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { IServicecategory } from "@/lib/database/models/service.category.model"
-import { createService, createServiceCategory, getAllServiceCategory, getAllServices } from "@/lib/database/actions/service.action"
+import { createService, createServiceCategory, getAllServiceCategory, getAllServicearPerOrgId, getAllServices, getUserServices } from "@/lib/database/actions/service.action"
 import { useRouter } from "next/navigation"
 
 
@@ -97,9 +97,7 @@ export function ComboBox() {
 
 
         const getAllServiceNow = async ()=>{
-            const serviceRes = await getAllServices();
-            console.log(serviceRes);
-            
+            const serviceRes = await getUserServices(usertoken);
             serviceRes && setserviceList(serviceRes);
 
         }  

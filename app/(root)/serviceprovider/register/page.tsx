@@ -1,4 +1,4 @@
-import StudentRegisterForm from '@/components/shared/StudentRegisterForm'
+
 import OrgRegisterForm from '@/components/shared/services/OrgRegisterForm'
 import React from 'react'
 
