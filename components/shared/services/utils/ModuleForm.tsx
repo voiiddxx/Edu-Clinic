@@ -42,7 +42,7 @@ const ModuleFormSchema = z.object({
   detail:z.string().min(2).max(50),
   isPaid:z.enum(['free' , 'paid']),
   url: z.string().min(7),
-  fees:z.string().min(2).max(7),
+  fees:z.string().min(2).max(20),
 }).refine((data)=>{
     if(data.isPaid=="paid"){
         return !!data.fees

@@ -40,6 +40,24 @@ const ModuleSchema = new Schema({
     creatorId:{
         type:Schema.Types.ObjectId, ref:'Organization',
     },
+    
+    likes:[
+        {
+            student:{
+                type:Schema.Types.ObjectId , ref:'Student'
+            }
+        }
+    ],
+    review:[
+        {
+            student:{
+                type:Schema.Types.ObjectId , ref:'Student'
+            },
+            message:{
+                type:String,
+            }
+        }
+    ]
 
 });
 

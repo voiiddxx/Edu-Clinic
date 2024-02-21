@@ -67,6 +67,8 @@ export type createModuleParams = {
         image:string
         isPaid: 'paid' | 'free'
         fees: string
+        likes?:[]
+        review?:[]
     }
 }
 
@@ -93,4 +95,9 @@ export type DeleteModuleParams = {
 
 export type  getModulewithid = {
     id: string
+}
+
+export type addTolikeParams = {
+    userId: string
+    moduleId: string
 }

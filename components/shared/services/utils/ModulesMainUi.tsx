@@ -43,8 +43,6 @@ const ModulesMainUi = ({serviceId} : ModuleMainUiProps) => {
             try {
                 const res = await getAllOrganizationModule({organizationId:usertoken , serviceId:serviceId});
                 setModules(res as IModule[]);
-                console.log("this is service id" , res);
-                
             } catch (error) {
                 console.log(error);
                 

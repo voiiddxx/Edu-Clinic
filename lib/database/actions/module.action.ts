@@ -1,6 +1,6 @@
 "use server"
 
-import { DeleteModuleParams, UpdateModuleParams, createModuleParams, getModulewithid, getOrgModuleParams } from "@/types";
+import { DeleteModuleParams, UpdateModuleParams, addTolikeParams, createModuleParams, getModulewithid, getOrgModuleParams } from "@/types";
 import connectToDatabase from "..";
 import Module from "../models/module.model";
 import { model } from "mongoose";
@@ -13,9 +13,8 @@ export const createModule = async ({serviceId , creatorId , module} : createModu
         const user = await userAvailableorNot(creatorId);
         const Ownerid = user.id;
 
-        const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image});
+        const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image , likes:[] , review:[]});
         console.log(createdModule);
-
         return JSON.parse(JSON.stringify(createdModule));
     } catch (error) {
         console.log(error);
@@ -146,6 +145,23 @@ export const getModuleWithId = async ({id} : getModulewithid) => {
             return JSON.parse(JSON.stringify({message:"Not Found"}));
         }
         return JSON.parse(JSON.stringify(moduleDetail));
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+export const AddLiketoModule = async ({userId , moduleId} : addTolikeParams) => {
+    try {
+        await connectToDatabase();
+        const user = await userAvailableorNot(userId);
+        const idofUser = user.id;
+        const module = await Module.findById(moduleId);
+        console.log(module);
+        
+
+
     } catch (error) {
         console.log(error);
         
