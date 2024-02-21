@@ -57,7 +57,8 @@ const config = {
       backgroundImage:{
         'HomeImage': "url(/home.svg)",
         'serviceBg' : "url(/service.svg)",
-        'loginImage' :"url(/logo.svg)"
+        'loginImage' :"url(/logo.svg)",
+        'headerImage':"url(/header.svg)"
       },
       borderRadius: {
         lg: "var(--radius)",

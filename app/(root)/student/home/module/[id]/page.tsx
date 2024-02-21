@@ -1,9 +1,10 @@
 import StudentModule from '@/components/shared/student/StudentModule'
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Button } from '@/components/ui/button'
-import { getAllModule, getModuleWithId } from '@/lib/database/actions/module.action'
+import { getAllModule, getModuleWithId, studentGetOrgsModule } from '@/lib/database/actions/module.action'
 import { Clock, Flame, IndianRupee, Sparkle, Zap } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const page = async ({
@@ -15,7 +16,7 @@ const page = async ({
     const moduleDetails = await getModuleWithId({id:id});
     console.log(moduleDetails);
 
-    const allModules = await getAllModule();
+    const allModules = await studentGetOrgsModule({serviceId:moduleDetails.serviceId});
     
 
   return (
@@ -68,9 +69,10 @@ const page = async ({
                     }
                 </div>
                 <div>
-                    <Button className='w-full mt-12 bg-zinc-800 hover:bg-blue-700'>
+                   <Link href={`/${moduleDetails.url}`} >
+                   <Button className='w-full mt-12 bg-zinc-800 hover:bg-blue-700'>
                         Visit   for more info
-                    </Button>
+                    </Button></Link>
                 </div>
         </div>
         </div>
