@@ -24,7 +24,14 @@ const OrgServices = () => {
    
     
     useEffect(()=>{
-       getUserServices(usertoken)
+
+        const getUserServ = async ()=>{
+          const res = await getUserServices(usertoken);
+          setservices(res);
+          console.log("this is user responses" , res);
+          
+        }
+       getUserServ();
     } , [])
 
 
@@ -42,6 +49,12 @@ const OrgServices = () => {
         </Button>
       </div>
       </div>
+
+      {/* {
+        services.map((curr : any)=>{
+          return <h1>{curr.name}</h1>
+        })
+      } */}
     </div>
   )
 }

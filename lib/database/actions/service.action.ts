@@ -88,6 +88,8 @@ export const getUserServices = async (userToken : any) => {
             owner:user.id
         }
         const orgsServices = await ServiceStore.find(conditions);
+        console.log("this is all services" , orgsServices);
+        
         return JSON.parse(JSON.stringify(orgsServices));
     } catch (error) {
         console.log(error);
