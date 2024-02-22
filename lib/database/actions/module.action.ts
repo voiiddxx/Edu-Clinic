@@ -3,8 +3,22 @@
 import { DeleteModuleParams, UpdateModuleParams, addTolikeParams, createModuleParams, getModulewithid, getOrgModuleParams, postReviewParams } from "@/types";
 import connectToDatabase from "..";
 import Module from "../models/module.model";
-import { model } from "mongoose";
 import { userAvailableorNot } from "./middelware";
+import Student from "../models/user.model";
+
+
+
+
+
+// const populateModuleDetails = async ( query: any) => {
+//     return query
+//     .populate({ path: 'review.sstudent', model: Student, select: '_id email' })
+
+// }
+
+
+
+
 
 
 export const createModule = async ({serviceId , creatorId , module} : createModuleParams) => {
@@ -140,7 +154,7 @@ export const getAllModule = async () => {
 export const getModuleWithId = async ({id} : getModulewithid) => {
     try {
         await connectToDatabase();
-        const moduleDetail = await Module.findById(id);
+        const moduleDetail = await Module.findById(id) ;
         if(!moduleDetail){
             return JSON.parse(JSON.stringify({message:"Not Found"}));
         }

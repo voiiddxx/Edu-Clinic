@@ -1,4 +1,5 @@
 import LikeComponenet from '@/components/shared/student/LikeComponenet'
+import ReviewComponent from '@/components/shared/student/ReviewComponent'
 import StudentModule from '@/components/shared/student/StudentModule'
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Button } from '@/components/ui/button'
@@ -88,36 +89,7 @@ const page = async ({
       </div>
       <div className='h-20'>
       </div>
-      <div className='px-40 mb-20' >
-        <h1 className='text-xl font-semibold' >Feedbacks (5) </h1>
-        <p>All the feedbacks out there for this module</p>
-        <div>
-        <div className='flex gap-2 items-center mt-5' >
-    <Input className='w-[400px] border-[1px] border-zinc-700' placeholder='Type your review' />
-    <div className='h-10 rounded-sm w-44 bg-zinc-900 flex justify-center items-center' >
-        <p className='text-white' >Submit Review</p>
-    </div>    
-    </div>
-    <div className='flex gap-2 flex-col mt-10' >
-      {
-        res.map((curr)=>{
-          return <div className='pb-4 w-full border-b  flex items-start gap-4' >
-            <div className='flex'>
-              <div className='h-12 w-12 border-[1px] border-zinc-700 mt-6 rounded-full flex justify-center items-center '>
-                <div className='bg-red-500 h-10 w-10 rounded-full  '></div>
-              </div>
-            </div>
-            <div className='mt-5'>
-              <p className='font-semibold text-zinc-800' >Nikhil Kumar</p>
-              <p className='mr-32 text-sm text-zinc-700' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae blanditiis reiciendis fugit commodi alias autem. Lorem ipsum dolor, sit amet consectetur  </p>
-            </div>
-          </div>
-        })
-      }
-    </div>
-        </div>
-
-      </div>
+      <ReviewComponent moduleId={moduleDetails} reviewSize={moduleDetails.review.length}  feedbackData={moduleDetails.review} />
       <StudentModule allModule={allModules}/>
       
     </div>
