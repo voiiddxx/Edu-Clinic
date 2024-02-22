@@ -1,7 +1,10 @@
 import { LogOut, User } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const StudentNav = () => {
+
+  
   return (
     <div className='w-full border-b h-20 items-center flex justify-between px-32 ' >
         {/* Logo Div */}
@@ -13,9 +16,10 @@ const StudentNav = () => {
         {/* /All Of the middle nav are going to place here */}
         <div className='flex gap-8' >
             <p>Home</p>
-            <p>Services</p>
-            <p>Modules</p>
-            <p>Organizations</p>
+            <Link href={`/student/home/services`}>  <p>Services</p></Link>
+            <Link href={`/student/home/module`}>  <p>Modules</p></Link>
+            <Link href={`/student/home/organization`}>  <p>Organizations</p></Link>
+            
         </div>
 
 

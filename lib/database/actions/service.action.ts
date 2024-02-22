@@ -50,6 +50,7 @@ export const createService = async ({service , userToken} : createServiceParams)
 
 export const getAllServices = async () => {
     try {
+        await connectToDatabase();
         const allServ = await ServiceStore.find({});
         return JSON.parse(JSON.stringify(allServ));
         
