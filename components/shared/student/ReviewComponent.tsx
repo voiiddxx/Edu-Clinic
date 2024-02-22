@@ -1,16 +1,26 @@
 "use client"
 import { Input } from '@/components/ui/input'
 import { postFeedBack } from '@/lib/database/actions/module.action'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
     type reviewParams = {
         moduleId:string
         reviewSize:any
         feedbackData: any
     }
+
     
-    const res = ['gg','kj' , 'gg','kj' ]
+    
+    
 const ReviewComponent = ({moduleId , reviewSize , feedbackData} : reviewParams) => {
+
+    const [feedback, setfeedback] = useState<any>([])
+
+    useEffect(()=>{
+        if(feedbackData){
+            setfeedback(feedbackData as any);
+        }
+    } , [])
 
     const [feedBackmessage, setfeedBackmessage] = useState<string>('');
     
@@ -26,6 +36,7 @@ const ReviewComponent = ({moduleId , reviewSize , feedbackData} : reviewParams) 
       const handeReview = async ()=>{
         alert("working");
         const res = await postFeedBack({moduleId:moduleId , studentId:usertoken , message:feedBackmessage});
+        setfeedback(res.review as any);
         console.log(res);
         
 
@@ -48,7 +59,7 @@ const ReviewComponent = ({moduleId , reviewSize , feedbackData} : reviewParams) 
 </div>
 <div className='flex gap-2 flex-col mt-10' >
   {
-    feedbackData.map((curr : any)=>{
+    feedback.map((curr : any)=>{
       return <div className='pb-4 w-full border-b  flex items-start gap-4' >
         <div className='flex'>
           <div className='h-12 w-12 border-[1px] border-zinc-700 mt-6 rounded-full flex justify-center items-center '>
