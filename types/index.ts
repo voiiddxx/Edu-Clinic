@@ -101,3 +101,13 @@ export type addTolikeParams = {
     userId: string
     moduleId: string
 }
+
+
+
+
+export type postReviewParams = {
+    studentId:string
+    moduleId:string
+    message:string
+}
+

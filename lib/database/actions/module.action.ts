@@ -1,6 +1,6 @@
 "use server"
 
-import { DeleteModuleParams, UpdateModuleParams, addTolikeParams, createModuleParams, getModulewithid, getOrgModuleParams } from "@/types";
+import { DeleteModuleParams, UpdateModuleParams, addTolikeParams, createModuleParams, getModulewithid, getOrgModuleParams, postReviewParams } from "@/types";
 import connectToDatabase from "..";
 import Module from "../models/module.model";
 import { model } from "mongoose";
@@ -158,12 +158,55 @@ export const AddLiketoModule = async ({userId , moduleId} : addTolikeParams) => 
         const user = await userAvailableorNot(userId);
         const idofUser = user.id;
         const module = await Module.findById(moduleId);
-        console.log(module);
+        let liked = false;
+        for(let i =0; i<module.likes.length;i++){
+            if(module.likes[i].student == idofUser){
+                liked = true;
+                
+                
+            }
+        }
+
+        if(liked){
+            await module.likes.remove({
+                student:idofUser
+            });
+        }
+        else{
+
+            await module.likes.push({
+                student:idofUser
+            });
+        }
+
+        await module.save();
         
 
 
     } catch (error) {
         console.log(error);
+        
+    }
+}
+
+
+
+export const postFeedBack =async  ( {message , moduleId , studentId} : postReviewParams) => {
+    try {
+        await connectToDatabase();
+        const user = await userAvailableorNot(studentId);
+        const userId = user.id;
+        const module = await Module.findById(moduleId);
+        await module.review.push({
+            student:userId,
+            message:message
+        });
+        await module.save();
+        return JSON.parse(JSON.stringify(module));
+
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
         
     }
 }

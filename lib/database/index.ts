@@ -17,8 +17,8 @@ const connectToDatabase = async() => {
             }
             cached.promise = cached.promise || mongoose.connect(MONGOURI , {
                 dbName:'EduClinic',
-                bufferCommands:false
-            }).then(()=>{
+                bufferCommands:true
+            }).then((res)=>{
                 console.log('Databse get connected');
             }).catch((e)=>{
                 console.log(e as string);

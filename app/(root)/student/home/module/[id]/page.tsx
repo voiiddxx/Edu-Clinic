@@ -1,3 +1,4 @@
+import LikeComponenet from '@/components/shared/student/LikeComponenet'
 import StudentModule from '@/components/shared/student/StudentModule'
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Button } from '@/components/ui/button'
@@ -34,12 +35,8 @@ const page = async ({
            </div>
             <p className='text-zinc-500' >Learn complete react js with just one training course</p>
           </div>
-          <div className='flex items-center gap-2' >
-          <div className='h-10 w-10 border-[1px]  rounded-full flex justify-center items-center hover:bg-red-500 text-red-600 hover:text-white' >
-            <Heart className='' size={17}/>
-          </div>
-          <p>50 Peoples liked</p>
-          </div>
+          {/* like part */}
+          <LikeComponenet likeCount={moduleDetails.likes.length} moduleId={moduleDetails._id}  />
            
         </div>
         <div className='flex justify-between items-start gap-12' >
