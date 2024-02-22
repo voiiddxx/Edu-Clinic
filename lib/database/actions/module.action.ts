@@ -43,6 +43,8 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
         
         await connectToDatabase();
         const user = await userAvailableorNot(organizationId);
+        console.log("here we got user id or token" , organizationId , user.id);
+        
         console.log(user.id);
         let condition = {}
 
@@ -61,7 +63,7 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
         }   
         else{
             condition = {
-                creatorId:organizationId
+                creatorId:user.id
             }
             
         }
