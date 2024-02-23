@@ -1,3 +1,4 @@
+import AddDiscuss from '@/components/shared/student/AddDiscuss';
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Plus } from 'lucide-react'
 import React from 'react'
@@ -16,7 +17,7 @@ const page = () => {
                 </div>
                 <div className='h-10  py-2 px-2 bg-zinc-900 rounded-md flex justify-center items-center gap-1'>
             <Plus className='text-zinc-200' />
-            <p className='text-zinc-100'>Post Discussion</p>
+            <AddDiscuss/>
                 </div>
             </div>
 

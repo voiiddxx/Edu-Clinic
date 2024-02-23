@@ -47,7 +47,7 @@ export const LoginStudent = async ({student} : StudentLoginParams) => {
                 
                 
 
-                return JSON.parse(JSON.stringify({...existUser , token}));
+                return JSON.parse(JSON.stringify({...existUser._doc , token}));
             }
         }
     } catch (error) {

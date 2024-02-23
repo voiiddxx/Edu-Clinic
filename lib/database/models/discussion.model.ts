@@ -2,6 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 
 const discussionSchema = new Schema({
+        title:{type:String},
         message:{type:String},
         user:{type:Schema.Types.ObjectId , ref:'Student'},
         image:{type:String},

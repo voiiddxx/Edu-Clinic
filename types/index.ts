@@ -118,6 +118,7 @@ export type CreateDiscussParams = {
     userToken: string,
     image?:string
     message: string,
+    title:string
 }
 
 

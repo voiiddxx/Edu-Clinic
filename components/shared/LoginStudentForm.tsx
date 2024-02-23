@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { LoginStudent, RegisterStudent } from "@/lib/database/actions/auth.action"
+import { useRouter } from "next/navigation"
 
 
 
@@ -27,6 +28,8 @@ const LoginStudentSchema = z.object({
 
 
 const StudentLoginForm = () => {
+
+  const router = useRouter();
 
 
     const form = useForm<z.infer<typeof LoginStudentSchema>>({
@@ -41,6 +44,9 @@ const StudentLoginForm = () => {
         const response = await LoginStudent({student:{...values}})
         console.log(response);
         const savedToken = localStorage.setItem("x-auth-token" , response.token);
+       
+          router.push(`student/home/`)
+        
       }
       return (
         <Form {...form}>

@@ -6,7 +6,7 @@ import { userAvailableorNot } from "./middelware";
 import Discussion from "../models/discussion.model";
 
 
-export const createDiscuss = async ({message , userToken , image} : CreateDiscussParams) => {
+export const createDiscuss = async ({message , userToken , image , title} : CreateDiscussParams) => {
     try {
         await connectToDatabase();
 
@@ -20,6 +20,7 @@ export const createDiscuss = async ({message , userToken , image} : CreateDiscus
         }
 
         const createdDiscuss = await Discussion.create({
+            title:title,
             message:message,
             user:userId,
             image:image,
