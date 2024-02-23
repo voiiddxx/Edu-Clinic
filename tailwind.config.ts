@@ -59,7 +59,8 @@ const config = {
         'serviceBg' : "url(/service.svg)",
         'loginImage' :"url(/logo.svg)",
         'headerImage':"url(/header.svg)",
-        "mainImage":"url(/main.svg)"
+        "mainImage":"url(/main.svg)",
+        "serVIceImage":"url(/serv.svg)"
       },
       borderRadius: {
         lg: "var(--radius)",

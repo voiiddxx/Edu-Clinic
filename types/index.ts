@@ -111,3 +111,18 @@ export type postReviewParams = {
     message:string
 }
 
+
+
+
+export type CreateDiscussParams = {
+    userToken: string,
+    image?:string
+    message: string,
+}
+
+
+export type createReplyParams = {
+    postId: string
+    repliedUser: string
+    message:string
+} 

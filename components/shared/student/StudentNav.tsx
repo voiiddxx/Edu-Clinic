@@ -19,6 +19,7 @@ const StudentNav = () => {
             <Link href={`/student/home/services`}>  <p>Services</p></Link>
             <Link href={`/student/home/module`}>  <p>Modules</p></Link>
             <Link href={`/student/home/organization`}>  <p>Organizations</p></Link>
+            <Link href={`/student/home/discussion`}>  <p>Discussion</p></Link>
             
         </div>
 

@@ -168,13 +168,13 @@ const OrgServices = () => {
       </div>
 
       {
-        services.length < 1 ? <div>No Data</div> : <div className='flex gap-4 mt-10' >
+        services.length < 1 ? <div>No Data</div> : <div className='flex gap-4 mt-10 flex-wrap' >
           {
             services.map((curr : IService)=>{
               return <div onClick={()=>{
                 router.push(`/serviceprovider/dashboard/${curr._id}`)
-              }} className='h-[250px] w-[400px] bg-zinc-400 rounded-md flex justify-center items-center bg-headerImage ' >
-                <h1 className='flex text-2xl font-semibold' >{curr.name}</h1>
+              }} className='h-[250px] w-[400px] bg-zinc-400 rounded-md flex justify-center items-center bg-serviceBg cursor-pointer' >
+                <h1 className='flex text-2xl text-white font-semibold' >{curr.name}</h1>
               </div>
             })
           }
