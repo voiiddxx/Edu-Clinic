@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import {
     Drawer,
     DrawerClose,
@@ -38,13 +38,14 @@ const AddDiscuss = () => {
             
             const imageUrl = await UploadOnCloudinary(image);
             const res = await createDiscuss({title:title , message:message , userToken:usertoken , image:imageUrl});
-        console.log(res);
+           console.log("this is discussion res",res);
         } catch (error) {
             console.log(error);
             
         }
         
       }
+
 
    
 

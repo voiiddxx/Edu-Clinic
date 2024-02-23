@@ -1,3 +1,4 @@
+import { string } from "zod"
 
 
 export type RegisterStudentParams = {
@@ -127,3 +128,8 @@ export type createReplyParams = {
     repliedUser: string
     message:string
 } 
+
+
+export type getDisucssIdParams = {
+    id: string
+}

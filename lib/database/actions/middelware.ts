@@ -10,7 +10,6 @@ import Organization from "../models/serviceprovider.model";
 export const userAvailableorNot = async (userToken: any) => {
     try {
         await connectToDatabase();
-        console.log("here we come " , userToken);
         
         if(!userToken){
             return JSON.parse(JSON.stringify({message:'Token not found'}));

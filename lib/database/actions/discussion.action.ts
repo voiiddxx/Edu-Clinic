@@ -1,6 +1,6 @@
 "use server"
 
-import { CreateDiscussParams, createReplyParams } from "@/types";
+import { CreateDiscussParams, createReplyParams, getDisucssIdParams } from "@/types";
 import connectToDatabase from "..";
 import { userAvailableorNot } from "./middelware";
 import Discussion from "../models/discussion.model";
@@ -37,7 +37,7 @@ export const createDiscuss = async ({message , userToken , image , title} : Crea
 }
 
 
-export const getDuscuss = async ()=>{
+export const getDiscuss = async ()=>{
     try {
         await connectToDatabase();
         const getDiscussion = await Discussion.find({});
@@ -50,6 +50,18 @@ export const getDuscuss = async ()=>{
 }
 
 
+export const getDiscussWithId =  async ({id} : getDisucssIdParams) =>{
+    try {
+        const discussed = await Discussion.findById(id);
+        console.log(discussed);
+        return JSON.parse(JSON.stringify(discussed));
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
 
 export const CreateReplyAction = async ({message , repliedUser  , postId}: createReplyParams)=>{
     try {
@@ -59,7 +71,7 @@ export const CreateReplyAction = async ({message , repliedUser  , postId}: creat
         const discuss = await Discussion.findById(postId);
         await discuss.reply.push({
             message:message,
-            repliedUser:repliedUser
+            repliedUser:repliedUserId
         });
         await discuss.save();
         return JSON.parse(JSON.stringify(discuss));

@@ -1,11 +1,19 @@
 import AddDiscuss from '@/components/shared/student/AddDiscuss';
 import StudentNav from '@/components/shared/student/StudentNav'
+import { getDiscuss } from '@/lib/database/actions/discussion.action';
 import { Plus } from 'lucide-react'
+import Link from 'next/link';
 import React from 'react'
 
-const page = () => {
+const page = async () => {
 
     const res = [2,6,5,54,4,54,51,51,1];
+
+    const discussReponse = await getDiscuss();
+    console.log("this is discuss reponses",discussReponse);
+    
+
+
   return (
     <div>
         <StudentNav/>
@@ -23,8 +31,9 @@ const page = () => {
 
         <div>
         {
-            res.map((curr)=>{
-                return <div className=' pb-5 w-full border-b hover:bg-slate-100 cursor-pointer'>
+            discussReponse.map((curr : any)=>{
+                return <Link href={`/student/home/discussion/${curr._id}`} >
+                <div className=' pb-5 w-full border-b hover:bg-slate-100 cursor-pointer'>
                     <div className='flex  gap-2 mt-4'>
                         <div className='h-10 w-10 rounded-full bg-yellow-500'></div>
                         <div>
@@ -39,7 +48,7 @@ const page = () => {
                     </div>
                     
 
-                </div>
+                </div></Link>
             })
         }
         </div>
