@@ -27,6 +27,23 @@ const page =  async ({
             </div>
             <p className='text-indigo-500 mt-4'>Explainded</p>
             <p className='text-sm mt-4 text-zinc-700' >{discussDetail.message}.</p>
+
+            <p className='text-indigo-600 mt-10'>Replies</p>
+            <div>
+            {
+                discussDetail.reply.map((curr : any)=>{
+                    return <div className=' pb-5 w-full border-b hover:bg-slate-100 cursor-pointer'>
+                  
+                    <div className='mt-3' >
+                      <div className='h-12 w-12 rounded-full bg-red-400'></div>
+                      <p> {curr.message} </p>
+                    </div>
+                      
+  
+                  </div>
+                })
+            }
+            </div>
             </div>
         <ReplyComponent postId={discussDetail._id} />
            
