@@ -133,3 +133,20 @@ export type createReplyParams = {
 export type getDisucssIdParams = {
     id: string
 }
+
+
+export type createProjectParams = {
+    name: string
+    detail:string,
+    isGranted:string
+    amount:string
+    ppt:string
+    college:string
+    phone:string
+    poster:string
+    student:string
+}
+
+export type getprojectWithIdParams = {
+    id:string
+}
