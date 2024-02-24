@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Building, Building2, GraduationCap, GripVertical, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
+import { Building, Building2, GraduationCap, GripVertical, Image, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { RegisterStudent } from "@/lib/database/actions/auth.action"
 import OrgDropDown from "./OrgDropDown"
 import { registerOrganization } from "@/lib/database/actions/organization.auth.action"
@@ -109,7 +109,7 @@ const OrgRegisterForm = () => {
             <FormLabel>Logo</FormLabel>
             <div className="flex gap-2" >
                     <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
-                        <Mail className="text-yellow-400" size={20}/>
+                        <Image className="text-indigo-500" size={20}/>
                 </div>
                     <Input onChange={(e)=>{
                       setorgImage(e.target.files)
@@ -158,7 +158,7 @@ const OrgRegisterForm = () => {
               name="orgHq"
               render={({ field }) => (
                 <FormItem className="w-[400px]" >
-                  <FormLabel>Institution</FormLabel>
+                  <FormLabel>Location</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
                     <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">

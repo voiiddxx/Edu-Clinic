@@ -24,7 +24,7 @@ const StartNav = () => {
         <Building2 className='text-blue-700' size={17} />
         <p className='text-sm font-normal text-blue-700' >Login as organization</p>
         </div></Link>
-        <Link href={`/student/auth/login`} >
+        <Link href={`/`} >
         <div className='h-12 gap-2   bg-blue-700 rounded-sm flex items-center px-4' >
         <User className='text-white' size={17} />
         <p className='text-sm font-normal text-white' >Login as student</p>
