@@ -9,7 +9,7 @@ const OrgMainnav = () => {
       <Link href={`/serviceprovider/dashboard`} >
       <p>Overview</p></Link>
       <Link href={`/serviceprovider/analytics`} ><p>Anaylytics</p></Link>
-      <p>Modules</p>
+      <Link href={`/serviceprovider/projects`} ><p>Projects</p></Link>
       
     </div>
   )
