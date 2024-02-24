@@ -21,7 +21,7 @@ export default function Home() {
     <Button className="bg-zinc-900 hover:bg-white hover:text-zinc-900" >
       Signin as Organization
     </Button></Link>
-    <Link href={`/`} >
+    <Link href={`/student/auth/register`} >
     <Button className="bg-transparent text-zinc-950 border-[1px] border-zinc-900 hover:bg-zinc-900 hover:text-white" >
       Signin as Student
     </Button></Link>
