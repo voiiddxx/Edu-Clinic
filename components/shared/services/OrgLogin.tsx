@@ -19,6 +19,7 @@ import { Building, Building2, GraduationCap, GripVertical, Lock, Mail, PersonSta
 import OrgDropDown from "./OrgDropDown"
 import { LoginOrganizatio } from "@/lib/database/actions/organization.auth.action"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 
 
@@ -114,7 +115,8 @@ const OrgLogin = () => {
           ):  <p>Login now </p> }</Button>
           <div className="mt-3 w-full flex justify-center items-center flex-col">
               <div className="w-2 h-2"></div>
-              <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Create account</span> </p>
+              <Link href={`/serviceprovider/register`} >
+              <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Create account</span> </p></Link>
           </div>
         </form>
       </Form>

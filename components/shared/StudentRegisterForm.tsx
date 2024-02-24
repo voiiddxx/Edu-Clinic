@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { RegisterStudent } from "@/lib/database/actions/auth.action"
+import Link from "next/link"
 
 
 
@@ -154,7 +155,8 @@ const StudentRegisterForm = () => {
             <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
             <div className="mt-3 w-full flex justify-center items-center flex-col">
                 <div className="w-2 h-2"></div>
-                <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Login Now</span> </p>
+                <Link href={`/student/auth/login`} >
+                <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Login Now</span> </p></Link>
             </div>
           </form>
         </Form>

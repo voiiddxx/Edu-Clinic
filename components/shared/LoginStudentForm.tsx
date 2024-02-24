@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input"
 import { GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { LoginStudent, RegisterStudent } from "@/lib/database/actions/auth.action"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 
 
@@ -104,7 +105,8 @@ const StudentLoginForm = () => {
             
             <div className="mt-3 w-full flex justify-center items-center flex-col">
                 <div className="w-2 h-2"></div>
-                <p className="text-sm">Don't Have an account? <span className="text-blue-700 font-normal" >Register Now</span> </p>
+               <Link href={`/student/auth/register`} >
+               <p className="text-sm">Don't Have an account? <span className="text-blue-700 font-normal" >Register Now</span> </p></Link>
             </div>
           </form>
         </Form>
