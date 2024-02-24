@@ -41,7 +41,7 @@ export const LoginStudent = async ({student} : StudentLoginParams) => {
                 return JSON.parse(JSON.stringify({message:"Invalid Password"}));
             }
             else{
-                const token = jwt.sign({id:existUser._id} , `${process.env.AUTH_KEY}`);
+                const token = jwt.sign({id:existUser._id} , "x-auth-token-secure-key");
                 console.log("this is existing user" , existUser);
                 console.log("this is token of existing user" , token);
                 

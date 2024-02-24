@@ -14,13 +14,13 @@ export const userAvailableorNot = async (userToken: any) => {
         if(!userToken){
             return JSON.parse(JSON.stringify({message:'Token not found'}));
         }
-        const Valid = jwt.verify(userToken , `${process.env.AUTH_KEY}`);
+        const Valid = jwt.verify(userToken , "x-auth-token-secure-key");
      
         
         if(!Valid){
             return JSON.parse(JSON.stringify({message:"token not authorized"}));
         }
-        else{
+        else{   
         return Valid;
         }
 

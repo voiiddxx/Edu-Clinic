@@ -1,4 +1,5 @@
 import MainNav from "@/components/shared/MainNav";
+import StartNav from "@/components/shared/start/StartNav";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-     <MainNav/>
+     <StartNav/>
      <div className="w-full min-h-screen bg-mainImage flex  items-center flex-col">
       <div className="flex gap-4 flex-col justify-center items-center mt-36" >
       <h1 className="text-4xl font-semibold text-zinc-900" >Unleash the Educationol </h1>

@@ -77,14 +77,17 @@ const OrgServices = () => {
     }
 
         const getUserServ = async ()=>{
+          console.log("the value of usertokens are ", usertoken);
+          
           const res = await getUserServices(usertoken);
+          console.log("the value of responses are",res);
           setservices(res);
         }
        getUserServ();
        
     } , [])
 
-    console.log("values of" , services);
+    console.log("values of services are" , services);
     
 
 
@@ -168,7 +171,12 @@ const OrgServices = () => {
       </div>
 
       {
-        services.length < 1 ? <div>No Data</div> : <div className='flex gap-4 mt-10 flex-wrap' >
+        services.length < 1 ? <div className='w-full min-h-screen flex justify-center items-center '>
+          <div className='px-20 py-12 rounded-md mb-24 bg-zinc-200 flex justify-center items-center flex-col'>
+        <h1>Sorry, No Data Found</h1>
+        <p>Please try again later or create new service</p>
+          </div>
+        </div> : <div className='flex gap-4 mt-10 flex-wrap' >
           {
             services.map((curr : IService)=>{
               return <div onClick={()=>{

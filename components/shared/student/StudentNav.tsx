@@ -20,6 +20,7 @@ const StudentNav = () => {
             <Link href={`/student/home/module`}>  <p>Modules</p></Link>
             <Link href={`/student/home/organization`}>  <p>Organizations</p></Link>
             <Link href={`/student/home/discussion`}>  <p>Discussion</p></Link>
+            <Link href={`/student/project`}>  <p>Project fundraising</p></Link>
             
         </div>
 

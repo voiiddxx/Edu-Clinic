@@ -39,7 +39,7 @@ import { Edit } from "lucide-react"
  
 const ModuleFormSchema = z.object({
   name: z.string().min(2).max(50),
-  detail:z.string().min(2).max(50),
+  detail:z.string().min(2).max(800),
   isPaid:z.enum(['free' , 'paid']),
   url: z.string().min(7),
   fees:z.string().min(2).max(20),
@@ -216,13 +216,21 @@ const ModuleForm = ({id , type , moduleId} : ModuleFormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input  placeholder="Your Module Price" {...field} />
+                <Input  placeholder="https://" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full bg-zinc-900 " type="submit">Submit</Button>
+         <Button 
+          type="submit"
+          size="lg"
+          disabled={form.formState.isSubmitting}
+          className="bg-zinc-900 w-full"
+        >
+          {form.formState.isSubmitting ? (
+            'Submitting...'
+          ): `Create Module`}</Button>
         <div className="w-full">
         <AlertDialogCancel className="w-full text-zinc-800" >Cancel</AlertDialogCancel>
         </div>

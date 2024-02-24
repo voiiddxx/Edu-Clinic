@@ -102,11 +102,19 @@ const OrgLogin = () => {
           />
          
           
-         
-          <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
+         <div className="h-1"></div>
+          <Button 
+          type="submit"
+          size="lg"
+          disabled={form.formState.isSubmitting}
+          className="w-full bg-blue-700 hover:bg-zinc-800 mt-2"
+        >
+            {form.formState.isSubmitting ? (
+              'Submitting...'
+          ):  <p>Login now </p> }</Button>
           <div className="mt-3 w-full flex justify-center items-center flex-col">
               <div className="w-2 h-2"></div>
-              <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Login Now</span> </p>
+              <p className="text-sm">Already Have an account? <span className="text-blue-700 font-normal" >Create account</span> </p>
           </div>
         </form>
       </Form>

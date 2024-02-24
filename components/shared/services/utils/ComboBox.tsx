@@ -134,7 +134,7 @@ export function ComboBox() {
                     <div>
                         {
                             serviceList.map((curr) => {
-                                return <CommandItem key={curr._id} value={curr.name}  onSelect={(currentValue: React.SetStateAction<string>) => {
+                                return <CommandItem key={curr._id} value=''  onSelect={(currentValue: React.SetStateAction<string>) => {
                                    setValue(currentValue == curr.name ? '' : currentValue);
                                     setOpen(false);
                                     setHeader(currentValue);
