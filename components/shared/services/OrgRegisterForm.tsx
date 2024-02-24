@@ -163,7 +163,7 @@ const OrgRegisterForm = () => {
                     <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
                         <Building2 className="text-blue-600" size={20}/>
                 </div>
-                    <Input  placeholder="Your Institution Name" {...field} />
+                    <Input  placeholder="Your Location" {...field} />
                     </div>
                   </FormControl>
                  

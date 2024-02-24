@@ -4,7 +4,7 @@ import React from 'react'
 
 const StudentHero = () => {
   return (
-    <div className=' pb-24 w-full flex flex-col justify-start items-center ' > 
+    <div className='min-h-screen bg-studentImage bg-no-repeat w-full flex flex-col justify-start items-center ' > 
     <div className='mt-32 flex flex-col justify-center items-center px-96'>
         <div className='bg-slate-50 rounded-3xl px-6 py-1 mb-2 flex gap-3 items-center' >
             <Rocket className='text-blue-600'  size={18}/>
@@ -17,7 +17,7 @@ const StudentHero = () => {
     </p>
     </div>
     <div className='flex gap-2 items-center mt-5' >
-    <Input className='w-[320px]' placeholder='Type any Services or module' />
+        <Input className='w-[400px]' placeholder='Search for your services...' / >
     <div className='h-10 rounded-sm w-44 bg-blue-700 flex justify-center items-center' >
         <p className='text-white' >Search Services</p>
     </div>
@@ -33,15 +33,15 @@ const StudentHero = () => {
         </div>
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Intel</p>
+            <p className='text-[14px] text-zinc-800' >Internships</p>
         </div>
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Edx Courses</p>
+            <p className='text-[14px] text-zinc-800' > Courses</p>
         </div>
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Udemy</p>
+            <p className='text-[14px] text-zinc-800' >Trainings</p>
         </div>
     </div>
   </div>

@@ -45,7 +45,7 @@ const StudentLoginForm = () => {
         console.log(response);
         const savedToken = localStorage.setItem("x-auth-token" , response.token);
        
-          router.push(`student/home/`)
+          router.push(`/student/home/`)
         
       }
       return (
@@ -90,8 +90,18 @@ const StudentLoginForm = () => {
                 </FormItem>
               )}
             />
+            <div className="h-1"></div>
+             <Button 
+          type="submit"
+          size="lg"
+          disabled={form.formState.isSubmitting}
+          className="bg-blue-700 w-full "
+        >
+          {form.formState.isSubmitting ? (
+            'Submitting...'
+          ): `Login now`}</Button>
            
-            <Button className="w-full bg-blue-700 hover:bg-zinc-800 mt-2" type="submit">Submit</Button>
+            
             <div className="mt-3 w-full flex justify-center items-center flex-col">
                 <div className="w-2 h-2"></div>
                 <p className="text-sm">Don't Have an account? <span className="text-blue-700 font-normal" >Register Now</span> </p>

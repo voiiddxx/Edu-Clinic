@@ -60,7 +60,8 @@ const config = {
         'loginImage' :"url(/logo.svg)",
         'headerImage':"url(/header.svg)",
         "mainImage":"url(/main.svg)",
-        "serVIceImage":"url(/serv.svg)"
+        "serVIceImage":"url(/serv.svg)",
+        "studentImage":"url(/student.svg)"
       },
       borderRadius: {
         lg: "var(--radius)",
