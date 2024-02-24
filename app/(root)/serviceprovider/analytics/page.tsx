@@ -15,8 +15,6 @@ const page = () => {
         <p className='text-sm text-zinc-700' >Explore your analytics and know your booming service</p>
         </div>
     </div>
-
-    
       </div>
       <AnayModule/>
     </div>

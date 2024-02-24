@@ -144,6 +144,7 @@ export type createProjectParams = {
     college:string
     phone:string
     poster:string
+    mail:string
     student:string
 }
 

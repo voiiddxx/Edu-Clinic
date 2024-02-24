@@ -6,7 +6,7 @@ import { userAvailableorNot } from "./middelware";
 import Project from "../models/project.model";
 
 
-export const createProject = async ({name , detail , amount, college , isGranted , phone , poster , ppt , student } : createProjectParams) =>{
+export const createProject = async ({name , detail , amount, college , isGranted , phone , poster , ppt , student , mail } : createProjectParams) =>{
     try {
         await connectToDatabase();
 
@@ -17,9 +17,10 @@ export const createProject = async ({name , detail , amount, college , isGranted
             ammount:amount,
             college:college,
             isGranted:isGranted,
-            ppy:ppt,
+            ppt:ppt,
             phone:phone,
             poster:poster,
+            mail:mail,
             student:user.id
         });
         console.log(createdProject);

@@ -4,12 +4,13 @@ import { Schema, model, models } from "mongoose";
 const ProjectSchema = new Schema({
     name:{type:String},
     detail:{type:String},
-    isGranted:{type:true},
+    isGranted:{type:String},
     ammount:{type:String},
     ppt:{type:String},
     college:{type:String},
     phone:{type:String},
     poster:{type:String},
+    mail:{type:String},
     student:{type:Schema.Types.ObjectId , ref:'Student'}
 });
 
