@@ -4,6 +4,17 @@ import { CreateDiscussParams, createReplyParams, getDisucssIdParams } from "@/ty
 import connectToDatabase from "..";
 import { userAvailableorNot } from "./middelware";
 import Discussion from "../models/discussion.model";
+import Student from "../models/user.model";
+
+
+
+
+const populateDiscuss = async ( query: any) => {
+    return query
+    .populate({ path: 'user', model: Student, select: '_id username' })
+
+}
+
 
 
 export const createDiscuss = async ({message , userToken , image , title} : CreateDiscussParams) => {
@@ -40,7 +51,10 @@ export const createDiscuss = async ({message , userToken , image , title} : Crea
 export const getDiscuss = async ()=>{
     try {
         await connectToDatabase();
-        const getDiscussion = await Discussion.find({});
+        const getDiscussion = await populateDiscuss(Discussion.find({}));
+        console.log("this is get discussion",getDiscussion);
+        
+
         return JSON.parse(JSON.stringify(getDiscussion));
         
     } catch (error) {
@@ -53,7 +67,7 @@ export const getDiscuss = async ()=>{
 export const getDiscussWithId =  async ({id} : getDisucssIdParams) =>{
     try {
         const discussed = await Discussion.findById(id);
-        console.log(discussed);
+    
         return JSON.parse(JSON.stringify(discussed));
         
     } catch (error) {

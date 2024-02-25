@@ -1,7 +1,6 @@
-import MainNav from "@/components/shared/MainNav";
+
 import StartNav from "@/components/shared/start/StartNav";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -26,9 +25,10 @@ export default function Home() {
       Signin as Student
     </Button></Link>
       </div>
-
+    
       
      </div>
     </main>
   );
 }
+

@@ -10,11 +10,11 @@ import Student from "../models/user.model";
 
 
 
-// const populateModuleDetails = async ( query: any) => {
-//     return query
-//     .populate({ path: 'review.sstudent', model: Student, select: '_id email' })
+const populateModuleDetails = async ( query: any) => {
+    return query
+    .populate({ path: 'review.student', model: Student, select: '_id email' })
 
-// }
+}
 
 
 

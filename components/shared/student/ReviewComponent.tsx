@@ -1,6 +1,7 @@
 "use client"
 import { Input } from '@/components/ui/input'
 import { postFeedBack } from '@/lib/database/actions/module.action'
+import { User } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
     type reviewParams = {
@@ -63,7 +64,9 @@ const ReviewComponent = ({moduleId , reviewSize , feedbackData} : reviewParams) 
       return <div className='pb-4 w-full border-b  flex items-start gap-4' >
         <div className='flex'>
           <div className='h-12 w-12 border-[1px] border-zinc-700 mt-6 rounded-full flex justify-center items-center '>
-            <div className='bg-red-500 h-10 w-10 rounded-full  '></div>
+            <div className=' h-10 w-10 rounded-full border-1[px] border-zinc-600 flex justify-center items-center'>
+              <User/>
+            </div>
           </div>
         </div>
         <div className='mt-5'>
