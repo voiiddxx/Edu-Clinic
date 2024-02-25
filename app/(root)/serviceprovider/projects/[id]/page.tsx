@@ -32,7 +32,7 @@ const page = async ({
             </div>
             <div className='ml-16 mt-4 w-[600px]'>
                 <h1 className='text-2xl font-semibold text-zinc-700' >{data.name}</h1>
-                <p className='text-sm mt-4 text-zinc-500' >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure rem voluptates aliquam laudantium blanditiis et sed inventore consequuntur possimus ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo omnis id optio nam officiis. Laboriosam natus porro consequuntur at quasi. </p>
+                <p className='text-sm mt-4 text-zinc-500' >{data.detail}. </p>
                 <div className='flex gap-2 mt-4 items-center' >
                     <div className='h-14 w-14 rounded-full bg-slate-100 flex justify-center items-center'><Building2 className='text-indigo-700' />
                     </div>

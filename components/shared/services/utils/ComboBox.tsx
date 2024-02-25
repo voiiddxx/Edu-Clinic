@@ -75,7 +75,7 @@ export function ComboBox() {
         service:{serviceName:ServiceCategoryName , serviceCategory:ServiceCategory} , userToken:usertoken
     }).then((res)=> {
         setserviceList((prevState) => [...prevState , res]);
-        console.log(res);
+        alert("service created")
         
     })
     }

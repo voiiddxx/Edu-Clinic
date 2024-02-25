@@ -30,7 +30,7 @@ const page = async () => {
                            <div className='flex flex-col w-[400px] justify-between' >
                            <div className='h-full ' >
                             <h1 className='mt-3 font-semibold' >Project Metal Detector</h1>
-                            <p className='text-[12px] mr-1 mt-2' >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam repellat fugiat impedit doloribus, velit saepe?</p>
+                            <p className='text-[12px] mr-1 mt-2' >{curr.detail}</p>
                             <div className='h-7 mt-2 w-36 bg-indigo-100 rounded-full flex justify-center items-center' >
                                 <p className='text-sm text-indigo-900' >Patent Granted</p>
                             </div>

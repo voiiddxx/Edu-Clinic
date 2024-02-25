@@ -200,7 +200,15 @@ const ProjectForm = () => {
               )}
             />
             </div>
-            <Button className="w-full bg-zinc-900" type="submit">Submit</Button>
+            <Button 
+          type="submit"
+          size="lg"
+          disabled={form.formState.isSubmitting}
+          className="w-full bg-zinc-900"
+        >
+          {form.formState.isSubmitting ? (
+            'Submitting...'
+          ): `Submit `}</Button>
           </form>
         </Form>
       )
