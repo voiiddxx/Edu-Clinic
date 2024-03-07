@@ -155,7 +155,7 @@ const MatchComponent = ({serviceCategory , orgCategory , allOrg} : detailProps) 
                     <Label>Additinols Details</Label>
                     <Textarea onChange={(e)=>{
                         setadditniolDetail(e.target.value);
-                    }} className='mt-2' placeholder='Enter Detail Here...' />
+                    }} className='mt-2' placeholder='Enter Detail Here.....' />
                 </div>
 
 
