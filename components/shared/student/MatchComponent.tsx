@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { useFormState } from 'react-dom'
+import { useRouter } from 'next/navigation'
 
   type detailProps = {
     serviceCategory:any
@@ -22,6 +23,8 @@ import { useFormState } from 'react-dom'
     allOrg:any
   }
 const MatchComponent = ({serviceCategory , orgCategory , allOrg} : detailProps) => {
+
+    const router = useRouter();
 
     const [orgCategoryValue, setorgCategoryValue] = useState<any>(null)
     const [ModuleCateValue, setModuleCateValue] = useState<any>(null)
@@ -32,17 +35,16 @@ const MatchComponent = ({serviceCategory , orgCategory , allOrg} : detailProps) 
 
 
     const handleRes = ()=>{
-        alert("wrokig" + orgCategoryValue)
-        console.log(orgCategoryValue);
-        console.log(ModuleCateValue);
-        console.log(isFree);
-        console.log(AmmountRange);
-        console.log(additniolDetail);
-        console.log(orgName);
-        
-        
-        
-        
+
+        // console.log(orgCategoryValue);
+        // console.log(ModuleCateValue);
+        // console.log(isFree);
+        // console.log(AmmountRange);
+        // console.log(additniolDetail);
+        // console.log(orgName);
+
+
+        //==== PASS DATA TO RESULT SCREEN IN STUDENT/MATCH/RESULT OR SHOW THE CARD BASED ON THE RESULT ON BOTTOM OF THE FORM==========//
         
     }
     
