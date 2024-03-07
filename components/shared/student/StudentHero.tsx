@@ -1,5 +1,6 @@
 import { Input } from '@/components/ui/input'
 import { Check, CheckCheck, Rocket } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const StudentHero = () => {
@@ -10,7 +11,7 @@ const StudentHero = () => {
             <Rocket className='text-blue-600'  size={18}/>
             <p className='text-blue-600'>Explore Services</p>
         </div>
-    <h1 className='font-bold text-5xl text-zinc-900' >Explore Your Educatinol </h1>
+    <h1 className='font-bold text-5xl text-zinc-900' >Explore Your Educational </h1>
     <h1 className='font-bold text-5xl text-zinc-900 mt-3' >  <span className='text-blue-700 underline' >Marketplace</span> At One Place</h1>
     <p className='text-center mt-4 text-zinc-400' >
         Explore your all market place such as you can explore the service providers or the organizers who serve services for students growth and upskilling now its time to grow
@@ -18,9 +19,11 @@ const StudentHero = () => {
     </div>
     <div className='flex gap-2 items-center mt-5' >
         <Input className='w-[400px]' placeholder='Search for your services...' / >
+    <Link href="/student/match" >
     <div className='h-10 rounded-sm w-44 bg-blue-700 flex justify-center items-center' >
-        <p className='text-white' >Search Services</p>
+        <p className='text-white' >Match Your Service</p>
     </div>
+    </Link>
     </div>
     <div className='flex gap-9 mt-16' >
         <div className='flex gap-2 items-center'>
