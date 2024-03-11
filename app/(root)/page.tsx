@@ -1,34 +1,27 @@
+import StudentHero from "@/components/shared/student/StudentHero";
+import StudentModule from "@/components/shared/student/StudentModule";
+import StudentNav from "@/components/shared/student/StudentNav";
+import StudentOrg from "@/components/shared/student/StudentOrg";
+import StudentServices from "@/components/shared/student/StudentServices";
+import { getAllModule } from "@/lib/database/actions/module.action";
+import { getAllOrganization } from "@/lib/database/actions/organization.auth.action";
+import { getAllServices } from "@/lib/database/actions/service.action";
+import React from "react";
 
-import StartNav from "@/components/shared/start/StartNav";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+const page = async () => {
+  const modules = await getAllModule();
+  const allServices = await getAllServices();
+  const orgs = await getAllOrganization();
 
-export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-     <StartNav/>
-     <div className="w-full min-h-screen bg-mainImage flex  items-center flex-col">
-      <div className="flex gap-4 flex-col justify-center items-center mt-36" >
-      <h1 className="text-4xl font-semibold text-zinc-900" >Unleash the Educationol </h1>
-      <h1 className="text-4xl font-semibold text-zinc-900" > Sector with the platform <span>Educlinic</span> </h1>
-      <h1 className="text-4xl font-semibold text-zinc-900" > <span className="text-blue-800" > and  Upskill YourSelf</span>  </h1>
-      <p className="mx-96 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sit reprehenderit culpa eligendi doloremque veritatis deleniti delectus. Consectetur autem delectus, similique tempore</p>
-      </div>
-
-      <div className="flex gap-2 mt-4" >
-    <Link href={`/serviceprovider/register`} >
-    <Button className="bg-zinc-900 hover:bg-white hover:text-zinc-900" >
-      Signin as Organization
-    </Button></Link>
-    <Link href={`/student/auth/register`} >
-    <Button className="bg-transparent text-zinc-950 border-[1px] border-zinc-900 hover:bg-zinc-900 hover:text-white" >
-      Signin as Student
-    </Button></Link>
-      </div>
-    
-      
-     </div>
-    </main>
+    <div>
+      <StudentNav />
+      <StudentHero />
+      {/* <StudentOrg organization={orgs} /> */}
+      {/* <StudentServices services={allServices} /> */}
+      {/* <StudentModule allModule={modules} /> */}
+    </div>
   );
-}
+};
 
+export default page;

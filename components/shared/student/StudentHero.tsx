@@ -18,33 +18,33 @@ const StudentHero = () => {
     </p>
     </div>
     <div className='flex gap-2 items-center mt-5' >
-        <Input className='w-[400px]' placeholder='Search for your services...' / >
+        {/* <Input className='w-[400px]' placeholder='Search for your services...' / > */}
     <Link href="/student/match" >
     <div className='h-10 rounded-sm w-44 bg-blue-700 flex justify-center items-center' >
-        <p className='text-white' >Match Your Service</p>
+        <p className='text-white' >Tell us your Needs</p>
     </div>
     </Link>
     </div>
     <div className='flex gap-9 mt-16' >
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Artificial Intelligenece</p>
+            <p className='text-[14px] text-zinc-800' >Counseling Services</p>
         </div>
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Web Development</p>
+            <p className='text-[14px] text-zinc-800' >Scholarship Programs</p>
+        </div>
+        <div className='flex gap-2 items-center'>
+            <CheckCheck className='text-blue-700' size={15}/>
+            <p className='text-[14px] text-zinc-800' >Academic Advising</p>
+        </div>
+        <div className='flex gap-2 items-center'>
+            <CheckCheck className='text-blue-700' size={15}/>
+            <p className='text-[14px] text-zinc-800' > Funding and Support</p>
         </div>
         <div className='flex gap-2 items-center'>
             <CheckCheck className='text-blue-700' size={15}/>
             <p className='text-[14px] text-zinc-800' >Internships</p>
-        </div>
-        <div className='flex gap-2 items-center'>
-            <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' > Courses</p>
-        </div>
-        <div className='flex gap-2 items-center'>
-            <CheckCheck className='text-blue-700' size={15}/>
-            <p className='text-[14px] text-zinc-800' >Trainings</p>
         </div>
     </div>
   </div>
