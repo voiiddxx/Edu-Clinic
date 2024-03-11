@@ -151,3 +151,15 @@ export type createProjectParams = {
 export type getprojectWithIdParams = {
     id:string
 }
+
+
+export type registerExpertParams = {
+    expert:{
+    name:string,
+    email:string
+    password:string,
+    occupation:string,
+    workProof:string,
+    resume:string,
+    }
+}
