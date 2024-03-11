@@ -4,13 +4,30 @@ import { getAllModule } from "@/lib/database/actions/module.action";
 import StudentModule from "@/components/shared/student/StudentModule";
 import { Space } from "lucide-react";
 
-function FilteredModules({ items }) {
-  const [allModules, setAllModules] = useState([]);
+interface Module {
+  // Define module properties here
+  name: string;
+  isPaid: string;
+  fees: number;
+  creatorId: string;
+}
+
+interface FilteredModulesProps {
+  items: {
+    AmmountRange: string;
+    orgName: string;
+    orgCategoryName: string;
+  };
+}
+
+function FilteredModules({ items }: FilteredModulesProps) {
+  const [allModules, setAllModules] = useState<Module[]>([]);
+  const [filteredModules, setFilteredModules] = useState<Module[]>([]);
 
   useEffect(() => {
     async function fetchModules() {
       try {
-        const modules = await getAllModule();
+        const modules: Module[] = await getAllModule();
         console.log(JSON.stringify(modules))
         setAllModules(modules);
       } catch (error) {
@@ -25,39 +42,40 @@ function FilteredModules({ items }) {
     console.log(items);
   }, [items]);
 
-  
+  useEffect(() => {
+    const newFilteredModules = allModules.filter(module => {
+      // Filter modules based on fees range (items.AmmountRange)
+      let feesInRange = true;
+      if (items.AmmountRange === "Free") {
+        feesInRange = module.isPaid !== "paid";
+      } else if (items.AmmountRange === "paid") {
+        feesInRange = module.isPaid === "paid";
+      } else {
+        const fees = parseFloat(module.fees.toString());
+        const ammountRange = parseFloat(items.AmmountRange);
+        feesInRange = fees <= ammountRange;
+      }
 
-  const filteredModules = allModules.filter(module => {
-    // Filter modules based on fees range (items.AmmountRange)
-    let feesInRange = true;
-    if (items.AmmountRange === "Free") {
-      feesInRange = module.isPaid !== "paid";
-    } else if (items.AmmountRange === "paid") {
-      feesInRange = module.isPaid === "paid";
-    } else {
-      const fees = parseFloat(module.fees);
-      const ammountRange = parseFloat(items.AmmountRange);
-      feesInRange = fees <= ammountRange;
-    }
+      // Filter modules based on organization name (items.orgName)
+      const orgNameMatch = !items.orgName || module.creatorId === items.orgName;
 
-    // Filter modules based on organization name (items.orgName)
-    const orgNameMatch = !items.orgName || module.creatorId == items.orgName;
+      //Filter on the basis of category
+      const categoryMatch = !items.orgCategoryName || module.name.toLowerCase().trim() === items.orgCategoryName.toLowerCase().trim();
 
-    //Filter on the basis of category
-    const categoryMatch = !items.orgCategoryName || module.name.toLowerCase().trim() == items.orgCategoryName.toLowerCase().trim();
+      console.log(`fees: ${feesInRange}`)
+      console.log(`orgName: ${orgNameMatch}`)
+      console.log(`Category: ${categoryMatch}`)
 
-    // console.log(`Module name: ${module.name?.toLowerCase().trim()}`)
-    // console.log(`Org category name: ${items.orgCategoryName?.toLowerCase().trim()}`)
+      return feesInRange && categoryMatch;
+    });
 
-    console.log(`fees: ${feesInRange}`)
-    console.log(`orgName: ${orgNameMatch}`)
-    console.log(`Category: ${categoryMatch}`)
+    setFilteredModules(newFilteredModules);
+  }, [allModules, items]);
 
-    return feesInRange && categoryMatch;
-  });
-  useEffect(()=>{
+  useEffect(() => {
     console.log(filteredModules)
-  },filteredModules) 
+  }, [filteredModules]);
+
   console.log(filteredModules.length)
 
   return (
