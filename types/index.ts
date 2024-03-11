@@ -163,3 +163,9 @@ export type registerExpertParams = {
     resume:string,
     }
 }
+
+
+export type loginExpertParams = {
+    email:string,
+    password:string,
+}
