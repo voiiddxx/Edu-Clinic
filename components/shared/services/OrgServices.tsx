@@ -25,6 +25,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { IServicecategory } from '@/lib/database/models/service.category.model'
 import { useRouter } from 'next/navigation'
+import { getOrganizationasPerId } from '@/lib/database/actions/organization.auth.action'
+import ApprovalForm from './ApprovalForm'
 
 const OrgServices = () => {
 
@@ -35,6 +37,8 @@ const OrgServices = () => {
   const [ServiceCategory, setServiceCategory] = useState('')
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
+  const [Approved , setApproved] = React.useState("");
+
   
     const [services, setservices] = useState<any>([]);
     
@@ -77,124 +81,135 @@ const OrgServices = () => {
     }
 
         const getUserServ = async ()=>{
-          console.log("the value of usertokens are ", usertoken);
-          
           const res = await getUserServices(usertoken);
-          console.log("the value of responses are",res);
           setservices(res);
         }
+        const getMyorg = async  ()=>{
+        const myOrganization =   await getOrganizationasPerId(usertoken);
+
+        if(myOrganization){
+          setApproved(myOrganization.approvalStatus);
+        }
+        
+        }
+        getMyorg();
        getUserServ();
-       
     } , [])
 
-    console.log("values of services are" , services);
-    
+
+
 
 
   return (  
-    <div className=' px-32 py-8' >
-      <div className='flex items-center justify-between border-b pb-4'>
-      <div className='' >
-      <h1 className='text-2xl text-zinc-900 font-semibold' >Your Services({services.length}) </h1>
-      <p className='text-zinc-700' >All of your services you have created</p>
-      </div>
       <div>
-        {/* <Button className='flex gap-1 bg-zinc-900 hover:bg-blue-700 ' >
-            <Plus/>
-            
-        </Button> */}
-         <AlertDialog>
-  <AlertDialogTrigger className="pt-2 pb-2 pl-2 text-sm" ><div className="flex items-center gap-2 ml-2 " >
-            <Plus size={16} />
-            <p>Add Service</p>
-        </div></AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Add Service</AlertDialogTitle>
-      <AlertDialogDescription>
-        <Input type="text" onChange={(e)=>{
-            setServiceCategoryName(e.target.value)
-        }} placeholder="New category"/>
-         <div className="h-3 w-full "></div>
-       {/* service category  */}
-
-       <Select onValueChange={(value) => {
-        setServiceCategory(value)
-       }} defaultValue={value} >
-    <SelectTrigger className="w-full">
-      <SelectValue placeholder="Category" />
-    </SelectTrigger>
-    <SelectContent>
-
-
         {
-            category.length < 1 ? <div></div> : category.map((curr ) => {
-                return <SelectItem key={curr._id} value={curr._id}> {curr.name}</SelectItem>
-            })
-        }
-        <AlertDialog>
-  <AlertDialogTrigger className="pt-2 pb-2 pl-7 text-sm" >Add New Category</AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Add New Custom category</AlertDialogTitle>
-      <AlertDialogDescription>
-        <Input type="text" onChange={(e)=>{
-            setnewcategory(e.target.value);
-        }} placeholder="New category"/>
-       
-
-
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction onClick={()=> startTransition(handleAddCategory)} >Submit</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
-
-  
-    </SelectContent>
-  </Select>
-       {/* service category end  */}
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction onClick={()=>{
-        startTransition(handleService)
-      }}  >Submit</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
-      </div>
-      </div>
-
-      {
-        services.length < 1 ? <div className='w-full min-h-screen flex justify-center items-center '>
-          <div className='px-20 py-12 rounded-md mb-24 bg-zinc-200 flex justify-center items-center flex-col'>
-        <h1>Sorry, No Data Found</h1>
-        <p>Please try again later or create new service</p>
+          Approved == "Pending" ? <div>
+            <ApprovalForm/>
+          </div>:  <div className=' px-32 py-8' >
+          <div className='flex items-center justify-between border-b pb-4'>
+          <div className='' >
+          <h1 className='text-2xl text-zinc-900 font-semibold' >Your Services({services.length} {Approved} )  </h1>
+          <p className='text-zinc-700' >All of your services you have created</p>
           </div>
-        </div> : <div className='flex gap-4 mt-10 flex-wrap' >
+          <div>
+            {/* <Button className='flex gap-1 bg-zinc-900 hover:bg-blue-700 ' >
+                <Plus/>
+                
+            </Button> */}
+             <AlertDialog>
+      <AlertDialogTrigger className="pt-2 pb-2 pl-2 text-sm" ><div className="flex items-center gap-2 ml-2 " >
+                <Plus size={16} />
+                <p>Add Service</p>
+            </div></AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Add Service</AlertDialogTitle>
+          <AlertDialogDescription>
+            <Input type="text" onChange={(e)=>{
+                setServiceCategoryName(e.target.value)
+            }} placeholder="New category"/>
+             <div className="h-3 w-full "></div>
+           {/* service category  */}
+    
+           <Select onValueChange={(value) => {
+            setServiceCategory(value)
+           }} defaultValue={value} >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Category" />
+        </SelectTrigger>
+        <SelectContent>
+    
+    
+            {
+                category.length < 1 ? <div></div> : category.map((curr ) => {
+                    return <SelectItem key={curr._id} value={curr._id}> {curr.name}</SelectItem>
+                })
+            }
+            <AlertDialog>
+      <AlertDialogTrigger className="pt-2 pb-2 pl-7 text-sm" >Add New Category</AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Add New Custom category</AlertDialogTitle>
+          <AlertDialogDescription>
+            <Input type="text" onChange={(e)=>{
+                setnewcategory(e.target.value);
+            }} placeholder="New category"/>
+           
+    
+    
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={()=> startTransition(handleAddCategory)} >Submit</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+    
+      
+        </SelectContent>
+      </Select>
+           {/* service category end  */}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={()=>{
+            startTransition(handleService)
+          }}  >Submit</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+          </div>
+          </div>
+    
           {
-            services.map((curr : IService)=>{
-              return <div onClick={()=>{
-                router.push(`/serviceprovider/dashboard/${curr._id}`)
-              }} className='h-[250px] w-[400px] bg-zinc-400 rounded-md flex justify-center items-center bg-serviceBg cursor-pointer' >
-                <h1 className='flex text-2xl text-white font-semibold' >{curr.name}</h1>
+            services.length < 1 ? <div className='w-full min-h-screen flex justify-center items-center '>
+              <div className='px-20 py-12 rounded-md mb-24 bg-zinc-200 flex justify-center items-center flex-col'>
+            <h1>Sorry, No Data Found</h1>
+            <p>Please try again later or create new service</p>
               </div>
-            })
+            </div> : <div className='flex gap-4 mt-10 flex-wrap' >
+              {
+                services.map((curr : IService)=>{
+                  return <div onClick={()=>{
+                    router.push(`/serviceprovider/dashboard/${curr._id}`)
+                  }} className='h-[250px] w-[400px] bg-zinc-400 rounded-md flex justify-center items-center bg-serviceBg cursor-pointer' >
+                    <h1 className='flex text-2xl text-white font-semibold' >{curr.name}</h1>
+                  </div>
+                })
+              }
+            </div>
           }
+    
+          {/* {
+            services.map((curr : any)=>{
+              return <h1>{curr.name}</h1>
+            })
+          } */}
         </div>
-      }
-
-      {/* {
-        services.map((curr : any)=>{
-          return <h1>{curr.name}</h1>
-        })
-      } */}
-    </div>
+        }
+      </div>
   )
 }
 

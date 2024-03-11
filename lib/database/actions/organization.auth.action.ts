@@ -6,6 +6,7 @@ import Organization from "../models/serviceprovider.model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Student from "../models/user.model";
+import { userAvailableorNot } from "./middelware";
 
 
 export const registerOrganization = async ({organization} : registerOrganizationParams) => {
@@ -67,6 +68,22 @@ export const getAllOrganization = async () =>{
         }
         return JSON.parse(JSON.stringify(allOrgs));
 
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+export const getOrganizationasPerId = async  (userId : string)=>{
+    try {
+        await connectToDatabase();
+        const user = await userAvailableorNot(userId);
+        const myOrg = await Organization.findById(user.id);
+        if(!myOrg){
+            return JSON.parse(JSON.stringify({message:"Some error occured"}));
+        }
+        return JSON.parse(JSON.stringify(myOrg));
     } catch (error) {
         console.log(error);
         

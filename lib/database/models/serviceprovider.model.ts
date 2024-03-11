@@ -20,6 +20,14 @@ const organizationSchema = new Schema({
     orgEmail:{
         type: String,
     },
+    orgDescription:{
+        type:String,
+        default:"",
+    },
+    orgWebsite:{
+        type:String,
+        default:""
+    },
     orgPassword:{
         type:String
     },
@@ -31,9 +39,14 @@ const organizationSchema = new Schema({
     },
     orgHq:{
         type:String,
+        default:'',
     },
     orgImage:{
         type: String,
+    },
+    approvalStatus:{
+        type:String,
+        default:"Pending",
     }
 });
 

@@ -10,6 +10,7 @@ const OrgMainnav = () => {
       <p>Overview</p></Link>
       <Link href={`/serviceprovider/analytics`} ><p>Anaylytics</p></Link>
       <Link href={`/serviceprovider/projects`} ><p>Projects</p></Link>
+      <Link href={`/serviceprovider/projects`} ><p>Want to be an Expert?</p></Link>
       
     </div>
   )

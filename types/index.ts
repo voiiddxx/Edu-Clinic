@@ -21,12 +21,16 @@ export type StudentLoginParams = {
 export type registerOrganizationParams = {
     organization:{
         orgName:string
+        orgDesciption?:string
+        orgWebsite?:string
         orgEmail:string
         orgPassword:string
         orgCategory:string
         orgPhone:string
-        orgHq:string
-        orgImage:string
+        orgHq?:string
+        orgImage?:string
+        approvalStatus?:string
+        
     }
 }
 

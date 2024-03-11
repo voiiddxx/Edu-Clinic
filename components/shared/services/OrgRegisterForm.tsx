@@ -30,7 +30,6 @@ const OrgRegisterSchema = z.object({
   orgEmail: z.string().email(),
   orgPassword: z.string().min(4).max(10),
   orgPhone: z.string().min(3).max(50),
-  orgHq: z.string().min(3).max(30),
   orgCategory: z.string().min(2).max(40),
   
 })
@@ -47,15 +46,14 @@ const OrgRegisterForm = () => {
           orgEmail:"",
           orgPassword:"",
           orgPhone:"",
-          orgHq:"",
           orgCategory:""
         },
       });
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
       console.log(orgImage);
-      const imageUrl = await UploadOnCloudinary(orgImage);
-        const res = await registerOrganization({organization:{...values , orgImage:imageUrl}});
+      // const imageUrl = await UploadOnCloudinary(orgImage);
+        const res = await registerOrganization({organization:{...values }});
         console.log(res);
         
         console.log(values)
@@ -105,16 +103,6 @@ const OrgRegisterForm = () => {
               )}
             />
 
-
-            <FormLabel>Logo</FormLabel>
-            <div className="flex gap-2" >
-                    <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
-                        <Image className="text-indigo-500" size={20}/>
-                </div>
-                    <Input onChange={(e)=>{
-                      setorgImage(e.target.files)
-                    }} type="file"/>
-                    </div>
              <FormField
               control={form.control}
               name="orgCategory"
@@ -146,25 +134,6 @@ const OrgRegisterForm = () => {
                         <Lock className="text-zinc-800" size={20}/>
                 </div>
                     <Input type="password" placeholder="Password" {...field} />
-                    </div>
-                  </FormControl>
-                 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="orgHq"
-              render={({ field }) => (
-                <FormItem className="w-[400px]" >
-                  <FormLabel>Location</FormLabel>
-                  <FormControl>
-                    <div className="flex gap-2" >
-                    <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">
-                        <Building2 className="text-blue-600" size={20}/>
-                </div>
-                    <Input  placeholder="Your Location" {...field} />
                     </div>
                   </FormControl>
                  

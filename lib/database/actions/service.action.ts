@@ -90,7 +90,7 @@ export const getUserServices = async (userToken : any) => {
         console.log("this is the value of user " , user);
         
         const conditions = {
-            // owner:user.id
+            owner:user.id
         }
         const orgsServices = await ServiceStore.find(conditions);
         console.log("this is all services" , orgsServices);
