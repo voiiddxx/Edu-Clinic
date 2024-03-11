@@ -1,4 +1,5 @@
 import StudentModule from '@/components/shared/student/StudentModule'
+import StudentModuleAll from '@/components/shared/student/StudentModuleAll'
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Input } from '@/components/ui/input'
 import { getAllModule } from '@/lib/database/actions/module.action'
@@ -32,7 +33,7 @@ const page =  async () => {
 
     <div className='flex  mt-10' >
     
-    <StudentModule allModule={allModules}/>
+    <StudentModuleAll allModule={allModules}/>
     </div>
      </div>
     </div>
