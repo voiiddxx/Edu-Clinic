@@ -1,4 +1,5 @@
 import { Schema, model, models  , Document} from "mongoose";
+import { string } from "zod";
 
 
 export interface IModule extends Document{
@@ -57,7 +58,11 @@ const ModuleSchema = new Schema({
                 type:String,
             }
         }
-    ]
+    ],
+    approvalStatus:{
+        type:String,
+        default:"Pending",
+    }
 
 });
 
