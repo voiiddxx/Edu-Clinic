@@ -45,7 +45,7 @@ const OrgCard = ({orgData} : orgCardProps) => {
 
         <div className=' flex gap-2 items-center mt-4' >
             <MapPin className=' text-violet-700' size={18} />
-            <p className='text-sm font-medium' >New Delhi , India</p>
+            <p className='text-sm font-medium' >{orgData.orgHq}</p>
         </div>
         <div className=' flex gap-2 items-center mt-3' >
             <GitCompare className=' text-green-700' size={18} />

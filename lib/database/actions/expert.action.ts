@@ -8,6 +8,9 @@ import jwt from "jsonwebtoken";
 import Organization from "../models/serviceprovider.model";
 import { sendMail } from "@/lib/mail";
 import { userAvailableorNot } from "./middelware";
+import Module from "../models/module.model";
+import { ReceiptEuro } from "lucide-react";
+import { send } from "process";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL
@@ -145,5 +148,56 @@ export const rejectOrganization = async  ({message ,orgId} : rejectApprovalParam
         console.log(error);
         throw new Error(error as string);
         
+    }
+}
+
+
+// SERVER ACTION FOR GETTING ALL THE MODULES WHOSE APPROVAL ARE PENDINGS
+
+export const getunApprovedModules = async ()=>{
+    try {
+        
+        await connectToDatabase();
+        const conditions = {
+            approvalStatus:'Pending'
+        }
+        const modules = await Module.find(conditions);
+        if(!modules){
+            return JSON.parse(JSON.stringify({message:"No modules founds"}));
+        }
+        console.log(modules);
+        
+        return JSON.parse(JSON.stringify(modules));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
+    }
+}
+
+
+// SERVER ACTION FOR APPROVING THE MODULE FROM EXPERT
+
+export const approveModuleReq = async  ( id : string)=>{
+    try {
+        await connectToDatabase();
+        const module = await Module.findByIdAndUpdate(id , {
+            approvalStatus:'Approved',
+        });
+        if(!module){
+            return JSON.parse(JSON.stringify({message:"Some error occured"}));
+        }
+        await sendMail({
+            to:'nikhildesign00@gmail.com',
+            name:'Nikhil',
+            subject:'Module Status',
+            body:`<> 
+            <h1> Your Module has been approved </h1></>`
+        });
+
+        return JSON.parse(JSON.stringify({module}));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
     }
 }
