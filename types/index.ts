@@ -173,3 +173,14 @@ export type loginExpertParams = {
     email:string,
     password:string,
 }
+
+
+export type ApplyforApprovalParams = {
+    org:{
+        orgDescription:string
+        orgHq:string
+        orgWebsite: string
+        OrgImage:string
+        orgId:string
+    }
+}

@@ -5,6 +5,7 @@ import Expert from "../models/expert.model";
 import bcrypt from "bcrypt";
 import connectToDatabase from "..";
 import jwt from "jsonwebtoken";
+import Organization from "../models/serviceprovider.model";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL
@@ -56,9 +57,31 @@ export const LoginExpertParams = async({email , password}: loginExpertParams)=>{
             return JSON.parse(JSON.stringify({message:"There is some error while creating the token"}));
         }
         return JSON.parse(JSON.stringify({...ExistExpert._doc , token}));
-
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
         
+    }
+}
 
+
+
+//  SERVER ACTION FOR GETTING ALL THE ORGANIZATION WHICH HAVE APPILED FOR APPROVAL
+
+export const getAppliedApprovalOrganization = async ()=>{
+    try {
+        
+        const conditions = {
+            approvalStatus:"Applied"
+        }
+        const appliedorg = await Organization.find(conditions);
+
+        if(!appliedorg){
+            return JSON.parse(JSON.stringify({message:"No Data Found"}));
+        }
+        return JSON.parse(JSON.stringify(appliedorg));
+        
+        
 
     } catch (error) {
         console.log(error);

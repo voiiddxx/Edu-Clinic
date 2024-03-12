@@ -16,6 +16,7 @@ import {
   } from "@/components/ui/form"
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { UpdateAndApplyforApprovalAction } from '@/lib/database/actions/organization.auth.action'
 
 
 // zod form validation start
@@ -26,7 +27,12 @@ const formSchema = z.object({
   })
 // zod form validation start end
 
-const ApprovalForm = () => {
+
+type ApprovalFormProps = {
+  ordId:any
+}
+
+const ApprovalForm = ({ordId} : ApprovalFormProps) => {
 
     //  DEFINING THE STATES FOR STORING THE IMAGE DATA 
 
@@ -47,10 +53,8 @@ const ApprovalForm = () => {
 
 
 //   form submit sections === //
- function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values , OrgImage)
+ async function onSubmit(values: z.infer<typeof formSchema>) {
+        await UpdateAndApplyforApprovalAction({org:{orgHq:'454' , orgDescription:'ss' , orgId:ordId , OrgImage:'5454' , orgWebsite:'445'}});
   }
 
 

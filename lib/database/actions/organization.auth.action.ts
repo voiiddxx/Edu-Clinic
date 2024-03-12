@@ -1,6 +1,6 @@
 "use server"
 
-import { LoginOrganizationParams, StudentLoginParams, registerOrganizationParams } from "@/types";
+import { ApplyforApprovalParams, LoginOrganizationParams, StudentLoginParams, registerOrganizationParams } from "@/types";
 import connectToDatabase from "..";
 import Organization from "../models/serviceprovider.model";
 import bcrypt from "bcrypt";
@@ -86,6 +86,33 @@ export const getOrganizationasPerId = async  (userId : string)=>{
         return JSON.parse(JSON.stringify(myOrg));
     } catch (error) {
         console.log(error);
+        
+    }
+}
+
+
+
+// SERVER ACTION FOR UPDATING THE ORGANIZATION AND SENDING THEM FOR APPROVAL
+
+export const UpdateAndApplyforApprovalAction =  async ({org} : ApplyforApprovalParams)=>{
+    try {
+        const organizationId = await userAvailableorNot(org.orgId);
+
+        const organizationData = await Organization.findByIdAndUpdate(organizationId.id ,{
+            orgDescription:org.orgDescription,
+            orgHq:org.orgHq,
+            orgImage:org.OrgImage,  
+            orgWebsite:org.orgWebsite,
+            approvalStatus:'Applied',
+        });
+
+        if(!organizationData){
+            return JSON.parse(JSON.stringify({message:"Data Not Updated , Some error occured"}));
+        }
+        return JSON.parse(JSON.stringify(organizationData));
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string)
         
     }
 }

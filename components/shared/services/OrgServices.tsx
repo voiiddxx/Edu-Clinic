@@ -104,7 +104,7 @@ const OrgServices = () => {
       <div>
         {
           Approved == "Pending" ? <div>
-            <ApprovalForm/>
+            <ApprovalForm  ordId={usertoken} />
           </div>:  <div className=' px-32 py-8' >
           <div className='flex items-center justify-between border-b pb-4'>
           <div className='' >
