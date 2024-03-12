@@ -3,20 +3,23 @@ import React, { useEffect, useState } from "react";
 import { getAllModule } from "@/lib/database/actions/module.action";
 import StudentModule from "@/components/shared/student/StudentModule";
 import { Space } from "lucide-react";
+import StudentModuleAll from "./StudentModuleAll";
 
 interface Module {
   // Define module properties here
   name: string;
   isPaid: string;
-  fees: number;
-  creatorId: string;
+  level: string;
+  creatorId: string,
+  pace: string
 }
 
 interface FilteredModulesProps {
   items: {
-    AmmountRange: string;
-    orgName: string;
-    orgCategoryName: string;
+    name: string;
+    type: string;
+    level: string;
+    pace: string;
   };
 }
 
@@ -45,28 +48,20 @@ function FilteredModules({ items }: FilteredModulesProps) {
   useEffect(() => {
     const newFilteredModules = allModules.filter(module => {
       // Filter modules based on fees range (items.AmmountRange)
-      let feesInRange = true;
-      if (items.AmmountRange === "Free") {
-        feesInRange = module.isPaid !== "paid";
-      } else if (items.AmmountRange === "paid") {
-        feesInRange = module.isPaid === "paid";
-      } else {
-        const fees = parseFloat(module.fees.toString());
-        const ammountRange = parseFloat(items.AmmountRange);
-        feesInRange = fees <= ammountRange;
-      }
-
+      const feesMatch = !items.type || module.isPaid == items.type
+      
       // Filter modules based on organization name (items.orgName)
-      const orgNameMatch = !items.orgName || module.creatorId === items.orgName;
+      const courseNameMatch = !items.name || module.name.toLowerCase().trim() === items.name.toLowerCase().trim();
 
       //Filter on the basis of category
-      const categoryMatch = !items.orgCategoryName || module.name.toLowerCase().trim() === items.orgCategoryName.toLowerCase().trim();
+      // const categoryMatch = !items.orgCategoryName || module.name.toLowerCase().trim() === items.orgCategoryName.toLowerCase().trim();
 
-      console.log(`fees: ${feesInRange}`)
-      console.log(`orgName: ${orgNameMatch}`)
-      console.log(`Category: ${categoryMatch}`)
+      console.log(`fees: ${feesMatch}`)
+      // console.log(`orgName: ${orgNameMatch}`)
+      // console.log(`Category: ${categoryMatch}`)
+      console.log(`items: ${JSON.stringify(items)}`)
 
-      return feesInRange && categoryMatch;
+      return feesMatch && courseNameMatch;
     });
 
     setFilteredModules(newFilteredModules);
@@ -80,11 +75,14 @@ function FilteredModules({ items }: FilteredModulesProps) {
 
   return (
    <>
-    {filteredModules.length > 0 ? (
+   {
+    items.name.length==0?<StudentModuleAll allModule={allModules}/>:(filteredModules.length>0?(<StudentModule allModule={filteredModules}/>):(<p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>))
+   }
+    {/* {filteredModules.length > 0 ? (
       <StudentModule allModule={filteredModules} />
     ) : (
       <p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>
-    )}
+    )} */}
   </>
   );
 }
