@@ -1,6 +1,6 @@
 "use server"
 
-import { loginExpertParams, registerExpertParams } from "@/types";
+import { ApproveParams, loginExpertParams, registerExpertParams } from "@/types";
 import Expert from "../models/expert.model";
 import bcrypt from "bcrypt";
 import connectToDatabase from "..";
@@ -70,7 +70,7 @@ export const LoginExpertParams = async({email , password}: loginExpertParams)=>{
 
 export const getAppliedApprovalOrganization = async ()=>{
     try {
-        
+        await connectToDatabase();
         const conditions = {
             approvalStatus:"Applied"
         }
@@ -80,12 +80,29 @@ export const getAppliedApprovalOrganization = async ()=>{
             return JSON.parse(JSON.stringify({message:"No Data Found"}));
         }
         return JSON.parse(JSON.stringify(appliedorg));
-        
-        
-
     } catch (error) {
         console.log(error);
         throw new Error(error as string);
         
+    }
+}
+
+
+// SERVER ACTION FOR APPROVING THE ORGANIZATIONS
+
+export const ApproveOrganizationasPerid = async ({orgId} : ApproveParams)=>{
+    try {
+        await connectToDatabase();
+        const org = await Organization.findByIdAndUpdate(orgId , {
+            approvalStatus:'Approved'
+        });
+        if(!org){
+            return JSON.parse(JSON.stringify({message:"Some error found"}));
+        }
+        return JSON.parse(JSON.stringify({message:"OK"}));
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
     }
 }
