@@ -27,6 +27,7 @@ import { IServicecategory } from '@/lib/database/models/service.category.model'
 import { useRouter } from 'next/navigation'
 import { getOrganizationasPerId } from '@/lib/database/actions/organization.auth.action'
 import ApprovalForm from './ApprovalForm'
+import Image from 'next/image'
 
 const OrgServices = () => {
 
@@ -97,11 +98,22 @@ const OrgServices = () => {
     } , [])
 
 
-
+    if(Approved == "Applied"){
+      return <div className='min-h-screen w-full px-52 flex justify-center items-center' >
+        <Image src={`/loading.gif`} height={500} width={500} alt='pending image' />
+        <div>
+        <h1 className='text-3xl font-semibold text-zinc-900 text-center' >Your Approval Status is Pending</h1>
+        <p className='text-center mt-2 text-lg font-medium text-zinc-500' >We are in the process of verification of your profile , please wait for a while , you will get verification status on your mail</p>
+        </div>
+      </div>
+    }
 
 
   return (  
       <div>
+
+        
+
         {
           Approved == "Pending" ? <div>
             <ApprovalForm  ordId={usertoken} />
