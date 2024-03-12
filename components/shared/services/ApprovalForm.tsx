@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { UpdateAndApplyforApprovalAction } from '@/lib/database/actions/organization.auth.action'
+import { UploadOnCloudinary } from '@/lib/utils'
 
 
 // zod form validation start
@@ -54,7 +55,9 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
 
 //   form submit sections === //
  async function onSubmit(values: z.infer<typeof formSchema>) {
-        await UpdateAndApplyforApprovalAction({org:{orgHq:'454' , orgDescription:'ss' , orgId:ordId , OrgImage:'5454' , orgWebsite:'445'}});
+
+      const imageData = await UploadOnCloudinary(OrgImage);
+        await UpdateAndApplyforApprovalAction({org:{orgHq:values.orgHq , orgDescription:values.orgDescription , orgId:ordId , OrgImage:imageData , orgWebsite:values.orgWebsite}});
   }
 
 
