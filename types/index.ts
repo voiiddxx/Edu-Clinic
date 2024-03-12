@@ -188,3 +188,9 @@ export type ApplyforApprovalParams = {
 export type ApproveParams = {
     orgId:string
 }
+
+
+export type rejectApprovalParams = {
+    orgId : string,
+    message:string,
+}

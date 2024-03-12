@@ -101,7 +101,6 @@ const ModuleForm = ({id , type , moduleId} : ModuleFormProps) => {
           }
         }
         else{
-          alert("ye to edit hai")
           if(Image){
             const ImageUrl = await UploadOnCloudinary(Image);
             const res = await updateModule({module:{...values , image:ImageUrl} , moduleId:moduleId});

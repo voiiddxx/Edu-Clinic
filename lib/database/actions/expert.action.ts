@@ -1,12 +1,13 @@
 "use server"
 
-import { ApproveParams, loginExpertParams, registerExpertParams } from "@/types";
+import { ApproveParams, loginExpertParams, registerExpertParams, rejectApprovalParams } from "@/types";
 import Expert from "../models/expert.model";
 import bcrypt from "bcrypt";
 import connectToDatabase from "..";
 import jwt from "jsonwebtoken";
 import Organization from "../models/serviceprovider.model";
 import { sendMail } from "@/lib/mail";
+import { userAvailableorNot } from "./middelware";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL
@@ -95,17 +96,21 @@ export const ApproveOrganizationasPerid = async ({orgId} : ApproveParams)=>{
     try {
         await connectToDatabase();
         const org = await Organization.findByIdAndUpdate(orgId , {
-            approvalStatus:'Applied'
+            approvalStatus:'Approved'
         });
         if(!org){
             return JSON.parse(JSON.stringify({message:"Some error found"}));
         }
 
         await sendMail({
-            to:'nikhildesign00@gmail.com',
-            name:'void',
-            subject:"Approval Status",
-            body:`<h1>Testing</h1>`
+            to:org.orgEmail,
+            name:org.orgName,
+            subject:"Approval Status 🎉",
+            body:`<div classname="bg-white px-4 py-10" >
+            <Image src="/loading.gif" height={500} width={500} alt="emailImage" />
+            <h1>Congratulation</h1>
+            <p> Your Organization has been approved , Now you can create your service and list your modules </p>
+            </div>`
         });
         
         return JSON.parse(JSON.stringify({message:"OK"}));
@@ -113,5 +118,32 @@ export const ApproveOrganizationasPerid = async ({orgId} : ApproveParams)=>{
     } catch (error) {
         console.log(error);
         throw new Error(error as string);
+    }
+}
+
+
+export const rejectOrganization = async  ({message ,orgId} : rejectApprovalParams)=>{
+    try {
+        await connectToDatabase();
+        const ExistOrg = await Organization.findByIdAndUpdate(orgId , {
+            approvalStatus:"Declined"
+        });
+        if(!ExistOrg){
+            return JSON.parse(JSON.stringify({message:"Some error occured"}));
+        }
+        await sendMail({
+            to:ExistOrg.orgEmail,
+            name:ExistOrg.orgName,
+            subject:'Approval Status',
+            body:`<div classname="bg-white px-4 py-10" >
+            <Image src="/loading.gif" height={500} width={500} alt="emailImage" />
+            <h1>Approval Declined</h1>
+            <p> ${message}</p>
+            </div>`
+        })
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string);
+        
     }
 }

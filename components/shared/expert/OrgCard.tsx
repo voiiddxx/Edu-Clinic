@@ -1,9 +1,19 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { ApproveOrganizationasPerid } from '@/lib/database/actions/expert.action'
+import { ApproveOrganizationasPerid, rejectOrganization } from '@/lib/database/actions/expert.action'
 import { GitCompare, Link, MapPin } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Textarea } from '@/components/ui/textarea'
+
 
         type orgCardProps = {
             orgData:any
@@ -11,10 +21,18 @@ import React from 'react'
 const OrgCard = ({orgData} : orgCardProps) => {
 
 
+  const [declineMessage, setdeclineMessage] = useState<string>("");
+  
+
+
     const approveReq = async (organizationId : string)=>{
         const status = await ApproveOrganizationasPerid({orgId:organizationId});
         console.log(status);
         
+    }
+
+    const declineReq = async (message : string , id:string)=>{
+      await rejectOrganization({message:message , orgId:id});
     }
   return (
     <div className='min-h-[300px] w-full px-3 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-md border-[1px] border-zinc-300 py-3 flex gap-5'  >
@@ -46,7 +64,24 @@ const OrgCard = ({orgData} : orgCardProps) => {
         <Button onClick={()=>{
             approveReq(orgData._id);
         }} className='bg-indigo-700 w-full' >Approve Organization</Button>
-        <Button variant={'outline'} className='w-full' >Decline Request</Button>
+        <Dialog>
+  <DialogTrigger className='w-full font-medium text-zinc-800 border-[1px] border-zinc-400 text-sm rounded-md' >Decline Approval</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+       
+        <Textarea onChange={(e)=>{
+          setdeclineMessage(e.target.value);
+        }} className='mt-4'  placeholder='Please describe the reason for declination...' />
+        <Button onClick={()=>{
+          declineReq(declineMessage , orgData._id)
+        }} className='w-full bg-red-500 mt-4' >Decline Request</Button>
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
         </div>
       </div>
     </div>

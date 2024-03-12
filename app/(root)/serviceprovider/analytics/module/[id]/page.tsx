@@ -8,7 +8,6 @@ const page = async ({
     id : string
   }}) => {
 
-    const data = ['5', '5', '5', '5', '5', '5', '5', '5',]
 
     const getModuleDetail = await getModuleWithId({id:id});
 

@@ -3,7 +3,7 @@ import OrgServices from '@/components/shared/services/OrgServices'
 import React from 'react'
 
 const page = async () => {
-  
+    
   return (
     <div>
       <OrgNav/>
