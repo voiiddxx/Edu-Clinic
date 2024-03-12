@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import connectToDatabase from "..";
 import jwt from "jsonwebtoken";
 import Organization from "../models/serviceprovider.model";
+import { sendMail } from "@/lib/mail";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL
@@ -94,11 +95,19 @@ export const ApproveOrganizationasPerid = async ({orgId} : ApproveParams)=>{
     try {
         await connectToDatabase();
         const org = await Organization.findByIdAndUpdate(orgId , {
-            approvalStatus:'Approved'
+            approvalStatus:'Applied'
         });
         if(!org){
             return JSON.parse(JSON.stringify({message:"Some error found"}));
         }
+
+        await sendMail({
+            to:'nikhildesign00@gmail.com',
+            name:'void',
+            subject:"Approval Status",
+            body:`<h1>Testing</h1>`
+        });
+        
         return JSON.parse(JSON.stringify({message:"OK"}));
         
     } catch (error) {
