@@ -43,6 +43,15 @@ const ModuleFormSchema = z.object({
   isPaid:z.enum(['free' , 'paid']),
   url: z.string().min(7),
   fees:z.string().min(2).max(20),
+  moduleCategory:z.string().min(2).max(10).optional(),
+  purpose:z.string().min(5).max(200).optional(),
+  material:z.string().min(5).max(200).optional(),
+  deleivery:z.string().min(5).max(200).optional(),
+  pace:z.string().min(5).max(200).optional(),
+  elegibility:z.string().min(5).max(200).optional(),
+  location:z.string().min(5).max(200).optional(),
+  
+  
 }).refine((data)=>{
     if(data.isPaid=="paid"){
         return !!data.fees
@@ -79,18 +88,19 @@ const ModuleForm = ({id , type , moduleId} : ModuleFormProps) => {
       // 2. Define a submit handler.
       async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
        
+        alert("this is working fine");
         
 
         if(type=="ADD"){
           
           try {
-            const imageurl = await UploadOnCloudinary(Image);
+            // const imageurl = await UploadOnCloudinary(Image);
             let userToken = '';
             const token = localStorage.getItem('x-auth-token');
             if(token){
               userToken = token
             }
-            const res = await createModule({module:{...values , image:imageurl} , creatorId:userToken , serviceId:id});
+            const res = await createModule({module:{...values , image:'41515' ,  } , creatorId:userToken , serviceId:id ,});
             alert(res)
             console.log(res);
             
@@ -221,6 +231,19 @@ const ModuleForm = ({id , type , moduleId} : ModuleFormProps) => {
             </FormItem>
           )}
         />
+      <FormField
+          control={form.control}
+          name="elegibility"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input  placeholder="Eligibilty" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    
          <Button 
           type="submit"
           size="lg"

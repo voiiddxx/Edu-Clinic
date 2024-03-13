@@ -7,10 +7,7 @@ import connectToDatabase from "..";
 import jwt from "jsonwebtoken";
 import Organization from "../models/serviceprovider.model";
 import { sendMail } from "@/lib/mail";
-import { userAvailableorNot } from "./middelware";
 import Module from "../models/module.model";
-import { ReceiptEuro } from "lucide-react";
-import { send } from "process";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL

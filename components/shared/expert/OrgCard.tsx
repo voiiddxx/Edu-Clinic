@@ -41,8 +41,6 @@ const OrgCard = ({orgData} : orgCardProps) => {
       </div>
       <div className='w-8/12 px-4' >
         <h1 className='text-2xl font-semibold mt-1 text-zinc-700' >{orgData.orgName}</h1>
-        <p className='text-sm font-normal mt-2 text-zinc-500' >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium quaerat ullam culpa! Sint, placeat ad voluptates illo iure suscipit incidunt natus officia nulla officiis iusto, eveniet voluptatum porro quis quisquam corrupti accusamus earum corporis nihil quasi deleniti. A cum molestias et ex esse eaque temporibus?</p>
-
         <div className=' flex gap-2 items-center mt-4' >
             <MapPin className=' text-violet-700' size={18} />
             <p className='text-sm font-medium' >{orgData.orgHq}</p>
@@ -59,6 +57,7 @@ const OrgCard = ({orgData} : orgCardProps) => {
             <Link className=' text-indigo-700' size={18} />
             <p className='text-sm font-medium text-indigo-700' >www.infowiz.com</p>
         </div>
+        <p className='text-[12px] font-normal mt-4 text-zinc-500' >{orgData.orgDescription}</p>
 
         <div className='flex justify-between mt-4 gap-4' >
         <Button onClick={()=>{

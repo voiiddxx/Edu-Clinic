@@ -41,7 +41,29 @@ const ModuleSchema = new Schema({
     creatorId:{
         type:Schema.Types.ObjectId, ref:'Organization',
     },
+    moduleCategory:{
+        type:String,
+    },
+    location:{
+        type:String
+    },
+    elegibility:{
+        type:String
+    },
     
+    pace:{
+        type:String,
+        default:'Self Placed'
+    },
+    deleivery:{
+        type:String,
+    },
+    material:{
+        type:String,
+    },
+    purpose:{
+        type:String,
+    },
     likes:[
         {
             student:{
@@ -62,7 +84,11 @@ const ModuleSchema = new Schema({
     approvalStatus:{
         type:String,
         default:"Pending",
-    }
+    },
+    level:{
+        type:String,
+        default:'Medium'
+    },
 
 });
 

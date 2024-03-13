@@ -24,9 +24,10 @@ const populateModuleDetails = async ( query: any) => {
 export const createModule = async ({serviceId , creatorId , module} : createModuleParams) => {
     try {
         await connectToDatabase();
+
+        console.log(module);
         const user = await userAvailableorNot(creatorId);
         const Ownerid = user.id;
-
         const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image , likes:[] , review:[]});
         console.log(createdModule);
         return JSON.parse(JSON.stringify(createdModule));

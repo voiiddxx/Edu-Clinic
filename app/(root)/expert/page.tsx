@@ -5,6 +5,7 @@ import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ExpertCompany from '@/components/shared/expert/ExpertCompany'
 import ExpertModules from '@/components/shared/expert/ExpertModules'
+import StudentNav from '@/components/shared/student/StudentNav'
 
 
 const page = async () => {
@@ -15,7 +16,7 @@ const page = async () => {
   
   return (
     <div>
-      <ExpertNav/>
+      <StudentNav/>
 
 
       {/* EXPERT ORGANIZATION AND MODULE TRANSITION SECTIONS */}

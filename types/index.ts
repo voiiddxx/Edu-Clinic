@@ -67,13 +67,21 @@ export type createModuleParams = {
     serviceId:string
     creatorId:string
     module:{
-        name: string,
-        detail:string,
-        image:string
-        isPaid: 'paid' | 'free'
-        fees: string
+        name?: string,
+        detail?:string,
+        image?:string
+        isPaid?: 'paid' | 'free'
+        fees?: string
         likes?:[]
-        review?:[]
+        review?:[],
+        purpose?:string
+        material?:string
+        deleivery?:string
+        pace?:string
+        elegibility?:string
+        location?:string
+        moduleCategory?:string
+        url?:string
     }
 }
 
@@ -150,6 +158,7 @@ export type createProjectParams = {
     poster:string
     mail:string
     student:string
+
 }
 
 export type getprojectWithIdParams = {
@@ -194,3 +203,4 @@ export type rejectApprovalParams = {
     orgId : string,
     message:string,
 }
+
