@@ -1,4 +1,4 @@
-import MatchComponent from '@/components/shared/student/MatchComponent'
+
 import MatchDetailForm from '@/components/shared/student/MatchDetailForm'
 import StudentNav from '@/components/shared/student/StudentNav'
 import { getAllOrganization } from '@/lib/database/actions/organization.auth.action'
