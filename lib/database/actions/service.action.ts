@@ -7,6 +7,16 @@ import { userAvailableorNot } from "./middelware";
 import ServiceStore from "../models/service.model";
 
 
+
+
+//  POPULATING THE SERVICE CATEGORY SECTION TO GET THE NAME OF CATEGORY
+
+const populateData = (query: any) => {
+    return query
+      .populate({ path: 'category', model: Servicecategory, select: 'name' });
+  }
+  
+
 // service category action //
 
 export const createServiceCategory = async ({category} : CreateServiceCategoryParams) => {
@@ -102,6 +112,20 @@ export const getUserServices = async (userToken : any) => {
     }
 }
 
+
+export const getServiceCategoryWithId = async  ( id : string)=>{
+    try {
+        await connectToDatabase();
+        const result = await populateData(ServiceStore.findById(id));
+        console.log("this is the data",result);
+        return JSON.parse(JSON.stringify(result));
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error(error as string)
+        
+    }
+}
 
 
 

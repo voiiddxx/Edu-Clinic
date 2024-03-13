@@ -1,4 +1,5 @@
 "use client"
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -35,112 +36,108 @@ import { useState } from "react"
 import { createModule, updateModule } from "@/lib/database/actions/module.action"
 import { UploadOnCloudinary } from "@/lib/utils"
 import { Edit } from "lucide-react"
-import UpskillingModuleForm from "../UpskillingModuleForm"
-  
- 
+
+
 const ModuleFormSchema = z.object({
-  name: z.string().min(2).max(50),
-  detail:z.string().min(2).max(800),
-  isPaid:z.enum(['free' , 'paid']),
-  url: z.string().min(7),
-  fees:z.string().min(2).max(20),
-  moduleCategory:z.string().min(2).max(10).optional(),
-  purpose:z.string().min(5).max(200).optional(),
-  material:z.string().min(5).max(200).optional(),
-  deleivery:z.string().min(5).max(200).optional(),
-  pace:z.string().min(5).max(200).optional(),
-  elegibility:z.string().min(5).max(200).optional(),
-  location:z.string().min(5).max(200).optional(),
-  
-  
-}).refine((data)=>{
-    if(data.isPaid=="paid"){
-        return !!data.fees
+    name: z.string().min(2).max(50),
+    detail:z.string().min(2).max(800),
+    isPaid:z.enum(['free' , 'paid']),
+    url: z.string().min(7),
+    fees:z.string().min(2).max(20),
+    moduleCategory:z.string().min(2).max(10).optional(),
+    purpose:z.string().min(5).max(200).optional(),
+    material:z.string().min(5).max(200).optional(),
+    deleivery:z.string().min(5).max(200).optional(),
+    pace:z.string().min(5).max(200).optional(),
+    elegibility:z.string().min(5).max(200).optional(),
+    location:z.string().min(5).max(200).optional(),
+    
+    
+  }).refine((data)=>{
+      if(data.isPaid=="paid"){
+          return !!data.fees
+      }
+      return true
+  } , {
+      message:'Please Provide Ammount',
+      path:['fees']
+  })
+    
+    type ModuleFormProps = {
+      id: string
+      type:'ADD' | 'UPDATE'
+      moduleId?: any
     }
-    return true
-} , {
-    message:'Please Provide Ammount',
-    path:['fees']
-})
   
-  type ModuleFormProps = {
-    id: string
-    type:'ADD' | 'UPDATE'
-    moduleId?: any
-    categoryName:string
-  }
+    type UpskillingModuleFormProps = {
+        id: string
+        type:'ADD' | 'UPDATE'
+        moduleId?: any
+      }
 
-const ModuleForm = ({id , type , moduleId , categoryName} : ModuleFormProps) => {
-  alert(categoryName);
+const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps) => {
 
+    
   const [Image, setImage] = useState<any>(null);
   
 
 
-    const form = useForm<z.infer<typeof ModuleFormSchema>>({
-        resolver: zodResolver(ModuleFormSchema),
-        defaultValues: {
-          name: "",
-          detail:'',
-          url:'',
+  const form = useForm<z.infer<typeof ModuleFormSchema>>({
+      resolver: zodResolver(ModuleFormSchema),
+      defaultValues: {
+        name: "",
+        detail:'',
+        url:'',
 
-        },
+      },
 
-      })
+    })
+   
+    // 2. Define a submit handler.
+    async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
      
-      // 2. Define a submit handler.
-      async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
-       
-        alert("this is working fine");
-        
-
-        if(type=="ADD"){
-          
-          try {
-            // const imageurl = await UploadOnCloudinary(Image);
-            let userToken = '';
-            const token = localStorage.getItem('x-auth-token');
-            if(token){
-              userToken = token
-            }
-            const res = await createModule({module:{...values , image:'41515' ,  } , creatorId:userToken , serviceId:id ,});
-            alert(res)
-            console.log(res);
-            
-            console.log(values)
-          } catch (error) {
-            console.log(error);
-            
-          }
-        }
-        else{
-          if(Image){
-            const ImageUrl = await UploadOnCloudinary(Image);
-            const res = await updateModule({module:{...values , image:ImageUrl} , moduleId:moduleId});
-            console.log(res);
-          }else{
-            const res = await updateModule({module:{...values} , moduleId:moduleId});
-            console.log(res);
-          }
-
-        }
-    }
-          
+      alert("this is working fine");
       
 
-      const PaidOrNot = form.watch("isPaid");
+      if(type=="ADD"){
+        
+        try {
+          // const imageurl = await UploadOnCloudinary(Image);
+          let userToken = '';
+          const token = localStorage.getItem('x-auth-token');
+          if(token){
+            userToken = token
+          }
+          const res = await createModule({module:{...values , image:'41515' ,  } , creatorId:userToken , serviceId:id});
+          alert(res)
+          console.log(res);
+          
+          console.log(values)
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
+      else{
+        if(Image){
+          const ImageUrl = await UploadOnCloudinary(Image);
+          const res = await updateModule({module:{...values , image:ImageUrl} , moduleId:moduleId});
+          console.log(res);
+        }else{
+          const res = await updateModule({module:{...values} , moduleId:moduleId});
+          console.log(res);
+        }
+
+      }
+  }
+        
+    
+
+    const PaidOrNot = form.watch("isPaid");
 
   return (
     <div>
-
-      {
-        categoryName=='Competitive Exam Resources' && (
-          <div>
-            <UpskillingModuleForm id={id} type="ADD" moduleId={moduleId} key={id} />
-          </div>
-        )
-      }
-      {/* <AlertDialog >
+      <AlertDialog >
   <AlertDialogTrigger>
     {
       type == "UPDATE" ?  <div className="flex gap-2 items-center mb-5" >
@@ -151,7 +148,7 @@ const ModuleForm = ({id , type , moduleId , categoryName} : ModuleFormProps) => 
   </AlertDialogTrigger>
   <AlertDialogContent>
     <AlertDialogHeader>
-      <AlertDialogTitle>Add New Module</AlertDialogTitle>
+      <AlertDialogTitle>Upskilling Module Form</AlertDialogTitle>
       <AlertDialogDescription>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -274,10 +271,10 @@ const ModuleForm = ({id , type , moduleId , categoryName} : ModuleFormProps) => 
     <AlertDialogFooter>
     </AlertDialogFooter>
   </AlertDialogContent>
-</AlertDialog> */}
+</AlertDialog>
 
     </div>
   )
 }
 
-export default ModuleForm
+export default UpskillingModuleForm
