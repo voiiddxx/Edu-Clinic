@@ -33,9 +33,9 @@ function MatchDetailForm() {
   };
 
   return (
-    <div className="h-auto flex justify-center items-center ">
+    <div className="h-auto flex bg-slate-50 justify-center items-center ">
       <div className="sm:w-full ">
-        <div className="grid grid-cols-12 bg-slate-50 rounded-lg">
+        <div className="grid grid-cols-12  rounded-lg">
           <div className="col-span-3 pt-4 p-2 sticky top-0">
             {ServiceOptionObject.map((item, id) => (
               <p
