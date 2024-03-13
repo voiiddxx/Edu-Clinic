@@ -1,23 +1,42 @@
-import LikeComponenet from '@/components/shared/student/LikeComponenet';
-import { Button } from '@/components/ui/button';
-import { getModuleWithId } from '@/lib/database/actions/module.action';
-import { Clock, Flame, IndianRupee, Sparkle, Zap } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import LikeComponenet from '../../student/LikeComponenet'
+import StudentNav from '../../student/StudentNav'
+import Image from 'next/image'
+import { Clock, Flame, IndianRupee, Sparkle, Zap } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { approveModuleReq, declineModuleReq } from '@/lib/database/actions/expert.action'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+import { Textarea } from '@/components/ui/textarea'
 
-const page = async ({
-    params:{ id },
-  } : {params:{
-    id : string
-  }}) => {
+    type ExModuleProps = {
+        moduleDetails:any
+    }
+    
+const ExModule = ({moduleDetails} : ExModuleProps) => {
 
+    const [declineMessage, setdeclineMessage] = useState<string>('');
+    
 
-    const moduleDetails = await getModuleWithId({id:id});
-    console.log(moduleDetails);
+    const hanldeModuleReq = async (id:string)=>{
+        const res = await approveModuleReq(id);
+        alert(res);
+    }
 
+    const hanldeModuleDecline = async( id : string , message:string )=>{
+        const res = await declineModuleReq(id , message);
+
+    }
   return (
     <div>
+        <StudentNav/>
         <div className='px-40'>
         <div className='h-20 w-full border-b flex  justify-between items-center' >
           <div>
@@ -69,11 +88,27 @@ const page = async ({
                         )
                     }
                 </div>
-                <div>
-                   <Link href={`/${moduleDetails.url}`} >
-                   <Button className='w-full mt-12 bg-zinc-800 hover:bg-blue-700'>
-                        Visit   for more info
-                    </Button></Link>
+                <div className='w-full flex gap-1 mt-6' >
+                   <Button onClick={()=>{
+                    hanldeModuleReq(moduleDetails._id);
+                   }} className='w-full bg-violet-700' >Approve</Button>
+                   <Dialog>
+  <DialogTrigger className='w-full font-medium text-zinc-800 border-[1px] border-zinc-400 text-sm rounded-md' >Decline Approval</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+       
+        <Textarea onChange={(e)=>{
+          setdeclineMessage(e.target.value);
+        }} className='mt-4'  placeholder='Please describe the reason for declination...' />
+        <Button onClick={()=>{
+            hanldeModuleDecline(moduleDetails._id , declineMessage);
+        }} className='w-full bg-red-500 mt-4' >Decline Request</Button>
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
                 </div>
         </div>
         </div>
@@ -82,4 +117,4 @@ const page = async ({
   )
 }
 
-export default page
+export default ExModule
