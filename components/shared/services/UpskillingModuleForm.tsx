@@ -35,16 +35,16 @@ import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import { createModule, updateModule } from "@/lib/database/actions/module.action"
 import { UploadOnCloudinary } from "@/lib/utils"
-import { Edit } from "lucide-react"
+import { Divide, Edit } from "lucide-react"
 
 
 const ModuleFormSchema = z.object({
     name: z.string().min(2).max(50),
     detail:z.string().min(2).max(800),
     isPaid:z.enum(['free' , 'paid']),
-    url: z.string().min(7),
-    fees:z.string().min(2).max(20),
-    moduleCategory:z.string().min(2).max(10).optional(),
+    url: z.string().min(5),
+    fees:z.string().min(2).max(50),
+    moduleCategory:z.string().min(2).max(50).optional(),
     purpose:z.string().min(5).max(200).optional(),
     material:z.string().min(5).max(200).optional(),
     deleivery:z.string().min(5).max(200).optional(),
@@ -64,19 +64,16 @@ const ModuleFormSchema = z.object({
       path:['fees']
   })
     
-    type ModuleFormProps = {
-      id: string
-      type:'ADD' | 'UPDATE'
-      moduleId?: any
-    }
+    
   
     type UpskillingModuleFormProps = {
         id: string
         type:'ADD' | 'UPDATE'
         moduleId?: any
+        formType:string
       }
 
-const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps) => {
+const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModuleFormProps) => {
 
     
   const [Image, setImage] = useState<any>(null);
@@ -104,13 +101,13 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
       if(type=="ADD"){
         
         try {
-          // const imageurl = await UploadOnCloudinary(Image);
+          const imageurl = await UploadOnCloudinary(Image);
           let userToken = '';
           const token = localStorage.getItem('x-auth-token');
           if(token){
             userToken = token
           }
-          const res = await createModule({module:{...values , image:'41515' ,  } , creatorId:userToken , serviceId:id});
+          const res = await createModule({module:{...values , image:imageurl ,  } , creatorId:userToken , serviceId:id});
           alert(res)
           console.log(res);
           
@@ -139,7 +136,7 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
 
   return (
     <div>
-      <AlertDialog >
+      <AlertDialog   >
   <AlertDialogTrigger>
     {
       type == "UPDATE" ?  <div className="flex gap-2 items-center mb-5" >
@@ -148,7 +145,7 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
           </div> : 'Add Module'
     }
   </AlertDialogTrigger>
-  <AlertDialogContent>
+  <AlertDialogContent className="w-[900px]" >
     <AlertDialogHeader>
       <AlertDialogTitle>Upskilling Module Form</AlertDialogTitle>
       <AlertDialogDescription>
@@ -229,6 +226,37 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
             )
         }
 
+        {
+          formType == "Placement opportunity" && (
+            <div className="w-full flex gap-5" >
+                <FormField
+          control={form.control}
+          name="moduleCategory"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Field" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Marketing" >Marketing</SelectItem>
+                    <SelectItem value="Development">Development</SelectItem>
+                    <SelectItem value="Graphic Design">Graphic Design</SelectItem>
+                    <SelectItem value="Video Editing">Video Editing</SelectItem>
+                    <SelectItem value="VFX">VFX</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+            </div>
+          )
+        }
+
       <FormField
           control={form.control}
           name="url"
@@ -241,11 +269,15 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
             </FormItem>
           )}
         />
-      <FormField
+     <div className=" flex gap-5" >
+    {
+      formType=="Upskilling" && (
+        <div>
+          <FormField
           control={form.control}
           name="pace"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full" >
               <FormControl>
               <Select onValueChange={field.onChange} >
                   <SelectTrigger className="w-full">
@@ -261,11 +293,44 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
             </FormItem>
           )}
         />
-      <FormField
+        </div>
+      )
+    }
+
+    {
+      formType == "Competetive" && (
+        <div className="w-full" >
+          <FormField
+          control={form.control}
+          name="material"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Material Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Notes" >Notes</SelectItem>
+                    <SelectItem value="Videos lectures">Videos lectures</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        </div>
+      )
+    }
+      {
+        formType == "Upskilling" && (
+          <div className="w-full">
+            <FormField
           control={form.control}
           name="level"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full" >
               <FormControl>
               <Select onValueChange={field.onChange} >
                   <SelectTrigger className="w-full">
@@ -282,6 +347,73 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
             </FormItem>
           )}
         />
+          </div>
+        )
+      }
+
+      {
+        formType == "Competetive" && (
+          <div className="w-full" >
+            <FormField
+          control={form.control}
+          name="deleivery"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Delivery Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Live" >Live</SelectItem>
+                    <SelectItem value="Videos Lectures">Videos Lectures</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+          </div>
+        )
+      }
+
+     </div>
+{
+  formType == "Placement opportunity" && (
+    
+    <div className="flex gap-5 w-full" >
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+             
+              <FormControl>
+                <Input placeholder="Location" {...field} />
+              </FormControl>
+              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="elegibility"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+             
+              <FormControl>
+                <Input placeholder="Eligibility" {...field} />
+              </FormControl>
+              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    </div>
+  )
+}
     
          <Button 
           type="submit"

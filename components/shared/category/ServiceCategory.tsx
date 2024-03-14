@@ -26,7 +26,7 @@ const ServiceCategory = ({selectValues , type} : seviceCategoryProps) => {
                 console.log(e);
                 setserviceValue(e);
             }} >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[680px]">
           <SelectValue placeholder="Select Service" />
         </SelectTrigger>
         <SelectContent >
