@@ -39,11 +39,11 @@ import { Divide, Edit } from "lucide-react"
 
 
 const ModuleFormSchema = z.object({
-    name: z.string().min(2).max(50),
-    detail:z.string().min(2).max(800),
-    isPaid:z.enum(['free' , 'paid']),
-    url: z.string().min(5),
-    fees:z.string().min(2).max(50),
+    name: z.string().min(2).max(50).optional(),
+    detail:z.string().min(2).max(800).optional(),
+    isPaid:z.enum(['free' , 'paid']).optional(),
+    url: z.string().min(5).optional(),
+    fees:z.string().min(2).max(50).optional(),
     moduleCategory:z.string().min(2).max(50).optional(),
     purpose:z.string().min(5).max(200).optional(),
     material:z.string().min(5).max(200).optional(),
@@ -185,7 +185,9 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
           )}
         />
 
-        <FormField
+       {
+        formType == "Scholarships and Financial Aid" ? <div></div> : <div>
+           <FormField
           control={form.control}
           name="isPaid"
           render={({ field }) => (
@@ -225,6 +227,8 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
         />
             )
         }
+        </div>
+       }
 
         {
           formType == "Placement opportunity" && (
@@ -253,6 +257,25 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
           )}
         />
 
+            </div>
+          )
+        }
+
+        {
+          formType == "Scholarships and Financial Aid" && (
+            <div>
+               <FormField
+          control={form.control}
+          name="fees"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input  placeholder="Please Enter Ammount" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
             </div>
           )
         }
