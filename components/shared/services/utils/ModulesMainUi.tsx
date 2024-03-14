@@ -94,7 +94,7 @@ const ModulesMainUi = ({serviceId} : ModuleMainUiProps) => {
                                     <MoreVertical className="text-zinc-800" size={16} />
                                     </PopoverTrigger>
                                     <PopoverContent className="w-44" >
-                                        <ModuleForm type="UPDATE" id={serviceId} moduleId={curr.id} />
+                                        <ModuleForm categoryName=""  type="UPDATE" id={serviceId} moduleId={curr.id} />
                                         <div className="border-b mt-1 mb-1 "></div>
                                         <div className="flex gap-2 items-center mt-5 " >
                                     <Trash className="text-red-700" size={15}/>

@@ -22,7 +22,7 @@ const page = async ({
     <div>
       <OrgNav/>
        <ModuleComponent serviceId={id} categoryName={data.category.name} />
-      {/* <ModulesMainUi  serviceId={id} categoryId={data.category}/>  */}
+      <ModulesMainUi  serviceId={id}/> 
     </div>
   )
 }

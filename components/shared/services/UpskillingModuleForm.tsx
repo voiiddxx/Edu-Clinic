@@ -51,6 +51,7 @@ const ModuleFormSchema = z.object({
     pace:z.string().min(5).max(200).optional(),
     elegibility:z.string().min(5).max(200).optional(),
     location:z.string().min(5).max(200).optional(),
+    level:z.string().min(5).max(200).optional(),
     
     
   }).refine((data)=>{
@@ -95,7 +96,8 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
    
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
-     
+        console.log(values);
+        
       alert("this is working fine");
       
 
@@ -241,11 +243,40 @@ const UpskillingModuleForm = ({id , type , moduleId} : UpskillingModuleFormProps
         />
       <FormField
           control={form.control}
-          name="elegibility"
+          name="pace"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input  placeholder="Eligibilty" {...field} />
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Pace" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Self Placed" >Self Placed</SelectItem>
+                    <SelectItem value="Instructor-paced ">Instructor-paced </SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      <FormField
+          control={form.control}
+          name="level"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Beginner" >Beginner</SelectItem>
+                    <SelectItem value="Medium">Medium </SelectItem>
+                    <SelectItem value="Advanced">Advanced </SelectItem>
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>

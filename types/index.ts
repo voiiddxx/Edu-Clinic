@@ -82,6 +82,7 @@ export type createModuleParams = {
         location?:string
         moduleCategory?:string
         url?:string
+        level?:string
     }
 }
 

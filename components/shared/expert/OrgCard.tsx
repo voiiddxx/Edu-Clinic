@@ -27,12 +27,14 @@ const OrgCard = ({orgData} : orgCardProps) => {
 
     const approveReq = async (organizationId : string)=>{
         const status = await ApproveOrganizationasPerid({orgId:organizationId});
+        window.location.reload();
         console.log(status);
         
     }
 
     const declineReq = async (message : string , id:string)=>{
       await rejectOrganization({message:message , orgId:id});
+      window.location.reload();
     }
   return (
     <div className='min-h-[300px] w-full px-3 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-md border-[1px] border-zinc-300 py-3 flex gap-5'  >

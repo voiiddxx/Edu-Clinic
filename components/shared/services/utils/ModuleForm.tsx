@@ -98,7 +98,7 @@ const ModuleForm = ({id , type , moduleId , categoryName} : ModuleFormProps) => 
           
           try {
             // const imageurl = await UploadOnCloudinary(Image);
-            let userToken = '';
+          let userToken = '';
             const token = localStorage.getItem('x-auth-token');
             if(token){
               userToken = token
@@ -134,7 +134,7 @@ const ModuleForm = ({id , type , moduleId , categoryName} : ModuleFormProps) => 
     <div>
 
       {
-        categoryName=='Competitive Exam Resources' && (
+        categoryName=='Upskilling Courses' && (
           <div>
             <UpskillingModuleForm id={id} type="ADD" moduleId={moduleId} key={id} />
           </div>
