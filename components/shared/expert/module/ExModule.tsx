@@ -28,6 +28,7 @@ const ExModule = ({moduleDetails} : ExModuleProps) => {
     const hanldeModuleReq = async (id:string)=>{
         const res = await approveModuleReq(id);
         alert(res);
+        window.location.replace(`/expert`)
     }
 
     const hanldeModuleDecline = async( id : string , message:string )=>{

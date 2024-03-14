@@ -143,10 +143,15 @@ export const deleteModule = async ({moduleId} : DeleteModuleParams)=>{
 export const getAllModule = async () => {
     try {
         await connectToDatabase();
-        const AllModule = await Module.find({});
+        const conditions = {
+            approvalStatus:"Approved"
+        }
+        const AllModule = await Module.find(conditions);
         if(!AllModule){
             return JSON.parse(JSON.stringify({message:"No Module found"}));
         }
+        console.log(AllModule);
+        
         return JSON.parse(JSON.stringify(AllModule));
     } catch (error) {
         console.log(error);
