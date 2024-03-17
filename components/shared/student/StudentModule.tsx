@@ -3,6 +3,7 @@ import { Flame, IndianRupee, Sparkle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Skeleton } from "@/components/ui/skeleton"
 
 type StudentModuleProps = {
   allModule: any;
@@ -20,9 +21,34 @@ const StudentModule = ({ allModule }: StudentModuleProps) => {
       </div>
       <p className="text-zinc-500 text-sm mt-2">Here are your Best Matches</p>
       {!allModule || allModule.length === 0 ? (
-        <div className="flex items-center justify-center mt-8">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-zinc-500"></div>
+        <div className="flex gap-4 flex-wrap mt-8 real">
+        <div className={`border-[1px] border-zinc-100 rounded-lg relative`}>
+          <div className="h-[250px] w-[280px] mx-2 my-2 rounded-md">
+            <Skeleton className="rounded-lg h-[250px] w-[280px] bg-slate-200" />
+          </div>
+          <div className="mx-2 my-2 w-[280px]">
+            <Skeleton className="mt-4 font-semibold h-6 w-60" />
+            <Skeleton className="h-[10px] mt-2 w-100" />
+            <Skeleton className="h-[10px] mt-1 w-100" />
+            <Skeleton className="h-[10px] mt-1 w-100" />
+            <div className="flex gap-1 items-center mt-2 w-full">
+              <div className="bg-blue-50 rounded-sm flex items-center gap-1 px-2 py-1">
+                {
+                  <div className="flex items-center">
+                    <Skeleton className="h-5 w-12" />
+                  </div>
+                }
+              </div>
+            </div>
+            <div className="h-6 w-full"></div>
+            <div className="flex my-2 md:grid grid-cols-12">
+              <Skeleton className="h-5 w-20 col-span-4" />
+
+              <Skeleton className="h-5 w-40 col-span-6" />
+            </div>
+          </div>
         </div>
+      </div>
       ) : (
         <div className="flex gap-4 flex-wrap mt-2 real">
           {allModule.map((curr: IModule, index: number) => (

@@ -83,14 +83,14 @@ const ProjectForm = () => {
       return (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 md:grid grid-cols-2 gap-10">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input className="w-[600px] outline-none border-none bg-slate-100 rounded-full" placeholder="Your project name.." {...field} />
+                    <Input className="outline-none border-none bg-slate-100 rounded-full" placeholder="Your project name.." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,7 +102,7 @@ const ProjectForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input className="w-[630px] outline-none border-none bg-slate-100 rounded-full" placeholder="Institute/organization name" {...field} />
+                    <Input className="outline-none border-none bg-slate-100 rounded-full" placeholder="Institute/organization name" {...field} />
                   </FormControl>
                  
                   <FormMessage />
@@ -111,14 +111,14 @@ const ProjectForm = () => {
             />
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between md:grid grid-cols-2 gap-10">
             <FormField
               control={form.control}
               name="ammount"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input className="w-[600px] outline-none border-none bg-slate-100 rounded-full" placeholder="Funding Ammount  " {...field} />
+                    <Input className=" outline-none border-none bg-slate-100 rounded-full" placeholder="Funding Ammount  " {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -131,7 +131,7 @@ const ProjectForm = () => {
                 <FormItem>
                   <FormControl>
                   <Select onValueChange={field.onChange} >
-                  <SelectTrigger className="w-[630px] bg-slate-100 border-none">
+                  <SelectTrigger className=" bg-slate-100 border-none">
                     <SelectValue placeholder="Select Patent Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -148,14 +148,14 @@ const ProjectForm = () => {
             />
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between md:grid grid-cols-2 gap-10">
             <FormField
               control={form.control}
               name="detail"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea className="w-[600px] bg-slate-100 border-none rounded-xl h-40" placeholder="Elaborate your project details" {...field} />
+                    <Textarea className=" bg-slate-100 border-none rounded-xl h-40" placeholder="Elaborate your project details" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -166,22 +166,22 @@ const ProjectForm = () => {
               <p className="text-sm font-normal text-zinc-600" >Select project ppt*</p>
               <Input onChange={(e)=>{
                 setppt(e.target.files)
-              }} className="w-[630px] mt-2" type="file"/>
+              }} className="mt-2" type="file"/>
               <p className="text-sm font-normal text-zinc-600 mt-4" >Select prject image or logo*</p>
               <Input onChange={(e)=>{
                 setposter(e.target.files);
-              }} className="w-[630px] mt-2" type="file"/>
+              }} className="mt-2" type="file"/>
             </div>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between md:grid grid-cols-2 gap-10">
             <FormField
               control={form.control}
               name="phone"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                  <Input className="w-[600px] outline-none border-none bg-slate-100 rounded-full" placeholder="Your Phone  " {...field} />
+                  <Input className="outline-none border-none bg-slate-100 rounded-full" placeholder="Your Phone  " {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -193,7 +193,7 @@ const ProjectForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                  <Input className="w-[630px] outline-none border-none bg-slate-100 rounded-full" placeholder="Your email address  " {...field} />
+                  <Input className="outline-none border-none bg-slate-100 rounded-full" placeholder="Your email address  " {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -46,7 +46,7 @@ function FilteredModules({ items }: FilteredModulesProps) {
   }, [items]);
 
   useEffect(() => {
-    const newFilteredModules = allModules.filter(module => {
+    const newFilteredModules = allModules?.filter(module => {
       // Filter modules based on fees range (items.AmmountRange)
       const feesMatch = !items.type || module.isPaid == items.type
       
@@ -76,13 +76,8 @@ function FilteredModules({ items }: FilteredModulesProps) {
   return (
    <>
    {
-    items.name.length==0?<StudentModuleAll allModule={allModules}/>:(filteredModules.length>0?(<StudentModule allModule={filteredModules}/>):(<p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>))
+    items.name.length==0?<StudentModuleAll allModule={allModules}/>:(filteredModules?.length>0?(<StudentModule allModule={filteredModules}/>):(<p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>))
    }
-    {/* {filteredModules.length > 0 ? (
-      <StudentModule allModule={filteredModules} />
-    ) : (
-      <p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>
-    )} */}
   </>
   );
 }
