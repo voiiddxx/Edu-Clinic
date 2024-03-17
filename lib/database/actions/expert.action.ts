@@ -7,10 +7,7 @@ import connectToDatabase from "..";
 import jwt from "jsonwebtoken";
 import Organization from "../models/serviceprovider.model";
 import { sendMail } from "@/lib/mail";
-import { userAvailableorNot } from "./middelware";
 import Module from "../models/module.model";
-import { ReceiptEuro } from "lucide-react";
-import { send } from "process";
 
 
 // CREATING SERVER COMPONENT FOR REGISTERING THE EXPERT PANNEL
@@ -199,5 +196,38 @@ export const approveModuleReq = async  ( id : string)=>{
     } catch (error) {
         console.log(error);
         throw new Error(error as string);
+    }
+}
+
+
+// SERVER ACTION FOR DECLINING THE REQUEST OF APPROVAL
+
+export const declineModuleReq = async ( id : string , message : string)=>{
+    try {
+        await connectToDatabase();
+        const module = await Module.findByIdAndUpdate(id , {
+            approvalStatus:'Declined'
+        });
+        if(!module){
+            return JSON.parse(JSON.stringify({message:"Module not found"}));
+        }
+
+        await sendMail({
+            to:'nikhildesign00@gmail.com',
+            name:'Void',
+            subject:'Module Approval Status',
+            body: `<>
+            <h1> Your Module Get Rejected </h1>
+            <p> Because ${message} </p>
+            </>`
+        });
+
+        console.log("this is working");
+        
+
+        return JSON.parse(JSON.stringify({message:'OK'}))
+    } catch (error) {
+        console.log(error);
+        
     }
 }

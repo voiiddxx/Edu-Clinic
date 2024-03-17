@@ -48,7 +48,7 @@ const StudentModule = ({ allModule }: StudentModuleProps) => {
                 </div>
                 <div className="mx-2 my-2 w-[280px]">
                   <p className="mt-4 font-semibold text-zinc-900">{curr.name}</p>
-                  <p className="text-[10px] mt-2 text-zinc-600">
+                  <p className="text-[10px] mt-2 text-zinc-600 ">
                     {" "}
                     {curr.detail} consectetur adipisicing elit. Sit, in. Learn AI/ML
                     and grab the most demanding and paying{" "}

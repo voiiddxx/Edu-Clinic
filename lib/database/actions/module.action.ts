@@ -24,9 +24,10 @@ const populateModuleDetails = async ( query: any) => {
 export const createModule = async ({serviceId , creatorId , module} : createModuleParams) => {
     try {
         await connectToDatabase();
+
+        console.log(module);
         const user = await userAvailableorNot(creatorId);
         const Ownerid = user.id;
-
         const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image , likes:[] , review:[]});
         console.log(createdModule);
         return JSON.parse(JSON.stringify(createdModule));
@@ -142,10 +143,15 @@ export const deleteModule = async ({moduleId} : DeleteModuleParams)=>{
 export const getAllModule = async () => {
     try {
         await connectToDatabase();
-        const AllModule = await Module.find({});
+        const conditions = {
+            approvalStatus:"Approved"
+        }
+        const AllModule = await Module.find(conditions);
         if(!AllModule){
             return JSON.parse(JSON.stringify({message:"No Module found"}));
         }
+        console.log(AllModule);
+        
         return JSON.parse(JSON.stringify(AllModule));
     } catch (error) {
         console.log(error);
@@ -226,3 +232,5 @@ export const postFeedBack =async  ( {message , moduleId , studentId} : postRevie
         
     }
 }
+
+

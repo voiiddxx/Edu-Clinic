@@ -93,6 +93,7 @@ const OrgServices = () => {
         }
         
         }
+        getAllcategoryList();
         getMyorg();
        getUserServ();
     } , [])
@@ -133,14 +134,14 @@ const OrgServices = () => {
                 <Plus size={16} />
                 <p>Add Service</p>
             </div></AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className='w-full' >
         <AlertDialogHeader>
           <AlertDialogTitle>Add Service</AlertDialogTitle>
           <AlertDialogDescription>
             <Input type="text" onChange={(e)=>{
                 setServiceCategoryName(e.target.value)
             }} placeholder="New category"/>
-             <div className="h-3 w-full "></div>
+             <div className="h-3 w-full"></div>
            {/* service category  */}
     
            <Select onValueChange={(value) => {

@@ -22,7 +22,6 @@ const page = async ({
     const allModules = await studentGetOrgsModule({serviceId:moduleDetails.serviceId});
     
 
-    const res = ['gg','kj' , 'gg','kj' ]
 
   return (
     <div>

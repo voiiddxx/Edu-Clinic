@@ -22,7 +22,7 @@ import { UploadOnCloudinary } from '@/lib/utils'
 
 // zod form validation start
 const formSchema = z.object({
-    orgDescription: z.string().min(2).max(50),
+    orgDescription: z.string().min(2).max(800),
     orgHq: z.string().min(2).max(50),
     orgWebsite: z.string().min(2).max(50),
   })
@@ -57,13 +57,18 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
  async function onSubmit(values: z.infer<typeof formSchema>) {
 
       const imageData = await UploadOnCloudinary(OrgImage);
-        await UpdateAndApplyforApprovalAction({org:{orgHq:values.orgHq , orgDescription:values.orgDescription , orgId:ordId , OrgImage:imageData , orgWebsite:values.orgWebsite}});
+       const data = await UpdateAndApplyforApprovalAction({org:{orgHq:values.orgHq , orgDescription:values.orgDescription , orgId:ordId , OrgImage:imageData , orgWebsite:values.orgWebsite}});
+       if(data){
+        window.location.reload();
+       }
+
+        
   }
 
 
 
   return (
-    <div className='w-full min-h-screen px-32' >
+    <div className='w-full min-h-screen px-32 bg-zinc-100' >
         <div className='h-24 w-full border-b flex justify-center flex-col ' >
         <div className=' flex gap-2 items-center' >
             <Flame/>
@@ -83,10 +88,10 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
           control={form.control}
           name="orgWebsite"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
+            <FormItem className='w-full' >
+              <FormLabel>Organization Website</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Your website url" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -102,10 +107,10 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
           control={form.control}
           name="orgHq"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
+            <FormItem className='w-full' >
+              <FormLabel>Organization Location</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Location of your organization" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -120,10 +125,11 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
 
         {/* second row  */}
 
-        <div className='flex gap-8'  >
+        <div className=''  >
             {/* first col */}
             <div>
-                <Input onChange={(e)=>{
+              <FormLabel>Your Organization Logo</FormLabel>
+                <Input className='w-full'  onChange={(e)=>{
                     setOrgImage(e.target.files);
                 }}  type='file'/>
             </div>
@@ -133,8 +139,8 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
           control={form.control}
           name="orgDescription"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
+            <FormItem className='w-full mt-10' >
+              <FormLabel>Organization Description</FormLabel>
               <FormControl>
                 <Textarea placeholder='please write your company details' {...field} />
               </FormControl>
@@ -148,7 +154,7 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
             </div>
         </div>
         {/* third row */}
-        <Button className='w-full bg-zinc-800'  type="submit">Submit</Button>
+        <Button  className='w-full bg-zinc-800'  type="submit">Submit</Button>
       </form>
     </Form>
 

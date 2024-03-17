@@ -6,12 +6,21 @@ import StudentModule from "./StudentModule";
 import { getAllModule } from "@/lib/database/actions/module.action";
 import FilteredModules from "./FilteredModules";
 import CompetitiveExamForm from "./MatchDetailFormComponents/CompetitiveExamForm";
+import { getAllServiceCategory } from "@/lib/database/actions/service.action";
 
 function MatchDetailForm() {
   const [option, setOption] = useState(0);
   const [allModules, setAllModules] = useState([]);
+  const [serviceCategory, setserviceCategory] = useState<any>(null);
 
   useEffect(() => {
+
+    const getAllServCategory = async()=>{
+      const res = await getAllServiceCategory();
+      console.log(res);
+      
+      setserviceCategory(res);
+    }
     const fetchData = async () => {
       const modules = await getAllModule();
       setAllModules(modules);
@@ -19,6 +28,7 @@ function MatchDetailForm() {
     };
 
     fetchData();
+    getAllServCategory();
   }, []);
 
   const renderForm = () => {
@@ -37,8 +47,8 @@ function MatchDetailForm() {
   return (
     <div className="h-auto flex bg-slate-50 justify-center items-center ">
       <div className="sm:w-full ">
-        <div className="sm:grid grid-cols-12 rounded-lg">
-          <div className="md:col-span-3 md:pt-4 md:p-2 md:sticky top-0 ">
+        <div className="grid grid-cols-12  rounded-lg">
+          <div className="col-span-3 pt-4 p-2 sticky top-0">
             {ServiceOptionObject.map((item, id) => (
               <p
                 key={id}
@@ -52,6 +62,9 @@ function MatchDetailForm() {
                 {item.name}
               </p>
             ))}
+                </div>
+              )
+            }
           </div>
           <div className="col-span-9 p-8 h-full ">{renderForm()}</div>
         </div>
