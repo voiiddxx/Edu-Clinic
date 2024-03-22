@@ -23,7 +23,7 @@ const ExpertCompany = ({orgs} : expertCompanyProps) => {
             <p className='text-zinc-600 text-sm mt-1' >Sorry No Data found, Please try again later</p>
 
           </div>
-        </div> : <div className='flex flex-col gap-2' >
+        </div> : <div className='flex  flex-wrap gap-2' >
           {
         orgs.map((curr:any)=>{
             return <OrgCard orgData={curr} key={curr._id} />
