@@ -40,20 +40,20 @@ const OrgCard = ({orgData} : orgCardProps) => {
   return (
     <div className='min-h-[300px] w-full px-3 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-md border-[1px] border-zinc-300 py-3 flex gap-5'  >
       <div className='h-full w-4/12 bg-slate-200 rounded-md' >
-        <Image className='h-[320px] w-full rounded-md object-cover' src={orgData.orgImage} height={900} width={900} alt='orgImage'/>
+        <Image className='h-[220px] w-full rounded-md object-cover' src={orgData.orgImage} height={900} width={900} alt='orgImage'/>
       </div>
       <div className='w-8/12 px-4' >
         <h1 className='text-2xl font-semibold mt-1 text-zinc-700' >{orgData.orgName}</h1>
         <div className=' flex gap-2 items-center mt-4' >
-            <MapPin className=' text-violet-700' size={18} />
+            <MapPin className=' text-violet-700' size={18} strokeWidth={1.5} />
             <p className='text-sm font-medium' >{orgData.orgHq}</p>
         </div>
         <div className=' flex gap-2 items-center mt-3' >
-            <GitCompare className=' text-green-700' size={18} />
+            <GitCompare className=' text-green-700' size={18} strokeWidth={1.5} />
             <p className='text-sm font-medium' >Internship and Placement Service</p>
         </div>
         <div className=' flex gap-2 items-center mt-3' >
-            <GitCompare className=' text-green-700' size={18} />
+            <GitCompare className=' text-green-700' size={18} strokeWidth={1.5} />
             <p className='text-sm font-medium' >(any other custom field)</p>
         </div>
         <div className=' flex gap-2 items-center mt-3' >
