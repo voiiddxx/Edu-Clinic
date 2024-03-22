@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -29,10 +29,14 @@ interface FormData {
   level: string;
   pace: string
 }
+interface orgId {
+    id: string
+}
 
-function UpskillingForm() {
+function UpskillingForm({id}: orgId) {
   const [data, setData] = useState<FormData>({name:"", type:"", level:"", pace:""});
   const [module, setModule] = useState()
+  const [catid, setCatId] = useState<any>()
 
   const formSchema = z.object({
     name: z.string().min(2, {
@@ -51,7 +55,9 @@ function UpskillingForm() {
       pace: ""
     },
   });
-
+  useEffect(()=>{
+    setCatId(id)
+  }, [])
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
@@ -59,6 +65,7 @@ function UpskillingForm() {
     console.log(values)
     setData(values)
   }
+    console.log(`id: ${id}`);
   return (
     <div>
       <Form {...form}>
@@ -83,7 +90,7 @@ function UpskillingForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Type</FormLabel>
-                  <Select
+                  <Select 
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
@@ -161,7 +168,7 @@ function UpskillingForm() {
         </form>
       </Form>
       <div className="mt-2">
-      <FilteredModules items={data}/>
+      <FilteredModules items={data} _id={catid}/>
       </div>
     </div>
   );

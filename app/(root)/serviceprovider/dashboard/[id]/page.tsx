@@ -19,7 +19,7 @@ const page = async ({
       
       
   return (
-    <div>
+    <div> 
       <OrgNav/>
        <ModuleComponent serviceId={id} categoryName={data.category.name} />
       <ModulesMainUi  serviceId={id}/> 
