@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { getProjectWithId } from '@/lib/database/actions/project.action'
 import { Building, Building2, DollarSign, IndianRupee, Loader, Phone } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const page = async ({
@@ -55,9 +56,12 @@ const page = async ({
                 <h1 className='text-2xl font-semibold' >{data.ammount}</h1>
               </div>
 
-              <div className='flex gap-2 mt-4'>
-              <Button variant={'outline'} className='w-full' >Connect through mail</Button>
-                <Button className='w-full bg-zinc-900' >Download project file</Button>
+              <div className='flex gap-2 mt-4 w-full'>
+              <Link href={`mailto:${data.mail}`} >
+              <Button  variant={'outline'} className='w-full' >Connect through mail</Button></Link>
+              <Link href={`${data.ppt}`} >
+              <Button   className='w-full bg-violet-700' >Download Project File</Button></Link>
+              
                 
               </div>
             </div>
