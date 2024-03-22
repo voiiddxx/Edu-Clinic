@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -29,10 +29,14 @@ interface FormData {
   delivery: string;
   materials: string
 }
+interface orgId {
+  id: string
+}
 
-function CompetitiveExamForm() {
+function CompetitiveExamForm({id}: orgId) {
   const [data, setData] = useState<FormData>({name:"", type:"", delivery:"", materials:""});
   const [module, setModule] = useState()
+  const [catid, setCatId] = useState<any>()
 
   const formSchema = z.object({
     name: z.string().min(2, {
@@ -51,6 +55,9 @@ function CompetitiveExamForm() {
       materials: ""
     },
   });
+  useEffect(()=>{
+    setCatId(id)
+  }, [])
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -160,7 +167,7 @@ function CompetitiveExamForm() {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data}/> */}
+      {/* <FilteredModules items={data} _id={catid}/> */}
       </div>
     </div>
   );

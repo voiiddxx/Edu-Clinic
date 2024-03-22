@@ -28,7 +28,7 @@ const page = async () => {
     <TabsTrigger value="org">Organizations</TabsTrigger>
     <TabsTrigger value="2">Modules</TabsTrigger>
     <TabsTrigger value="3">Individuals</TabsTrigger>
-    <TabsTrigger value="4">Additinols</TabsTrigger>
+    <TabsTrigger value="4">Additionals</TabsTrigger>
   </TabsList>
     </div>
   <TabsContent value="org">

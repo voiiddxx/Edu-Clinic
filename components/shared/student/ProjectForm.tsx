@@ -167,7 +167,7 @@ const ProjectForm = () => {
               <Input onChange={(e)=>{
                 setppt(e.target.files)
               }} className="mt-2" type="file"/>
-              <p className="text-sm font-normal text-zinc-600 mt-4" >Select prject image or logo*</p>
+              <p className="text-sm font-normal text-zinc-600 mt-4" >Select project image or logo*</p>
               <Input onChange={(e)=>{
                 setposter(e.target.files);
               }} className="mt-2" type="file"/>

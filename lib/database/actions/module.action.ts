@@ -79,39 +79,35 @@ export const getAllOrganizationModule = async ({ organizationId , serviceId } : 
     }
 }
 
-export const studentGetOrgsModule = async ({ organizationId , serviceId}:getOrgModuleParams) => {
+export const studentGetOrgsModule = async ({ organizationId, serviceId }: getOrgModuleParams) => {
     try {
         await connectToDatabase();
-        let condition = {}
+        let condition = {};
 
-        if(serviceId && organizationId){
+        if (serviceId && organizationId) {
             condition = {
-                serviceId:serviceId,
-                creatorId:organizationId  
-             }
-            
+                serviceId: serviceId,
+                creatorId: organizationId
+            };
+        } else if (serviceId) {
+            condition = {
+                serviceId: serviceId
+            };
+        } else {
+            condition = {
+                creatorId: organizationId
+            };
         }
-        else if(serviceId){
-            condition = {
-                serviceId:serviceId
-            }
-        }   
-        else{
-            condition = {
-                creatorId:organizationId
-            }
-           
-            
-        }
+
         const ServiceModules = await Module.find(condition);
         return JSON.parse(JSON.stringify(ServiceModules));
-        
-
     } catch (error) {
-        console.log(error);
-        
+        // Handle the error gracefully
+        console.error("Error in studentGetOrgsModule:", error);
+        throw new Error("Error fetching organization modules");
     }
-}
+};
+
 
 
 export const updateModule = async({ moduleId , module}: UpdateModuleParams) => {

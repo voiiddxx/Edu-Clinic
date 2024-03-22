@@ -307,8 +307,8 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
                     <SelectValue placeholder="Select Pace" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Self Placed" >Self Placed</SelectItem>
-                    <SelectItem value="Instructor-paced ">Instructor-paced </SelectItem>
+                    <SelectItem value="Self Paced" >Self Paced</SelectItem>
+                    <SelectItem value="Instructor paced ">Instructor paced </SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>

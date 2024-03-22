@@ -91,7 +91,6 @@ export const getAllServicearPerOrgId = async ( orgId:any) => {
 
 export const getUserServices = async (userToken : any) => {
     try {
-
         
         await connectToDatabase();
         console.log("this is the value of user tokens" , userToken);
@@ -109,7 +108,7 @@ export const getUserServices = async (userToken : any) => {
     } catch (error) {
         console.log(error);
         
-    }
+    } 
 }
 
 
