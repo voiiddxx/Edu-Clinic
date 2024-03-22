@@ -1,4 +1,5 @@
 "use client"
+
 import { Button } from '@/components/ui/button'
 import { ApproveOrganizationasPerid, rejectOrganization } from '@/lib/database/actions/expert.action'
 import { GitCompare, Link, MapPin } from 'lucide-react'
@@ -38,8 +39,8 @@ const OrgCard = ({orgData} : orgCardProps) => {
     }
   return (
     <div className='min-h-[300px] w-full px-3 bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] rounded-md border-[1px] border-zinc-300 py-3 flex gap-5'  >
-      <div className='h-full w-4/12 bg-yellow-400 rounded-md' >
-        <Image className='h-full w-full rounded-md object-cover' src={orgData.orgImage} height={900} width={900} alt='orgImage'/>
+      <div className='h-full w-4/12 bg-slate-200 rounded-md' >
+        <Image className='h-[320px] w-full rounded-md object-cover' src={orgData.orgImage} height={900} width={900} alt='orgImage'/>
       </div>
       <div className='w-8/12 px-4' >
         <h1 className='text-2xl font-semibold mt-1 text-zinc-700' >{orgData.orgName}</h1>

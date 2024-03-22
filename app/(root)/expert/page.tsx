@@ -13,6 +13,9 @@ const page = async () => {
   const orgs = await getAppliedApprovalOrganization();
   const modules = await getunApprovedModules();
 
+
+  console.log("this is the value of applie dagewncis" , orgs);
+  
   
   return (
     <div>
@@ -21,14 +24,13 @@ const page = async () => {
 
       {/* EXPERT ORGANIZATION AND MODULE TRANSITION SECTIONS */}
 
-      <div className='min-h-screen w-full px-32 py-10' >
+      <div className='min-h-screen w-full px-32 py-10 bg-slate-100' >
       <Tabs defaultValue="org" className="w-full">
     <div className='h-16 border-b' >
     <TabsList>
     <TabsTrigger value="org">Organizations</TabsTrigger>
     <TabsTrigger value="2">Modules</TabsTrigger>
-    <TabsTrigger value="3">Individuals</TabsTrigger>
-    <TabsTrigger value="4">Additionals</TabsTrigger>
+
   </TabsList>
     </div>
   <TabsContent value="org">

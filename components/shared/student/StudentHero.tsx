@@ -1,9 +1,19 @@
+"use client"
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { getAllServiceCategory } from "@/lib/database/actions/service.action";
 import { Check, CheckCheck, Rocket } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const StudentHero = () => {
+
+
+  const getall = async()=>{
+    const data = await getAllServiceCategory();
+    console.log(data);
+    
+  }
   return (
     <div className="min-h-screen bg-studentImage bg-no-repeat w-full flex flex-col justify-start items-center overflow-x-hidden ">
       <div className="mt-32 flex flex-col justify-center items-center md:px-96 px-6">
@@ -54,6 +64,7 @@ const StudentHero = () => {
           <CheckCheck className="text-blue-700" size={15} />
           <p className="text-[14px] text-zinc-800">Internships</p>
         </div>
+
       </div>
     </div>
   );
