@@ -30,13 +30,11 @@ import { UploadOnCloudinary } from "@/lib/utils"
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   detail: z.string().min(1).max(150),
-  ammount: z.string().min(2).max(10),
-  college: z.string().min(2).max(10),
-  phone: z.string().min(2).max(10),
-  mail: z.string().min(2).max(20),
+  ammount: z.string().min(2),
+  college: z.string().min(2),
+  phone: z.string().min(10).max(10),
+  mail: z.string().min(2),
   isGranted:z.enum(['Granted' , 'Filed' , 'Will Filed' , 'No Patent']),
-
-  
 })
 
 
