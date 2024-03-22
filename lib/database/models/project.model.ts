@@ -1,4 +1,17 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models , Document } from "mongoose";
+
+export interface IProject extends Document {
+    name:string
+    detail:string
+    isGranted:string 
+    ammount:string
+    ppt:string
+    college:string
+    phone:string
+    poster:string
+    mail:string
+    student:string
+}
 
 
 const ProjectSchema = new Schema({
