@@ -46,7 +46,7 @@ const StudentHero = () => {
       <div className="flex flex-wrap sm:gap-9 gap-3 mt-16 justify-center">
         <div className="flex gap-2 items-center">
           <CheckCheck className="text-blue-700" size={15} />
-          <p className="text-[14px] text-zinc-800">Counseling Services</p>
+          <p className="text-[14px] text-zinc-800">Counselling Services</p>
         </div>
         <div className="flex gap-2 items-center">
           <CheckCheck className="text-blue-700" size={15} />

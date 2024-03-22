@@ -30,7 +30,7 @@ const page = async () => {
     <TabsList>
     <TabsTrigger value="org">Organizations</TabsTrigger>
     <TabsTrigger value="2">Modules</TabsTrigger>
-    <TabsTrigger value="4">Additinols</TabsTrigger>
+
   </TabsList>
     </div>
   <TabsContent value="org">

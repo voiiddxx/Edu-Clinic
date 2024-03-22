@@ -34,7 +34,9 @@ const StudentNav = () => {
       <div className="">
         {" "}
         {/* Added flex-grow for responsiveness */}
+        <a href="/student/home">
         <h1>EduClinic</h1>
+        </a>
       </div>
 
       {/* Navigation Links */}

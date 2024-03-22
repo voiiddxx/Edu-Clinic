@@ -17,6 +17,7 @@ function MatchDetailForm() {
   const [option, setOption] = useState(0);
   const [allModules, setAllModules] = useState([]);
   const [serviceCategory, setserviceCategory] = useState<any>(null);
+  const [id, setId] = useState<any>()
 
   useEffect(() => {
     const getAllServCategory = async () => {
@@ -39,11 +40,13 @@ function MatchDetailForm() {
     if (option === 0) {
       return (
         <>
-          <UpskillingForm />
+          <UpskillingForm id={id}/>
         </>
       );
     } else if (option === 1) {
-      return <CompetitiveExamForm />;
+      return <>
+      <CompetitiveExamForm id={id}/>
+      </>;
     } else if (option === 2) {
       return <HealthCounForm />;
     } else if (option === 3) {
@@ -101,6 +104,8 @@ function MatchDetailForm() {
                     }`}
                     onClick={() => {
                       setOption(id);
+                      setId(item._id);
+                      console.log(`match detail form: ${JSON.stringify(item)}`)
                     }}
                   >
                     {item.name}
