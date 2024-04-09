@@ -2,17 +2,10 @@
 import StudentNav from '@/components/shared/student/StudentNav'
 import { Flame } from 'lucide-react'
 import React from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import StudentModule from '@/components/shared/student/StudentModule'
 import { getAllServicearPerOrgId, getAllServices } from '@/lib/database/actions/service.action'
 import { IService } from '@/lib/database/models/service.model'
-import { getAllModule, studentGetOrgsModule } from '@/lib/database/actions/module.action'
+import {  studentGetOrgsModule } from '@/lib/database/actions/module.action'
 import Link from 'next/link'
 
 
@@ -22,14 +15,9 @@ const page = async ({
   id : string
 }}) => {
 
-
+  
   const allServices = await getAllServicearPerOrgId(id);
   const allModules = await studentGetOrgsModule({organizationId:id});
-
-
-
-
-  
   return (
     <div className='min-h-screen w-full ' >
       <StudentNav/>
@@ -56,20 +44,14 @@ const page = async ({
       </div>
 
       <div className='flex justify-end px-8 py-16 items-center '>
-     
-      
-
       </div>
-
-
          <div className='ml-32' >
          <StudentModule allModule={allModules} type='ORGS' />
          </div>
-
-
-
-      
     </div>
+
+
+
   )
 }
 
