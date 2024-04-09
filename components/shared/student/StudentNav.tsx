@@ -1,15 +1,24 @@
 "use client"
+
 import { useState } from "react";
 import { LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const StudentNav = () => {
+
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const LogoutNow = ()=>{
+    
+    localStorage.removeItem('x-auth-token');
+    router.push('/');
+  }
 
   return (
     <div className="flex justify-between px-6 sm:px-32 items-center q">
@@ -71,8 +80,8 @@ const StudentNav = () => {
             <User className="text-blue-700" size={20} />
           </Link>
         </div>
-        <div className="sm:h-12 h-10 gap-2 rounded-sm flex items-center sm:px-4 px-2 bg-blue-700">
-          <LogOut color="white" size={17} />
+        <div onClick={LogoutNow} className="sm:h-12 h-10 gap-2 rounded-sm flex items-center sm:px-4 px-2 bg-blue-700 cursor-pointer">
+          <LogOut  color="white" size={17} />
           <p className="text-sm font-normal text-white">Logout</p>
         </div>
       </div>

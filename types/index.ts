@@ -11,6 +11,7 @@ export type RegisterStudentParams = {
     }
 }
 export type UpdateStudentParams = {
+    studentId:string
     student?:{
     name?: string,
     email?:string,

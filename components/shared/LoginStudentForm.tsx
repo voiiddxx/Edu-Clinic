@@ -45,9 +45,7 @@ const StudentLoginForm = () => {
         const response = await LoginStudent({student:{...values}})
         console.log(response);
         const savedToken = localStorage.setItem("x-auth-token" , response.token);
-       
           router.push(`/student/home/`)
-        
       }
       return (
         <Form {...form}>
