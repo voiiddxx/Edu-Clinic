@@ -10,6 +10,15 @@ export type RegisterStudentParams = {
     mobile:string
     }
 }
+export type UpdateStudentParams = {
+    student?:{
+    name?: string,
+    email?:string,
+    password?:string,
+    instituion?:string
+    mobile?:string
+    }
+}
 
 export type StudentLoginParams = {
     student:{
