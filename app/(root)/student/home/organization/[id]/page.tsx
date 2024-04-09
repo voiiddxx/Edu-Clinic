@@ -34,7 +34,7 @@ const page = async ({
     <div className='min-h-screen w-full ' >
       <StudentNav/>
       <div className='h-[400px]  mx-8 my-4 bg-black rounded-lg bg-serviceBg flex justify-center items-center'>
-        <h1 className='text-white font-semibold text-[50px]'>Explore The Intel Services</h1>
+        <h1 className='text-white font-semibold text-[50px]'>Explore The Services</h1>
       </div>
 
       <div className='px-36 mt-10 text-zinc-900' >
@@ -57,26 +57,14 @@ const page = async ({
 
       <div className='flex justify-end px-8 py-16 items-center '>
      
-      <div>
-            <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select Service" />
-        </SelectTrigger>
-        <SelectContent >
-          
-          {
-            allServices.map((curr : IService)=> {
-              return <SelectItem  value={curr._id}>{curr.name}</SelectItem>
-            })
-          }
-        </SelectContent>
-      </Select>
-      </div>
+      
 
       </div>
 
 
-          <StudentModule allModule={allModules} type='ORGS' />
+         <div className='ml-32' >
+         <StudentModule allModule={allModules} type='ORGS' />
+         </div>
 
 
 
