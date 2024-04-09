@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
      <StartNav/>
-     <div className="w-full min-h-screen bg-mainImage flex  items-center flex-col">
+     <div className="w-full min-h-screen bg-cover bg-mainImage flex  items-center flex-col">
       <div className="flex gap-4 flex-col justify-center items-center mt-36" >
       <h1 className="text-4xl font-semibold text-zinc-900" >Unleash the Educationol </h1>
       <h1 className="text-4xl font-semibold text-zinc-900" > Sector with the platform <span>Educlinic</span> </h1>
@@ -18,11 +18,11 @@ export default function Home() {
       <div className="flex gap-2 mt-4" >
     <Link href={`/serviceprovider/register`} >
     <Button className="bg-zinc-900 hover:bg-white hover:text-zinc-900" >
-      Signin as Organization
+      Signup as Organization
     </Button></Link>
     <Link href={`/student/auth/register`} >
     <Button className="bg-transparent text-zinc-950 border-[1px] border-zinc-900 hover:bg-zinc-900 hover:text-white" >
-      Signin as Student
+      Signup as Student
     </Button></Link>
       </div>
     

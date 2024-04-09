@@ -15,7 +15,7 @@ const StudentHero = () => {
     
   }
   return (
-    <div className="min-h-screen bg-studentImage bg-no-repeat w-full flex flex-col justify-start items-center overflow-x-hidden ">
+    <div className="min-h-screen bg-studentImage bg-no-repeat bg-cover w-full flex flex-col justify-start items-center overflow-x-hidden ">
       <div className="mt-32 flex flex-col justify-center items-center md:px-96 px-6">
         <div className="bg-slate-50 rounded-3xl px-6 py-1 mb-2 flex gap-3 items-center">
           <Rocket className="text-blue-600" size={18} />

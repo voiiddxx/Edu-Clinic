@@ -88,7 +88,8 @@ function FilteredModules({ items, _id}: FilteredModulesProps,) {
       // console.log(`Category: ${categoryMatch}`)
       console.log(`items: ${JSON.stringify(items)}`)
 
-      return feesMatch && courseNameMatch && levelMatch && paceMatch;
+      // return feesMatch && courseNameMatch && levelMatch && paceMatch;
+      return feesMatch && courseNameMatch;
     });
 
     setFilteredModules(newFilteredModules.sort());
