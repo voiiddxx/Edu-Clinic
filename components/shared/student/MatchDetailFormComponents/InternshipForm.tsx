@@ -24,35 +24,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FilteredModules from "../FilteredModules";
 
 interface FormData {
-  name: string;
-  type: string;
-  level: string;
-  pace: string
+  place: string;
+  field: string;
+  stipend: string;
+  duration: string
 }
 interface orgId {
     id: string
 }
 
-function UpskillingForm({id}: orgId) {
-  const [data, setData] = useState<FormData>({name:"", type:"", level:"", pace:""});
+function InternshipForm({id}: orgId) {
+  const [data, setData] = useState<FormData>({place:"", field:"", stipend:"", duration:""});
   const [module, setModule] = useState()
   const [catid, setCatId] = useState<any>()
 
   const formSchema = z.object({
-    name: z.string().min(2, {
+    place: z.string().min(2, {
       message: "Institute must be at least 2 characters.",
     }),
-    type: z.string().min(2),
-    level: z.string(),
-    pace: z.string(),
+    field: z.string().min(2),
+    stipend: z.string(),
+    duration: z.string(),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      type: "",
-      level: "",
-      pace: ""
+      place: "",
+      field: "",
+      stipend: "",
+      duration: ""
     },
   });
   useEffect(()=>{
@@ -73,12 +73,12 @@ function UpskillingForm({id}: orgId) {
           <div className=" sm:grid grid-cols-4 gap-2">
             <FormField
               control={form.control}
-              name="name"
+              name="place"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Place</FormLabel>
                   <FormControl>
-                    <Input placeholder="MERN stack" {...field} />
+                    <Input placeholder="Mohali" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -86,7 +86,7 @@ function UpskillingForm({id}: orgId) {
             />
            <FormField
               control={form.control}
-              name="type"
+              name="field"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Type</FormLabel>
@@ -96,14 +96,14 @@ function UpskillingForm({id}: orgId) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Free / Paid" />
+                        <SelectValue placeholder="choose field" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="free">
-                        Free
+                      <SelectItem value="technical">
+                      technical
                       </SelectItem>
-                      <SelectItem value="paid">Paid</SelectItem>
+                      <SelectItem value="non-technical">non-technical</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -112,7 +112,7 @@ function UpskillingForm({id}: orgId) {
             />
             <FormField
               control={form.control}
-              name="level"
+              name="stipend"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Level</FormLabel>
@@ -122,15 +122,14 @@ function UpskillingForm({id}: orgId) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Beginer / Medium / Advance" />
+                        <SelectValue placeholder="stipend / without stipend" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="beginer">
-                        Beginer
+                      <SelectItem value="stipend">
+                      stipend
                       </SelectItem>
-                      <SelectItem value="medium">Medium</SelectItem>
-                      <SelectItem value="advance">Advance</SelectItem>
+                      <SelectItem value="without stipend">without stipend</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -139,26 +138,13 @@ function UpskillingForm({id}: orgId) {
             />
             <FormField
               control={form.control}
-              name="pace"
+              name="duration"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pace</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Self-Paced / Instructor-Paced" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="self paced">
-                        Self Paced
-                      </SelectItem>
-                      <SelectItem value="instructor paced">Instructor Paced</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormLabel>Duration</FormLabel>
+                  <FormControl>
+                    <Input placeholder="number of months" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -168,10 +154,10 @@ function UpskillingForm({id}: orgId) {
         </form>
       </Form>
       <div className="mt-2">
-      <FilteredModules items={data} _id={catid}/>
+      {/* <FilteredModules items={data} _id={catid}/> */}
       </div>
     </div>
   ); 
 }
 
-export default UpskillingForm;
+export default InternshipForm;

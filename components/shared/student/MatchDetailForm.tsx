@@ -11,7 +11,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import HealthCounForm from "./MatchDetailFormComponents/HealthCounForm";
 import ScholorshioFinancialAidForm from "./MatchDetailFormComponents/ScholorshipFinancialAidForm";
 import AcademicAdvisingForm from "./MatchDetailFormComponents/AcademicAdvisingForm";
+import InternshipForm from "./MatchDetailFormComponents/InternshipForm";
 import ProjectForm from "./ProjectForm";
+import PlacementOpportunityForm from "./MatchDetailFormComponents/PlacementOpportunityForm";
 
 function MatchDetailForm() {
   const [option, setOption] = useState(0);
@@ -30,7 +32,7 @@ function MatchDetailForm() {
       const modules = await getAllModule();
       setAllModules(modules);
       console.log(modules);
-    };
+    }; 
 
     fetchData();
     getAllServCategory();
@@ -72,9 +74,20 @@ function MatchDetailForm() {
           </div>
         </div>
       );
+    } else if (option===6){
+      return <><div className="flex "><h1 className=" font-semibold text-xl">coming soon...</h1></div></>;
+    } else if (option===7){
+      return <><div className="flex "><h1 className=" font-semibold text-xl">coming soon...</h1></div></>;
+    } else if (option===8){
+      return <InternshipForm id={id}/>;
     }
+    else if (option===9){
+      return <PlacementOpportunityForm id={id}/>;
+    }
+    
     console.log("Testing");
   };
+  
 
   return (
     // <div className="flex items-center justify-center mt-8">
