@@ -13,15 +13,18 @@ const page = async ({
   }}) => {
    
 
-    const data = await getServiceCategoryWithId(id);
-    console.log(data.category + "nvbv" + data.category.name);
+
     
+
+    const data = await getServiceCategoryWithId(id);
+    console.log(data.category + "nvbv" + data.category.name , "this is complete data" , data);
+
       
       
   return (
     <div> 
       <OrgNav/>
-       <ModuleComponent serviceId={id} categoryName={data.category.name} />
+       <ModuleComponent serviceId={id} categoryName={data.category._id} />
       <ModulesMainUi  serviceId={id}/> 
     </div>
   )

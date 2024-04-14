@@ -39,9 +39,20 @@ export const getAllServiceCategory = async () => {
         return JSON.parse(JSON.stringify(allServicecategory)); 
     } catch (error) {
         console.log(error);
-        
     }
 }
+
+
+// export getting serive category as per id 
+// export const getServiceCategoryWithServiceid = ()=>{
+//     try {
+        
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error(error as string);
+        
+//     }
+// }
 
 export const createService = async ({service , userToken} : createServiceParams) => {
     try {
