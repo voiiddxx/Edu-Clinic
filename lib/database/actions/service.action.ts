@@ -47,13 +47,15 @@ export const createService = async ({service , userToken} : createServiceParams)
     try {
         await connectToDatabase();
         const userId = await userAvailableorNot(userToken);
+        if(userId){
+            return JSON.parse(JSON.stringify({message:"Access Denied"}));
+        }
         const organizationID = userId.id;
         const createdService = await ServiceStore.create({name:service.serviceName , category:service.serviceCategory , owner:organizationID});
         console.log("your service get created ",createdService);
         return JSON.parse(JSON.stringify(createdService));   
     } catch (error) {
         console.log(error);
-        
     }
 }
 

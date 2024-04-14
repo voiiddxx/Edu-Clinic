@@ -89,6 +89,9 @@ const ModuleSchema = new Schema({
         type:String,
         default:'Medium'
     },
+    categoryId:{
+        type:Schema.Types.ObjectId , ref:'Servicecategory',
+    }
 
 });
 
