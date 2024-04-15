@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -21,15 +21,22 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import AcademicAdvisingFilter from "../FilterModulesComponents/AcademicAdvisingFilter";
 
 interface FormData {
   educationalLevel: string;
   advisor: string
 }
+interface orgId {
+  id: string
+}
 
-function AcademicAdvisingForm() {
+
+function AcademicAdvisingForm({id}: orgId) {
   const [data, setData] = useState<FormData>({educationalLevel:"", advisor:""});
   const [module, setModule] = useState()
+  const [catid, setCatId] = useState<any>()
+
 
   const formSchema = z.object({
     educationalLevel: z.string(),
@@ -50,6 +57,9 @@ function AcademicAdvisingForm() {
     console.log(values)
     setData(values)
   }
+  useEffect(()=>{
+    setCatId(id)
+  }, [])
   return (
     <div>
       <Form {...form}>
@@ -114,7 +124,7 @@ function AcademicAdvisingForm() {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data}/> */}
+      <AcademicAdvisingFilter  items={data} _id={catid}/>
       </div>
     </div>
   );

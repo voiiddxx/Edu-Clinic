@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PlacementFilter from "../FilterModulesComponents/PlacementFilter";
 
 interface FormData {
   field: string;
@@ -144,7 +145,7 @@ function PlacementOpportunityForm({id}: orgId) {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data} _id={catid}/> */}
+      <PlacementFilter items={data} _id={catid}/>
       </div>
     </div>
   ); 
