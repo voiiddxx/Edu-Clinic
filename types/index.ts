@@ -216,3 +216,8 @@ export type rejectApprovalParams = {
     message:string,
 }
 
+
+
+export type getModuleWithCategoryParams = {
+    categoryId:string
+}
