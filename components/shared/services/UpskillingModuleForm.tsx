@@ -71,9 +71,10 @@ const ModuleFormSchema = z.object({
         type:'ADD' | 'UPDATE'
         moduleId?: any
         formType:string
+        moduledategoryid:string
       }
 
-const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModuleFormProps) => {
+const UpskillingModuleForm = ({id , type , moduleId , formType , moduledategoryid} : UpskillingModuleFormProps) => {
 
     
   const [Image, setImage] = useState<any>(null);
@@ -93,7 +94,7 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
    
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof ModuleFormSchema>) {
-        console.log(values);
+        console.log(values , moduledategoryid);
         
       alert("this is working fine");
       
@@ -107,14 +108,13 @@ const UpskillingModuleForm = ({id , type , moduleId , formType} : UpskillingModu
           if(token){
             userToken = token
           }
-          const res = await createModule({module:{...values , image:imageurl ,  } , creatorId:userToken , serviceId:id});
+          const res = await createModule({module:{...values , image:imageurl ,  } , creatorId:userToken , serviceId:id , categoryId:moduledategoryid});
           alert(res)
           console.log(res);
           
           console.log(values)
         } catch (error) {
-          console.log(error);
-          
+          console.log(error); 
         }
       }
       else{

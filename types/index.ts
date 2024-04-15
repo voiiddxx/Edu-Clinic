@@ -76,6 +76,7 @@ export type CreateServiceCategoryParams = {
 export type createModuleParams = {
     serviceId:string
     creatorId:string
+    categoryId:string
     module:{
         name?: string,
         detail?:string,

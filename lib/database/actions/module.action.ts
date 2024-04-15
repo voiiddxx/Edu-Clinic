@@ -21,14 +21,14 @@ const populateModuleDetails = async ( query: any) => {
 
 
 
-export const createModule = async ({serviceId , creatorId , module} : createModuleParams) => {
+export const createModule = async ({serviceId , creatorId , module , categoryId} : createModuleParams) => {
     try {
+        console.log(categoryId);
         await connectToDatabase();
-
         console.log(module);
         const user = await userAvailableorNot(creatorId);
         const Ownerid = user.id;
-        const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image , likes:[] , review:[]});
+        const createdModule = await Module.create({...module , serviceId:serviceId , creatorId:Ownerid , image:module.image , likes:[] , review:[] , categoryId:categoryId });
         console.log(createdModule);
         return JSON.parse(JSON.stringify(createdModule));
     } catch (error) {
