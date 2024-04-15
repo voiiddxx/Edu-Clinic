@@ -53,7 +53,7 @@ const ModuleSchema = new Schema({
     
     pace:{
         type:String,
-        default:'Self Placed'
+        default:'Self Paced'
     },
     deleivery:{
         type:String,

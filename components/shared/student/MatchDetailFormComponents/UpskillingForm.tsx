@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FilteredModules from "../FilteredModules";
+import UpskillingFilter from "../FilterModulesComponents/UpskillingFilter";
 
 interface FormData {
   name: string;
@@ -168,7 +168,7 @@ function UpskillingForm({id}: orgId) {
         </form>
       </Form>
       <div className="mt-2">
-      <FilteredModules items={data} _id={catid}/>
+      <UpskillingFilter items={data} _id={catid}/>
       </div>
     </div>
   ); 

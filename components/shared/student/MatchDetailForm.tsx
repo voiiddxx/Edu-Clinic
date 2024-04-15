@@ -4,7 +4,6 @@ import ServiceOptionObject from "./MatchDetailFormComponents/ServiceOptionObject
 import UpskillingForm from "./MatchDetailFormComponents/UpskillingForm";
 import StudentModule from "./StudentModule";
 import { getAllModule } from "@/lib/database/actions/module.action";
-import FilteredModules from "./FilteredModules";
 import CompetitiveExamForm from "./MatchDetailFormComponents/CompetitiveExamForm";
 import { getAllServiceCategory } from "@/lib/database/actions/service.action";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -95,8 +94,8 @@ function MatchDetailForm() {
     //     </div>
     <div className="h-auto flex  justify-center items-center ">
       <div className="sm:w-full ">
-        <div className="grid grid-cols-12  rounded-lg">
-          <div className="col-span-3 pt-4 p-2 sticky top-0">
+        <div className="sm:grid grid-cols-12 rounded-lg">
+          <div className="col-span-3 pt-4 p-2">
             {!serviceCategory || serviceCategory.length === 0 ? (
               <div className="flex flex-col space-y-3">
                 <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />

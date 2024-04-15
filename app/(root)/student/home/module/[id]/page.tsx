@@ -89,7 +89,7 @@ const page = async ({
       <div className='h-20'>
       </div>
       <ReviewComponent moduleId={moduleDetails} reviewSize={moduleDetails.review.length}  feedbackData={moduleDetails.review} />
-      <StudentModule allModule={allModules}/>
+      {/* <StudentModule allModule={allModules}/> */}
       
     </div>
   )
