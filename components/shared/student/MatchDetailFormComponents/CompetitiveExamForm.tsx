@@ -21,20 +21,20 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FilteredModules from "../FilteredModules";
+import CompetitiveExamFilter from "../FilterModulesComponents/CompetitiveExamFilter";
 
 interface FormData {
   name: string;
   type: string;
   delivery: string;
-  materials: string
+  material: string
 }
 interface orgId {
   id: string
 }
 
 function CompetitiveExamForm({id}: orgId) {
-  const [data, setData] = useState<FormData>({name:"", type:"", delivery:"", materials:""});
+  const [data, setData] = useState<FormData>({name:"", type:"", delivery:"", material:""});
   const [module, setModule] = useState()
   const [catid, setCatId] = useState<any>()
 
@@ -44,7 +44,7 @@ function CompetitiveExamForm({id}: orgId) {
     }),
     type: z.string().min(2),
     delivery: z.string(),
-    materials: z.string(),
+    material: z.string(),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,7 +52,7 @@ function CompetitiveExamForm({id}: orgId) {
       name: "",
       type: "",
       delivery: "",
-      materials: ""
+      material: ""
     },
   });
   useEffect(()=>{
@@ -138,7 +138,7 @@ function CompetitiveExamForm({id}: orgId) {
             />
             <FormField
               control={form.control}
-              name="materials"
+              name="material"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Material</FormLabel>
@@ -167,7 +167,7 @@ function CompetitiveExamForm({id}: orgId) {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data} _id={catid}/> */}
+      <CompetitiveExamFilter items={data} _id={catid}/>
       </div>
     </div>
   );

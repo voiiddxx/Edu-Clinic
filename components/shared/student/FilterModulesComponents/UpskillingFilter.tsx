@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { getAllModule, getModuleWithId } from "@/lib/database/actions/module.action";
 import StudentModule from "@/components/shared/student/StudentModule";
 import { Space } from "lucide-react";
-import StudentModuleAll from "./StudentModuleAll";
+import StudentModuleAll from "../StudentModuleAll";
 import { studentGetOrgsModule } from "@/lib/database/actions/module.action";
+import { getModulewithserviceCategoryId } from "@/lib/database/actions/module.action";
+
 
 interface Module {
   // Define module properties here
@@ -26,7 +28,7 @@ interface FilteredModulesProps {
 }
 
 
-function FilteredModules({ items, _id}: FilteredModulesProps,) {
+function UpskillingFilter({ items, _id}: FilteredModulesProps,) {
   const [allModules, setAllModules] = useState<Module[]>([]);
   const [filteredModules, setFilteredModules] = useState<Module[]>([]);
   const [moduleById, setModuleById] = useState<Module[]>([])
@@ -35,7 +37,7 @@ function FilteredModules({ items, _id}: FilteredModulesProps,) {
     async function fetchModules() {
       try {
         const modules: Module[] = await getAllModule();
-        console.log(`all Modulues: ${JSON.stringify(modules)}`)
+        // console.log(`all Modulues: ${JSON.stringify(modules)}`)
         setAllModules(modules);
       } catch (error) {
         console.error("Error fetching modules:", error);
@@ -43,8 +45,8 @@ function FilteredModules({ items, _id}: FilteredModulesProps,) {
     }
     async function fetchModuleByCat(serviceId: string, organizationId?: string) {
       try {
-        const modules: Module[] = await studentGetOrgsModule({ serviceId, organizationId });
-        console.log(JSON.stringify(modules));
+        const modules: Module[] = await getModulewithserviceCategoryId({ categoryId: _id });
+        // console.log(JSON.stringify(modules));
         setModuleById(modules);
       } catch (error) {
         console.log("Error fetching modules by id:", error);
@@ -58,11 +60,11 @@ function FilteredModules({ items, _id}: FilteredModulesProps,) {
   }, [_id]);
 
   useEffect(() => {
-    console.log(items);
+    // console.log(items);
   }, [items]);
 
   useEffect(() => {
-    let modules = allModules
+    let modules = moduleById
     function compareFees(a: any, b: any) {
       return a.fees - b.fees;
     }
@@ -83,30 +85,30 @@ function FilteredModules({ items, _id}: FilteredModulesProps,) {
       //Filter on the basis of category
       // const categoryMatch = !items.orgCategoryName || module.name.toLowerCase().trim() === items.orgCategoryName.toLowerCase().trim();
 
-      console.log(`fees: ${feesMatch}`)
+      // console.log(`fees: ${feesMatch}`)
       // console.log(`orgName: ${orgNameMatch}`)
       // console.log(`Category: ${categoryMatch}`)
-      console.log(`items: ${JSON.stringify(items)}`)
+      // console.log(`items: ${JSON.stringify(items)}`)
 
-      // return feesMatch && courseNameMatch && levelMatch && paceMatch;
-      return feesMatch && courseNameMatch;
+      return feesMatch && courseNameMatch && levelMatch && paceMatch;
+      // return feesMatch && courseNameMatch;
     });
 
     setFilteredModules(newFilteredModules.sort());
   }, [allModules, items]);
 
   useEffect(() => {
-    console.log(filteredModules)
+    // console.log(filteredModules)
   }, [filteredModules]);
   console.log(`filter module id: ${_id}`)
 
   return ( 
    <>
    {
-    items.name.length==0?<StudentModuleAll allModule={allModules}/>:(filteredModules?.length>0?(<StudentModule allModule={filteredModules}/>):(<p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>))
+    items.name.length==0?<StudentModuleAll allModule={moduleById}/>:(filteredModules?.length>0?(<StudentModule allModule={filteredModules}/>):(<p className="content-middle justify-center flex">No modules found for this category &nbsp;  <span className="text-blue-800 underline">Raise query</span></p>))
    }
   </>
   );
 }
 
-export default FilteredModules;
+export default UpskillingFilter;
