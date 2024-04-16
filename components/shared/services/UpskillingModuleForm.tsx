@@ -230,6 +230,66 @@ const UpskillingModuleForm = ({id , type , moduleId , formType , moduledategoryi
         </div>
        }
 
+
+       {/* module category for scholarship and for the purpose of sholarships */}
+
+
+        {
+          formType == "Scholarships and Financial Aid" && (
+            <div className="w-full flex gap-5" >
+                <FormField
+          control={form.control}
+          name="moduleCategory"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Genral" >Genral</SelectItem>
+                    <SelectItem value="SC">SC</SelectItem>
+                    <SelectItem value="ST">ST</SelectItem>
+                    <SelectItem value="OBC">OBC</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+            </div>
+          )
+        }
+        {
+          formType == "Scholarships and Financial Aid" && (
+            <div className="w-full flex gap-5" >
+                <FormField
+          control={form.control}
+          name="purpose"
+          render={({ field }) => (
+            <FormItem className="w-full" >
+              <FormControl>
+              <Select onValueChange={field.onChange} >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Purpose" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Startup" >Startup</SelectItem>
+                    <SelectItem value="Study">Study</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+            </div>
+          )
+        }
         {
           formType == "Placement opportunity" && (
             <div className="w-full flex gap-5" >
