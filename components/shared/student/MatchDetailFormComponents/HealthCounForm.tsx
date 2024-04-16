@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -21,16 +21,21 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import HealthCounselingFilter from "../FilterModulesComponents/HealthCounselingFilter";
 
 interface FormData {
   category: string;
   mode: string;
   cost: string
 }
+interface orgId {
+  id: string
+}
 
-function HealthCounForm() {
+function HealthCounForm({id}: orgId) {
   const [data, setData] = useState<FormData>({ category:"", mode:"", cost:""});
   const [module, setModule] = useState()
+  const [catid, setCatId] = useState<any>()
 
   const formSchema = z.object({
     category: z.string().min(2),
@@ -53,6 +58,9 @@ function HealthCounForm() {
     console.log(values)
     setData(values)
   }
+  useEffect(()=>{
+    setCatId(id)
+  }, [])
   return (
     <div>
       <Form {...form}>
@@ -143,7 +151,7 @@ function HealthCounForm() {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data}/> */}
+      <HealthCounselingFilter items={data} _id={catid}/>
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import InternshipTrainingFilter from "../FilterModulesComponents/InternshipTrainingFilter";
 
 interface FormData {
   place: string;
@@ -153,7 +154,7 @@ function InternshipForm({id}: orgId) {
         </form>
       </Form>
       <div className="mt-2">
-      {/* <FilteredModules items={data} _id={catid}/> */}
+      <InternshipTrainingFilter items={data} _id={catid}/>
       </div>
     </div>
   ); 
