@@ -53,7 +53,7 @@ const AnayModule = () => {
 
     const router = useRouter();
   return (
-    <div className='mx-52 mt-14' >
+    <div className='md:mx-52 md:mt-14' >
       <Table>
   <TableCaption>Most Liked Module by Students</TableCaption>
   <TableHeader>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { LogOut, User } from "lucide-react";
@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const StudentNav = () => {
-
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,28 +13,23 @@ const StudentNav = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const LogoutNow = ()=>{
-    
-    localStorage.removeItem('x-auth-token');
-    router.push('/');
-  }
+  const LogoutNow = () => {
+    localStorage.removeItem("x-auth-token");
+    router.push("/");
+  };
 
   return (
-    <div className="flex justify-between px-6 sm:px-32 items-center q">
-       {/* Mobile Navigation Button */}
-       <button className="md:hidden focus:outline-none" onClick={toggleMobileMenu}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-black"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+    <div className="flex justify-between px-6 sm:px-32 items-center q"> 
+      {/* Mobile Navigation Button */}
+      <button
+        className="md:hidden focus:outline-none"
+        onClick={toggleMobileMenu}
+      >
+        <svg className="w-6 h-6 fill-current text-gray-700" viewBox="0 0 24 24">
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16v12H4zM4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+            fill-rule="evenodd"
+            d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+            clip-rule="evenodd"
           />
         </svg>
       </button>
@@ -44,12 +38,16 @@ const StudentNav = () => {
         {" "}
         {/* Added flex-grow for responsiveness */}
         <a href="/student/home">
-        <h1>EduClinic</h1>
+          <h1>EduClinic</h1>
         </a>
       </div>
 
       {/* Navigation Links */}
-      <nav className={`md:flex gap-8 p-5  ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+      <nav
+        className={`md:flex gap-8 p-5 md:relative absolute md:top-0 top-16 bg-white left-0  space-x-4 rounded-r-lg shadow-lg md:shadow-none  ${
+          isMobileMenuOpen ? "block" : "hidden"
+        }`}
+      >
         {" "}
         {/* Hidden on small screens */}
         <Link href={`/student/home`}>
@@ -70,7 +68,6 @@ const StudentNav = () => {
           {" "}
           <p>Project fundraising</p>
         </Link>
-        {/* ... other navigation links */}
       </nav>
 
       {/* User Section */}
@@ -80,13 +77,14 @@ const StudentNav = () => {
             <User className="text-blue-700" size={20} />
           </Link>
         </div>
-        <div onClick={LogoutNow} className="sm:h-12 h-10 gap-2 rounded-sm flex items-center sm:px-4 px-2 bg-blue-700 cursor-pointer">
-          <LogOut  color="white" size={17} />
+        <div
+          onClick={LogoutNow}
+          className="sm:h-12 h-10 gap-2 rounded-sm flex items-center sm:px-4 px-2 bg-blue-700 cursor-pointer"
+        >
+          <LogOut color="white" size={17} />
           <p className="text-sm font-normal text-white">Logout</p>
         </div>
       </div>
-
-     
     </div>
   );
 };

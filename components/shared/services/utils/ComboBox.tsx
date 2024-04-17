@@ -121,7 +121,7 @@ export function ComboBox() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[250px] justify-between"
+          className="md:w-[250px] w-[190px] justify-between"
         >
           <div className="flex gap-3 items-center">
             <Grip size={16} />
