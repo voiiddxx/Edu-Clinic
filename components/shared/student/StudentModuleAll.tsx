@@ -122,11 +122,11 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
                 </div>
               </div>
               <div className="px-3 mt-10 w-[280px] h-[154px] ">
-                <p className="mt-4 text-[12px] text-[#5E5BFB]">
+                <p className="mt-4 text-[12px] text-blue-600">
                   Provider: {curr.creatorId}
                 </p>
                 <div className="h-[50px]">
-                  <p className="mt-2 font-bold text-[16px] text-[#5E5BFB]">
+                  <p className="mt-2 font-bold text-[16px] text-blue-600">
                     {curr.name}
                   </p>
                 </div>
@@ -165,7 +165,7 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
                     </div>
                   )}
                   <Link
-                    className="bg-[#5E5BFB] rounded-sm absolute end-2"
+                    className="bg-blue-600 rounded-sm absolute end-2"
                     href={`/student/home/module/${curr._id}`}
                     key={curr._id}
                   >

@@ -89,31 +89,30 @@ function MatchDetailForm() {
   
 
   return (
-    // <div className="flex items-center justify-center mt-8">
-    //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-zinc-500"></div>
-    //     </div>
-    <div className="h-auto flex  justify-center items-center ">
+    <div className="h-auto flex justify-center items-center ">
       <div className="sm:w-full ">
         <div className="sm:grid grid-cols-12 rounded-lg">
           <div className="col-span-3 pt-4 p-2">
             {!serviceCategory || serviceCategory.length === 0 ? (
-              <div className="flex flex-col space-y-3">
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
-                <Skeleton className="p-2 m-2 rounded-lg h-10 bg-slate-100" />
+              <>
+              <div className="flex md:flex-col space-y-3 flex-row md:overflow-hidden overflow-x-scroll md:w-[100%] w-[95vw]">
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
+                <Skeleton className="p-2 m-2 rounded-lg h-10 md:w-[100%] w-20 bg-slate-100" />
               </div>
+              </>
             ) : (
-              <div>
+              <div className="md:block flex md:w-[100%] w-[95vw] md:overflow-x-hidden overflow-x-scroll">
                 {serviceCategory.map((item: any, id: any) => (
                   <p
                     key={id}
                     className={`p-2 m-2 rounded-lg cursor-pointer hover:bg-blue-400 hover:text-white ${
                       option === id ? "bg-blue-500 text-white" : "bg-white"
-                    }`}
+                    } `}
                     onClick={() => {
                       setOption(id);
                       setId(item._id);

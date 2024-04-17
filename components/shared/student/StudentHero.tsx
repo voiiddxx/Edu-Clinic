@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getAllServiceCategory } from "@/lib/database/actions/service.action";
@@ -7,24 +7,21 @@ import Link from "next/link";
 import React from "react";
 
 const StudentHero = () => {
-
-
-  const getall = async()=>{
+  const getall = async () => {
     const data = await getAllServiceCategory();
     console.log(data);
-    
-  }
+  };
   return (
-    <div className="min-h-screen bg-studentImage bg-no-repeat bg-cover w-full flex flex-col justify-start items-center overflow-x-hidden ">
-      <div className="mt-32 flex flex-col justify-center items-center md:px-96 px-6">
+    <div className="min-h-screen bg-studentImage bg-no-repeat bg-cover w-full flex flex-col justify-start items-center overflow-x-hidden  ">
+      <div className="md:mt-32 mt-8 flex flex-col justify-center items-center md:px-96 px-6">
         <div className="bg-slate-50 rounded-3xl px-6 py-1 mb-2 flex gap-3 items-center">
           <Rocket className="text-blue-600" size={18} />
           <p className="text-blue-600">Explore Services</p>
         </div>
-        <h1 className="font-bold text-5xl text-zinc-900">
+        <h1 className="font-bold text-5xl text-zinc-900 text-center">
           Explore Your Educational{" "}
         </h1>
-        <h1 className="font-bold text-5xl text-zinc-900 mt-3">
+        <h1 className="font-bold text-5xl text-zinc-900 mt-3 text-center">
           {" "}
           <span className="text-blue-700 underline">Marketplace</span> At One
           Place
@@ -43,7 +40,7 @@ const StudentHero = () => {
           </div>
         </Link>
       </div>
-      <div className="flex flex-wrap sm:gap-9 gap-3 mt-16 justify-center">
+      <div className="flex flex-wrap sm:gap-9 gap-3 md:mt-16 mt-8 justify-center">
         <div className="flex gap-2 items-center">
           <CheckCheck className="text-blue-700" size={15} />
           <p className="text-[14px] text-zinc-800">Counselling Services</p>
@@ -64,7 +61,6 @@ const StudentHero = () => {
           <CheckCheck className="text-blue-700" size={15} />
           <p className="text-[14px] text-zinc-800">Internships</p>
         </div>
-
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const page =  async ({
   return (
     <div  >
         <StudentNav/>
-        <div className='px-40 min-h-screen flex flex-col justify-between' >
+        <div className='md:px-40 px-2 min-h-screen flex flex-col justify-between' >
             <div>
             <div className='h-20 border-b flex items-center'>
                 <h1 className='text-xl font-semibold' >{discussDetail.title}</h1>
@@ -34,9 +34,9 @@ const page =  async ({
                 discussDetail.reply.map((curr : any)=>{
                     return <div className=' pb-5 w-full border-b hover:bg-slate-100 cursor-pointer'>
                   
-                    <div className='mt-3' >
+                    <div className='mt-3 flex items-center' >
                       <div className='h-12 w-12 rounded-full bg-red-400'></div>
-                      <p> {curr.message} </p>
+                      <p className='mx-2'> {curr.message} </p>
                     </div>
                       
   
