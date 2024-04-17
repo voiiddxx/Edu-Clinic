@@ -49,11 +49,11 @@ function MatchDetailForm() {
       <CompetitiveExamForm id={id}/>
       </>;
     } else if (option === 2) {
-      return <HealthCounForm />;
+      return <HealthCounForm id={id}/>;
     } else if (option === 3) {
-      return <ScholorshioFinancialAidForm />;
+      return <ScholorshioFinancialAidForm id={id}/>;
     } else if (option === 4) {
-      return <AcademicAdvisingForm />;
+      return <AcademicAdvisingForm id={id}/>;
     } else if (option === 5) {
       return (
         <div className="min-h-screen w-full">
