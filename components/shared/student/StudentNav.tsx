@@ -19,7 +19,7 @@ const StudentNav = () => {
   };
 
   return (
-    <div className="flex justify-between px-6 sm:px-32 items-center q">
+    <div className="flex justify-between px-6 sm:px-32 items-center q"> 
       {/* Mobile Navigation Button */}
       <button
         className="md:hidden focus:outline-none"
@@ -68,7 +68,6 @@ const StudentNav = () => {
           {" "}
           <p>Project fundraising</p>
         </Link>
-        {/* ... other navigation links */}
       </nav>
 
       {/* User Section */}

@@ -16,11 +16,11 @@ const page = async ({
   return (
     <div>
       <OrgNav/>
-      <div className='h-24 border-b  mx-40 flex  flex-col justify-center'>
+      <div className='h-24 border-b  md:mx-40 mx-3 flex  flex-col justify-center'>
         <h1 className='text-xl font-semibold' >Feedbacks(4) </h1>
         <p className='text-zinc-500' >All of the feedbacks related to react js training</p>
       </div>
-      <div className=' min-h-screen mx-40 my-6' >
+      <div className=' min-h-screen md:mx-40 mx-3 md:my-6' >
         {
             getModuleDetail.review.length < 1 ? <p>No Data Found</p> :
             <div>

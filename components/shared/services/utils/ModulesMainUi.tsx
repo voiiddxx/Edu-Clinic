@@ -55,12 +55,12 @@ const ModulesMainUi = ({serviceId , moduleCategoryId} : ModuleMainUiProps) => {
   return (
     <div className="min-h-screen w-full">
       {
-        Modules.length < 1 ? <div className="w-full mt-56 flex justify-center items-center">
-            <div className=" px-20 py-14 bg-slate-100 rounded-md flex flex-col justify-center items-center ">
+        Modules.length < 1 ? <div className="w-full md:mt-56 mt-3 flex justify-center items-center">
+            <div className=" md:px-20 md:py-14 px-2 py-2 bg-slate-100 rounded-md flex flex-col justify-center items-center ">
             <p className="text-xl font-semibold" > No Module </p>
             <p>Please create new module</p>
             </div>
-        </div> : <div className="min-h-screen w-full pl-36 pt-7" >
+        </div> : <div className="min-h-screen w-full md:pl-36 p-2 pt-7" >
             <p className="text-zinc-800" >Your Modules are Shown below</p>
             <div className="mt-8 flex gap-4 flex-wrap">
                 {
@@ -71,7 +71,7 @@ const ModulesMainUi = ({serviceId , moduleCategoryId} : ModuleMainUiProps) => {
                             </div>
                             <div className="mx-2 my-2 w-[280px]">
                             <p className="mt-4 font-semibold text-zinc-900" >{curr.name}</p>
-                            <p className="text-[10px] mt-2 text-zinc-600" > {curr.detail}Learn AI/ML and grab the most demanding and paying </p>
+                            <p className="text-[10px] mt-2 text-zinc-600" > {curr.detail}</p>
                             <div className="flex gap-1 items-center mt-2 w-full" >
                                 <div className="bg-blue-50 rounded-sm flex items-center gap-1 px-2 py-1">
                                 {
@@ -87,7 +87,7 @@ const ModulesMainUi = ({serviceId , moduleCategoryId} : ModuleMainUiProps) => {
                             <div className="h-6 w-full" ></div>
                             <div className="flex justify-between my-2">
                                 <p  className="text-[13px] font-normal text-zinc-600"  > 
-                                Created | Intel
+                                Created | {curr.creatorId}
                                 </p>
                                 
                                 <Popover>

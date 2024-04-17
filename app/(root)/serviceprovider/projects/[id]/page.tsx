@@ -19,19 +19,19 @@ const page = async ({
   return (
     <div>
       <OrgNav/>
-      <div className='min-h-screen w-full px-28' >
-        <div className='h-28 w-full border-b flex flex-col justify-center    ' >
-            <h1 className='text-xl font-semibold text-zinc-800' >Metal Detector Project</h1>
+      <div className='min-h-screen w-full md:px-28 px-3 pb-6' >
+        <div className='md:h-28 h-24 w-full border-b flex flex-col justify-center    ' >
+            <h1 className='text-xl font-semibold text-zinc-800' >{data.name}</h1>
             <p className='text-zinc-500' >Explore all the project detail about the project</p>
         </div>
 
-        <div className='w-full h-full flex mt-10' >
-            <div className='h-[400px] w-[500px] rounded-lg border-[1px] border-zinc-200 px-4 py-4' >
+        <div className='w-full h-full flex md:mt-10 mt-3 flex-wrap' >
+            <div className='md:h-[400px] md:w-[500px] h-[200px] w-[300px] rounded-lg border-[1px] border-zinc-200 md:px-4 md:py-4 p-1' >
                 <div className='bg-zinc-600 h-full w-full rounded-md'>
                         <Image className='h-full w-full object-cover' height={500} width={500} src={data.poster} alt='project poster image' />
                 </div>
             </div>
-            <div className='ml-16 mt-4 w-[600px]'>
+            <div className='md:ml-16 mt-4 md:w-[600px]'>
                 <h1 className='text-2xl font-semibold text-zinc-700' >{data.name}</h1>
                 <p className='text-sm mt-4 text-zinc-500' >{data.detail}. </p>
                 <div className='flex gap-2 mt-4 items-center' >
