@@ -61,7 +61,9 @@ const config = {
         'headerImage':"url(/header.svg)",
         "mainImage":"url(/main.svg)",
         "serVIceImage":"url(/serv.svg)",
-        "studentImage":"url(/student.svg)"
+        "studentImage":"url(/student.svg)",
+        "hero1Image":"url(/hero1.png)",
+        "hero2Image": "url(/hero2.png)"
       },
       borderRadius: {
         lg: "var(--radius)",
