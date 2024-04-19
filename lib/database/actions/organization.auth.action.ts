@@ -12,16 +12,14 @@ import { userAvailableorNot } from "./middelware";
 export const registerOrganization = async ({organization} : registerOrganizationParams) => {
     try {
         await connectToDatabase();
-        console.log(organization.orgImage);
-        
         const orgExist = await Organization.findOne({email:organization.orgEmail});
         if(orgExist){
-            return JSON.parse(JSON.stringify({message:"Organization email already assigned"}));
+            return JSON.parse(JSON.stringify({message:"Organization email already assigned" , status:404}));
         }
         else{
             const hashedPass = await bcrypt.hash(organization.orgPassword , 10);
             const createdOrg = await Organization.create({orgName:organization.orgName , orgEmail:organization.orgEmail , orgPassword:hashedPass , orgCategory:organization.orgCategory , orgPhone:organization.orgPhone , orgHq:organization.orgHq , orgImage:organization.orgImage});
-            return JSON.parse(JSON.stringify(createdOrg));
+            return JSON.parse(JSON.stringify({createdOrg , status:200}));
         }
     } catch (error) {
         console.log(error);

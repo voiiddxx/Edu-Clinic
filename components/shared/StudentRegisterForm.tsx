@@ -18,6 +18,8 @@ import { Input } from "@/components/ui/input"
 import { GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "lucide-react"
 import { RegisterStudent } from "@/lib/database/actions/auth.action"
 import Link from "next/link"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 
 
@@ -31,6 +33,7 @@ const StudentRegisteSchema = z.object({
 
 
 const StudentRegisterForm = () => {
+  const router = useRouter();
 
 
     const form = useForm<z.infer<typeof StudentRegisteSchema>>({
@@ -46,7 +49,9 @@ const StudentRegisterForm = () => {
 
      async function onSubmit(values: z.infer<typeof StudentRegisteSchema>) {
         const response = await RegisterStudent({student:{...values}});
-        console.log("this is response " , response);
+        if(response){
+          router.push("/student/auth/login")
+        }
         
         // Do something with the form values.
         // ✅ This will be type-safe and validated.

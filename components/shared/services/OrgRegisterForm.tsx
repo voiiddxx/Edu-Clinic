@@ -21,6 +21,8 @@ import OrgDropDown from "./OrgDropDown"
 import { registerOrganization } from "@/lib/database/actions/organization.auth.action"
 import { useState } from "react"
 import Link from "next/link"
+import { toast, Toaster } from "sonner"
+import { useRouter } from "next/navigation"
 
 
 
@@ -35,6 +37,7 @@ const OrgRegisterSchema = z.object({
 
 
 const OrgRegisterForm = () => {
+  const router = useRouter();
   const [orgImage, setorgImage] = useState<any>(null);
     
   
@@ -51,13 +54,22 @@ const OrgRegisterForm = () => {
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
         const res = await registerOrganization({organization:{...values }});
-        console.log(values)
+        if(res.status == 404){
+          toast.error("Please use another email address")
+        }
+        if(res.status == 200){
+          console.log(values)
+          toast.success("Account Created");
+          router.push("/serviceprovider/login") 
+        }
+
       }
 
 
 
     return (
         <Form {...form}>
+          <Toaster richColors position="top-center" />
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}

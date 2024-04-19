@@ -19,6 +19,7 @@ import { GraduationCap, Lock, Mail, PersonStanding, Phone, UserRound } from "luc
 import { LoginStudent, RegisterStudent } from "@/lib/database/actions/auth.action"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { toast, Toaster } from "sonner"
 
 
 
@@ -42,13 +43,28 @@ const StudentLoginForm = () => {
       });
 
      async function onSubmit(values: z.infer<typeof LoginStudentSchema>) {
-        const response = await LoginStudent({student:{...values}})
-        console.log(response);
+        const response = await LoginStudent({student:{...values}});
+        if(response.status ==401){
+          toast.error("Invalid Email Address");
+        }
+        else if (response.status == 402){
+          toast.error("Invalid Password");
+        }
+        else if(response.status == 200){
+         console.log(response);
         const savedToken = localStorage.setItem("x-auth-token" , response.token);
           router.push(`/student/home/`)
+        }
+        else{
+          
+        toast.warning("Some issue occured , please try again later");
+        }
+        
+          
       }
       return (
         <Form {...form}>
+          <Toaster position="top-center" richColors />
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
            
             <FormField

@@ -11,13 +11,13 @@ export const RegisterStudent = async ({ student }: RegisterStudentParams) => {
         await connectToDatabase();
         const existingUser = await Student.findOne({ email: student.email });
         if (existingUser) {
-            return JSON.parse(JSON.stringify({ message: "User Already Exists" }));
+            return JSON.parse(JSON.stringify({ message: "User Already Exists" , staus:400 }));
         }
         else {
             const hashedPassword = await bcrypt.hash(student.password, 10);
             const createdStudent = await Student.create({ name: student.name, email: student.email, password: hashedPassword, instituion: student.instituion, mobile: student.mobile });
             console.log(createdStudent);
-            return JSON.parse(JSON.stringify(createdStudent));
+            return JSON.parse(JSON.stringify({createdStudent , status:200}));
         }
 
     } catch (error) {
@@ -31,12 +31,12 @@ export const LoginStudent = async ({ student }: StudentLoginParams) => {
         await connectToDatabase();
         const existUser = await Student.findOne({ email: student.email });
         if (!existUser) {
-            return JSON.parse(JSON.stringify({ message: "User not exist" }));
+            return JSON.parse(JSON.stringify({ message: "User not exist" , status:401 }));
         }
         else {
             const IsMatch = await bcrypt.compare(student.password, existUser.password);
             if (!IsMatch) {
-                return JSON.parse(JSON.stringify({ message: "Invalid Password" }));
+                return JSON.parse(JSON.stringify({ message: "Invalid Password" , status:402 }));
             }
             else {
                 const token = jwt.sign({ id: existUser._id }, "x-auth-token-secure-key");
@@ -45,7 +45,7 @@ export const LoginStudent = async ({ student }: StudentLoginParams) => {
 
 
 
-                return JSON.parse(JSON.stringify({ ...existUser._doc, token }));
+                return JSON.parse(JSON.stringify({ ...existUser._doc, token , status:200 }));
             }
         }
     } catch (error) {

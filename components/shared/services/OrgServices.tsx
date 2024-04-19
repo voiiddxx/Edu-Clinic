@@ -143,87 +143,11 @@ const OrgServices = () => {
                 <Plus/>
                 
             </Button> */}
-<<<<<<< HEAD
-             <AlertDialog>
-      <AlertDialogTrigger className="pt-2 pb-2 pl-2 text-sm" ><div className="flex items-center gap-2 ml-2 " >
-                <Plus size={16} />
-                <p>Add Service</p>
-            </div></AlertDialogTrigger>
-      <AlertDialogContent className='w-full' >
-        <AlertDialogHeader>
-          <AlertDialogTitle>Add Service</AlertDialogTitle>
-          <AlertDialogDescription>
-            <Input type="text" onChange={(e)=>{
-                setServiceCategoryName(e.target.value)
-            }} placeholder="New category"/>
-             <div className="h-3 w-full"></div>
-           {/* service category  */}
-    
-           <Select onValueChange={(value) => {
-            setServiceCategory(value)
-           }} defaultValue={value} >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Category" />
-        </SelectTrigger>
-        <SelectContent>
-            {
-                category.length < 1 ? <div></div> : category.map((curr ) => {
-                    return <SelectItem key={curr._id} value={curr._id}> {curr.name}</SelectItem>
-                })
-            }
-            <AlertDialog>
-      <AlertDialogTrigger className="pt-2 pb-2 pl-7 text-sm" >Add New Category</AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Add New Custom category</AlertDialogTitle>
-          <AlertDialogDescription>
-            <Input type="text" onChange={(e)=>{
-                setnewcategory(e.target.value);
-            }} placeholder="New category"/>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={()=> startTransition(handleAddCategory)} >Submit</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-        </SelectContent>
-      </Select>
-           {/* service category end  */}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={()=>{
-            startTransition(handleService)
-          }}  >Submit</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-          </div>
-          </div>
-    
-          {
-            services.length < 1 ? <div className='w-full min-h-screen flex justify-center items-center '>
-              <div className='px-20 py-12 rounded-md mb-24 bg-zinc-200 flex justify-center items-center flex-col'>
-            <h1>Sorry, No Data Found</h1>
-            <p>Please try again later or create new service</p>
-              </div>
-            </div> : <div className='flex gap-4 mt-10 flex-wrap' >
-              {
-                services.map((curr : IService)=>{
-                  return <div onClick={()=>{
-                    router.push(`/serviceprovider/dashboard/${curr._id}`)
-                  }} className='h-[250px] w-[400px] bg-zinc-400 rounded-md flex justify-center items-center bg-serviceBg cursor-pointer' >
-                    <h1 className='flex text-2xl text-white font-semibold' >{curr.name}</h1>
-=======
               <AlertDialog>
                 <AlertDialogTrigger className="pt-2 pb-2 pl-2 text-sm">
                   <div className="flex items-center gap-2 ml-2 ">
                     <Plus size={16} />
                     <p>Add Service</p>
->>>>>>> 68088f72c57dff011f009096a2215f01c41cafdc
                   </div>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="w-full">
