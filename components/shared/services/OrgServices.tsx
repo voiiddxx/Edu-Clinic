@@ -123,7 +123,7 @@ const OrgServices = () => {
 
   return (
     <div>
-      {Approved == "Pending " ? (
+      {Approved == "Pending" ? (
         <div>
           <ApprovalForm ordId={usertoken} />
         </div>
