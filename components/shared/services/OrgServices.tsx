@@ -101,7 +101,7 @@ const OrgServices = () => {
 
   if (Approved == "Applied") {
     return (
-      <div className="min-h-screen w-full px-52 flex justify-center items-center">
+      <div className="min-h-screen w-full md:px-52 px-3 flex justify-center items-center">
         <Image
           src={`/loading.gif`}
           height={500}
