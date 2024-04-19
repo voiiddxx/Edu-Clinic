@@ -28,7 +28,7 @@ import { useRouter } from "next/navigation"
 
 const OrgRegisterSchema = z.object({
   orgName: z.string().min(2).max(50),
-  orgEmail: z.string().email(),
+  orgEmail: z.string().email().toLowerCase(),
   orgPassword: z.string().min(4).max(10),
   orgPhone: z.string().min(3).max(50),
   orgCategory: z.string().min(2).max(40),
