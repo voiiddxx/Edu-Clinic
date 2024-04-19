@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
         <OrgNav/>
-      <div className='h-28 w-full border-b flex flex-col  justify-center px-32' >
+      <div className='h-28 w-full border-b flex flex-col  justify-center md:px-32 p-3' >
     <div className='flex items-center gap-2'>
     <BarChart size={25}/>
         <div>

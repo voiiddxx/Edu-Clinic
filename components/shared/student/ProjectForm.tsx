@@ -80,8 +80,8 @@ const ProjectForm = () => {
       }
       return (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="flex justify-between mt-4 md:grid grid-cols-2 gap-10">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mb-3">
+            <div className="justify-between mt-4 md:grid md:grid-cols-2 gap-10 space-y-6 md:space-y-0">
             <FormField
               control={form.control}
               name="name"
@@ -109,7 +109,7 @@ const ProjectForm = () => {
             />
             </div>
 
-            <div className="flex justify-between md:grid grid-cols-2 gap-10">
+            <div className="justify-between mt-4 md:grid md:grid-cols-2 gap-10 space-y-6 md:space-y-0">
             <FormField
               control={form.control}
               name="ammount"
@@ -146,7 +146,7 @@ const ProjectForm = () => {
             />
             </div>
 
-            <div className="flex justify-between md:grid grid-cols-2 gap-10">
+            <div className="justify-between mt-4 md:grid md:grid-cols-2 gap-10 space-y-6 md:space-y-0">
             <FormField
               control={form.control}
               name="detail"
@@ -172,7 +172,7 @@ const ProjectForm = () => {
             </div>
             </div>
 
-            <div className="flex justify-between md:grid grid-cols-2 gap-10">
+            <div className="justify-between mt-4 md:grid md:grid-cols-2 gap-10 space-y-6 md:space-y-0">
             <FormField
               control={form.control}
               name="phone"

@@ -61,7 +61,7 @@ const StudentRegisterForm = () => {
               control={form.control}
               name="name"
               render={({ field }) => (
-                <FormItem className="w-[400px]" >
+                <FormItem className="md:w-[400px] w-[100%]" >
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
@@ -80,7 +80,7 @@ const StudentRegisterForm = () => {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="w-[400px]" >
+                <FormItem className="md:w-[400px] w-[100%]" >
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
@@ -99,7 +99,7 @@ const StudentRegisterForm = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="w-[400px]" >
+                <FormItem className="md:w-[400px] w-[100%]" >
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
@@ -118,7 +118,7 @@ const StudentRegisterForm = () => {
               control={form.control}
               name="instituion"
               render={({ field }) => (
-                <FormItem className="w-[400px]" >
+                <FormItem className="md:w-[400px] w-[100%]" >
                   <FormLabel>Institution</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
@@ -137,7 +137,7 @@ const StudentRegisterForm = () => {
               control={form.control}
               name="mobile"
               render={({ field }) => (
-                <FormItem className="w-[400px] " >
+                <FormItem className="md:w-[400px] w-[100%] " >
                   <FormLabel>Mobile Number</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >

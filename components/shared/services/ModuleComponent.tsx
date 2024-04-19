@@ -16,7 +16,7 @@ const ModuleComponent = ({serviceId , categoryName , moduleCategoryId} : moduleC
 
     
   return (
-    <div className='w-full  pl-36  pr-36'>
+    <div className='w-full  md:pl-36  md:pr-36 p-3'>
       <p>{categoryName} {moduleCategoryId}</p>
       <div className='mt-5 flex justify-between'>
         <h1 className='text-xl text-zinc-900 font-bold' >Your Modules</h1>

@@ -15,7 +15,7 @@ const page = async () => {
   return (
     <div>
         <OrgNav/>
-        <div className='min-h-screen w-full px-36 bg-slate-100' >
+        <div className='min-h-screen w-full md:px-36 px-3 bg-slate-100' >
             <div className='h-24 w-full border-b flex flex-col justify-center' >
                 <h1 className='text-2xl font-semibold' >Projects</h1>
                 <p className='text-zinc-600' >Explore all the projects for funding </p>
@@ -25,7 +25,7 @@ const page = async () => {
                     {
                         projects.map((curr : IProject)=>{
                             return <Link href={`/serviceprovider/projects/${curr._id}`}>
-                            <div className='pb-2 w-[350px] bg-white rounded-md border-[1px] border-zinc-300' >
+                            <div className='pb-2 md:w-[350px] w-[300px] bg-white rounded-md border-[1px] border-zinc-300' >
                                 <div className='h-[250px]  m-2  rounded-sm' >
                             <Image className='h-full w-full object-cover rounded-sm' src={curr.poster} height={9000} width={9000}  alt='project image' />
                                 </div>

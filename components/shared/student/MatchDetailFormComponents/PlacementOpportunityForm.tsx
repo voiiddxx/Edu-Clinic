@@ -70,7 +70,7 @@ function PlacementOpportunityForm({id}: orgId) {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <div className=" sm:grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             <FormField
               control={form.control}
               name="location"

@@ -145,7 +145,7 @@ const UpskillingModuleForm = ({id , type , moduleId , formType , moduledategoryi
           </div> : 'Add Module'
     }
   </AlertDialogTrigger>
-  <AlertDialogContent className="w-[900px]" >
+  <AlertDialogContent className="md:w-[900px] w-[100%]" >
     <AlertDialogHeader>
       <AlertDialogTitle>Upskilling Module Form</AlertDialogTitle>
       <AlertDialogDescription>
