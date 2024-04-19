@@ -35,7 +35,7 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
         await connectToDatabase();
         const existOrg = await Organization.findOne({orgEmail:organization.orgEmail})
         if(!existOrg){
-            return JSON.parse(JSON.stringify({message:"Organization Not Found"}));
+            return JSON.parse(JSON.stringify({message:"Organization Not Found" , status:401}));
         }
         else{
             console.log(organization.orgPassword);
@@ -44,11 +44,11 @@ export const LoginOrganizatio = async ({organization} :LoginOrganizationParams) 
             
             const isMatch = await bcrypt.compare(organization.orgPassword , existOrg.orgPassword);
             if(!isMatch){
-                return JSON.parse(JSON.stringify({message:"Wrong Password"}));
+                return JSON.parse(JSON.stringify({message:"Wrong Password", status:400}));
             }
             else{
                 const token = jwt.sign({id:existOrg._id} , 'x-auth-token-secure-key');
-                return JSON.parse(JSON.stringify({...existOrg._doc , token}));
+                return JSON.parse(JSON.stringify({...existOrg._doc , token , status:200}));
             }
         }
     } catch (error) {

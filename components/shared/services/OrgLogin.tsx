@@ -20,6 +20,10 @@ import OrgDropDown from "./OrgDropDown"
 import { LoginOrganizatio } from "@/lib/database/actions/organization.auth.action"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { Toaster, toast } from 'sonner'
+
+// ...
+
 
 
 
@@ -48,7 +52,14 @@ const OrgLogin = () => {
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
         const response = await LoginOrganizatio({organization:{...values}});
         const token = localStorage.setItem('x-auth-token' , response.token);
-        if(response){
+
+        if(response.status ==400){
+          toast.error("Invalid password");
+        }
+        else if (response.status == 401){
+          toast.error("Invalid Email address");
+        }
+        if(response.status == 200){
           router.push(`/serviceprovider/dashboard`)
         }
       
@@ -60,6 +71,7 @@ const OrgLogin = () => {
    
     return (
         <Form {...form}>
+          <Toaster  position="top-center" richColors />
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
          
           <FormField

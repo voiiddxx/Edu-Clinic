@@ -70,8 +70,6 @@ export const UpdateStudentData = async ({ student, studentId }: UpdateStudentPar
                 new: true
             },
         );
-
-
         if (!StudentUpdated) {
             return JSON.parse(JSON.stringify({ message: "Some issue occured" }));
         }

@@ -151,8 +151,6 @@ const OrgServices = () => {
           <SelectValue placeholder="Category" />
         </SelectTrigger>
         <SelectContent>
-    
-    
             {
                 category.length < 1 ? <div></div> : category.map((curr ) => {
                     return <SelectItem key={curr._id} value={curr._id}> {curr.name}</SelectItem>
@@ -167,9 +165,6 @@ const OrgServices = () => {
             <Input type="text" onChange={(e)=>{
                 setnewcategory(e.target.value);
             }} placeholder="New category"/>
-           
-    
-    
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -178,8 +173,6 @@ const OrgServices = () => {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-    
-      
         </SelectContent>
       </Select>
            {/* service category end  */}

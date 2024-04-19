@@ -20,7 +20,6 @@ import { RegisterStudent } from "@/lib/database/actions/auth.action"
 import OrgDropDown from "./OrgDropDown"
 import { registerOrganization } from "@/lib/database/actions/organization.auth.action"
 import { useState } from "react"
-import { UploadOnCloudinary } from "@/lib/utils"
 import Link from "next/link"
 
 
@@ -51,11 +50,7 @@ const OrgRegisterForm = () => {
       });
 
      async function onSubmit(values: z.infer<typeof OrgRegisterSchema>) {
-      console.log(orgImage);
-      // const imageUrl = await UploadOnCloudinary(orgImage);
         const res = await registerOrganization({organization:{...values }});
-        console.log(res);
-        
         console.log(values)
       }
 
