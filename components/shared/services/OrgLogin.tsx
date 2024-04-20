@@ -98,7 +98,7 @@ const OrgLogin = () => {
             control={form.control}
             name="orgPassword"
             render={({ field }) => (
-              <FormItem className="w-[400px]" >
+              <FormItem className="md:w-[400px] w-[100%]" >
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <div className="flex gap-2" >
