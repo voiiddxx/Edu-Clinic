@@ -8,6 +8,8 @@ import jwt from "jsonwebtoken";
 
 export const RegisterStudent = async ({ student }: RegisterStudentParams) => {
     try {
+        console.log("this is working");;
+        
         await connectToDatabase();
         const existingUser = await Student.findOne({ email: student.email });
         if (existingUser) {

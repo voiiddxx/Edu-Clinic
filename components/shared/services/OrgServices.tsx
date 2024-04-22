@@ -53,22 +53,27 @@ const OrgServices = () => {
   let usertoken = "";
 
   const handleService = () => {
+
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("x-auth-token");
+      if (token) {
+        usertoken = token;
+      }
+    }
+  
     createService({
       service: {
         serviceName: ServiceCategoryName,
         serviceCategory: ServiceCategory,
       },
       userToken: usertoken,
-    }).then((res) => {});
+    }).then((res) => {
+      console.log("Service Created: " , res);
+      
+    });
   };
 
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("x-auth-token");
-    if (token) {
-      usertoken = token;
-    }
-  }
-
+ 
   const handleAddCategory = () => {
     createServiceCategory({
       category: { name: newcategory },
@@ -209,7 +214,7 @@ const OrgServices = () => {
                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                                 <AlertDialogAction
                                   onClick={() =>
-                                    startTransition(handleAddCategory)
+                                    startTransition(handleService)
                                   }
                                 >
                                   Submit

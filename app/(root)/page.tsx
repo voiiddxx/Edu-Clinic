@@ -1,8 +1,15 @@
+"use client"
+
 import StartNav from "@/components/shared/start/StartNav";
 import { Button } from "@/components/ui/button";
+import connectToDatabase from "@/lib/database";
 import Link from "next/link";
 
 export default function Home() {
+  
+  const connect = async ()=>{
+    await connectToDatabase();
+  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <StartNav />
@@ -49,6 +56,7 @@ export default function Home() {
               Signup as Student
             </Button>
           </Link>
+         
         </div>
       </div>
     </main>

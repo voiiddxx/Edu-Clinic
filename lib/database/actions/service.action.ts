@@ -58,7 +58,7 @@ export const createService = async ({service , userToken} : createServiceParams)
     try {
         await connectToDatabase();
         const userId = await userAvailableorNot(userToken);
-        if(userId){
+        if(!userId){
             return JSON.parse(JSON.stringify({message:"Access Denied"}));
         }
         const organizationID = userId.id;
@@ -107,16 +107,16 @@ export const getUserServices = async (userToken : any) => {
         
         await connectToDatabase();
         console.log("this is the value of user tokens" , userToken);
-        
         const user =  await userAvailableorNot(userToken);
         console.log("this is the value of user " , user);
+        console.log("This is the user id: " , user.id);
         
         const conditions = {
             owner:user.id
         }
+
         const orgsServices = await ServiceStore.find(conditions);
         console.log("this is all services" , orgsServices);
-        
         return JSON.parse(JSON.stringify(orgsServices));
     } catch (error) {
         console.log(error);
