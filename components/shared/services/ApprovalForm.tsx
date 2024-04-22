@@ -68,7 +68,7 @@ const ApprovalForm = ({ordId} : ApprovalFormProps) => {
 
 
   return (
-    <div className='w-full min-h-screen px-32 bg-zinc-100' >
+    <div className='w-full min-h-screen md:px-32 px-2 bg-zinc-100' >
         <div className='h-24 w-full border-b flex justify-center flex-col ' >
         <div className=' flex gap-2 items-center' >
             <Flame/>

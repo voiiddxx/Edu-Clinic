@@ -18,7 +18,7 @@ const page = async () => {
 
   return (
     <div>
-      <StudentNav />
+      {/* <StudentNav /> */}
 
       {/* EXPERT ORGANIZATION AND MODULE TRANSITION SECTIONS */}
 

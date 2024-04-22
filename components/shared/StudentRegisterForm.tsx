@@ -25,7 +25,7 @@ import { useRouter } from "next/navigation"
 
 const StudentRegisteSchema = z.object({
   name: z.string().min(2).max(50),
-  email: z.string().email(),
+  email: z.string().email().toLowerCase(),
   password: z.string().min(6).max(10),
   instituion: z.string().min(3).max(50),
   mobile: z.string().min(10).max(10),
