@@ -35,7 +35,7 @@ import { getOrganizationasPerId } from "@/lib/database/actions/organization.auth
 import ApprovalForm from "./ApprovalForm";
 import Image from "next/image";
 
-const OrgServices = () => {
+const   OrgServices = () => {
   const router = useRouter();
 
   const [ServiceCategoryName, setServiceCategoryName] = useState("");
@@ -89,10 +89,22 @@ const OrgServices = () => {
     };
 
     const getUserServ = async () => {
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("x-auth-token");
+        if (token) {
+          usertoken = token;
+        }
+      }
       const res = await getUserServices(usertoken);
       setservices(res);
     };
     const getMyorg = async () => {
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("x-auth-token");
+        if (token) {
+          usertoken = token;
+        }
+      }
       const myOrganization = await getOrganizationasPerId(usertoken);
 
       if (myOrganization) {
