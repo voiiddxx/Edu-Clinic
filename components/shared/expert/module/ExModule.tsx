@@ -37,7 +37,7 @@ const ExModule = ({moduleDetails} : ExModuleProps) => {
     }
   return (
     <div>
-        <StudentNav/>
+        {/* <StudentNav/> */}
         <div className='px-40'>
         <div className='h-20 w-full border-b flex  justify-between items-center' >
           <div>
