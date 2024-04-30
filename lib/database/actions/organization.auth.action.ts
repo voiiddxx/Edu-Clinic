@@ -94,7 +94,13 @@ export const getOrganizationasPerId = async  (userId : string)=>{
 
 export const UpdateAndApplyforApprovalAction =  async ({org} : ApplyforApprovalParams)=>{
     try {
+        console.log("this is working properly");
+        console.log("Organization id: " , org);
+            
         const organizationId = await userAvailableorNot(org.orgId);
+
+           console.log("Found Organization: ",organizationId);
+        
 
         const organizationData = await Organization.findByIdAndUpdate(organizationId.id ,{
             orgDescription:org.orgDescription,
@@ -105,9 +111,13 @@ export const UpdateAndApplyforApprovalAction =  async ({org} : ApplyforApprovalP
         });
 
         if(!organizationData){
-            return JSON.parse(JSON.stringify({message:"Data Not Updated , Some error occured"}));
+            console.log("Some error found");
+            
+            return JSON.parse(JSON.stringify({message:"Data Not Updated , Some error occured" , status:400}));
         }
-        return JSON.parse(JSON.stringify(organizationData));
+        console.log("this is data",organizationData);
+        
+        return JSON.parse(JSON.stringify({data:organizationData , status :200}));
     } catch (error) {
         console.log(error);
         throw new Error(error as string)
