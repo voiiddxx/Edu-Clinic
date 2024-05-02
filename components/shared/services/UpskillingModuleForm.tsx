@@ -52,7 +52,7 @@ const ModuleFormSchema = z
     material: z.string().min(5).max(200).optional(),
     deleivery: z.string().min(5).max(200).optional(),
     pace: z.string().min(5).max(200).optional(),
-    elegibility: z.string().min(5).max(200).optional(),
+    elegibility: z.string().min(5).optional(),
     location: z.string().min(5).max(200).optional(),
     level: z.string().min(5).max(200).optional(),
   })

@@ -82,3 +82,18 @@ export const UpdateStudentData = async ({ student, studentId }: UpdateStudentPar
 
     }
 }
+
+export const getStudentDataById = async(studentId: UpdateStudentParams)=>{
+    try{
+        await connectToDatabase();
+        const getUserDetail = await Student.findById(studentId)
+        if (!getUserDetail){
+            return JSON.parse(JSON.stringify({ message: "Not Found" }));
+        }
+        return JSON.parse(JSON.stringify(getUserDetail));
+    }
+    catch (error) {
+         console.log(error);
+    
+}
+}
