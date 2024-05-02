@@ -76,7 +76,7 @@ const OrgRegisterForm = () => {
               name="orgName"
               render={({ field }) => (
                 <FormItem className="md:w-[400px] w-[100%]" >
-                  <FormLabel>Organization Name</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <div className="flex gap-2" >
                     <div className="h-10 w-12 bg-zinc-100 rounded-sm flex items-center justify-center">

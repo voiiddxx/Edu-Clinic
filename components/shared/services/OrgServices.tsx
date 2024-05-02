@@ -81,7 +81,6 @@ const   OrgServices = () => {
       setcategory((prevState) => [...prevState, res]);
     });
   };
-
   useEffect(() => {
     const getAllcategoryList = async () => {
       const res = await getAllServiceCategory();
@@ -106,9 +105,15 @@ const   OrgServices = () => {
         }
       }
       const myOrganization = await getOrganizationasPerId(usertoken);
+      console.log(myOrganization)
 
       if (myOrganization) {
-        setApproved(myOrganization.approvalStatus);
+        if(myOrganization.orgCategory != "663329c562ec4370f76a871c"){
+          setApproved(myOrganization.approvalStatus);
+        }
+        else{
+          setApproved("Approved")
+        }
       }
     };
     getAllcategoryList();

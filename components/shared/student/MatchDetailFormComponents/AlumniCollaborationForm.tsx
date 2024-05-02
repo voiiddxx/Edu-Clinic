@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AcademicAdvisingFilter from "../FilterModulesComponents/AcademicAdvisingFilter";
+import AcademicAdvisingFilter from "../FilterModulesComponents/AlumniCollaboration";
 
 interface FormData {
   educationalLevel: string;
@@ -62,7 +62,7 @@ function AcademicAdvisingForm({id}: orgId) {
   }, [])
   return (
     <div>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <div className="grid grid-cols-2 gap-2">
            <FormField
@@ -122,7 +122,13 @@ function AcademicAdvisingForm({id}: orgId) {
           </div>
           <Button type="submit">Search</Button>
         </form>
-      </Form>
+      </Form> */}
+      <div className=" align-middle mb-8 ">
+        <h1 className="text-2xl font-semibold underline">Alumni Mentoring</h1>
+      </div>
+      {/* <div className="flex justify-center align-middle mb-8">
+        <h1 className="flex items-center">Explore couses offered by your college alumni</h1>
+      </div> */}
       <div className="mt-2">
       <AcademicAdvisingFilter  items={data} _id={catid}/>
       </div>
