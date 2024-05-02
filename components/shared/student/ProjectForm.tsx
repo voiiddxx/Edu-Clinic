@@ -30,7 +30,7 @@ import { UploadOnCloudinary } from "@/lib/utils"
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   detail: z.string().min(1).max(150),
-  ammount: z.string().min(2),
+  amount: z.string().min(2),
   college: z.string().min(2),
   phone: z.string().min(10).max(10),
   mail: z.string().min(2),
@@ -58,7 +58,7 @@ const ProjectForm = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
           name: "",
-          ammount:'',
+          amount:'',
           college:'',
           detail:'',
           isGranted:"No Patent",
@@ -73,7 +73,7 @@ const ProjectForm = () => {
       const imageUrl  = await UploadOnCloudinary(poster);
       const pptUrl = await UploadOnCloudinary(ppt);
       console.log(imageUrl ,pptUrl);
-        const res = await createProject({amount:values.ammount , college:values.college , detail:values.detail , isGranted:values.isGranted , mail:values.mail , name:values.name , phone:values.phone , poster:imageUrl , ppt:pptUrl , student:usertoken});
+        const res = await createProject({amount:values.amount , college:values.college , detail:values.detail , isGranted:values.isGranted , mail:values.mail , name:values.name , phone:values.phone , poster:imageUrl , ppt:pptUrl , student:usertoken});
         console.log("this is response ",res);
             
         console.log(values)
@@ -112,11 +112,11 @@ const ProjectForm = () => {
             <div className="justify-between mt-4 md:grid md:grid-cols-2 gap-10 space-y-6 md:space-y-0">
             <FormField
               control={form.control}
-              name="ammount"
+              name="amount"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input className=" outline-none border-none bg-slate-100 rounded-full" placeholder="Funding Ammount  " {...field} />
+                    <Input className=" outline-none border-none bg-slate-100 rounded-full" placeholder="Funding amount  " {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

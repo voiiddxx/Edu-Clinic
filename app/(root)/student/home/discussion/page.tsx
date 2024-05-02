@@ -1,6 +1,8 @@
 import AddDiscuss from "@/components/shared/student/AddDiscuss";
 import StudentNav from "@/components/shared/student/StudentNav";
+import { getStudentDataById } from "@/lib/database/actions/auth.action";
 import { getDiscuss } from "@/lib/database/actions/discussion.action";
+import { UpdateStudentParams } from "@/types";
 import { Plus, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +10,10 @@ import React from "react";
 const page = async () => {
   const discussReponse = await getDiscuss();
 
+  const fetchUserData = async (studentId: UpdateStudentParams) => {
+    return await getStudentDataById(studentId);
+  };
+  
   return (
     <div>
       <StudentNav />
@@ -26,7 +32,8 @@ const page = async () => {
         </div>
 
         <div>
-          {discussReponse.map((curr: any) => {
+          {discussReponse.map(async(curr: any) => {
+            const userData = await fetchUserData(curr.user._id)
             return (
               <Link href={`/student/home/discussion/${curr._id}`}>
                 <div className=" pb-5 w-full border-b hover:bg-slate-100 cursor-pointer">
@@ -35,7 +42,7 @@ const page = async () => {
                       <User />
                     </div>
                     <div>
-                      <h1 className="font-medium mt-1">Want to buy course</h1>
+                      <h1 className="font-medium mt-1">{curr.title}</h1>
                     </div>
                   </div>
                   <div className="text-sm text-zinc-700 ml-12 mr-20">
@@ -43,7 +50,7 @@ const page = async () => {
                   </div>
                   <div className="flex justify-end mr-14">
                     <p className="text-sm text-indigo-400">
-                      Created by | Nikhil Kumar
+                      Created by | {userData.name}
                     </p>
                   </div>
                 </div>

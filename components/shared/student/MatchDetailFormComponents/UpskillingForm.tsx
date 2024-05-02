@@ -122,12 +122,12 @@ function UpskillingForm({id}: orgId) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Beginer / Medium / Advance" />
+                        <SelectValue placeholder="beginner / Medium / Advance" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="beginer">
-                        Beginer
+                      <SelectItem value="beginner">
+                        beginner
                       </SelectItem>
                       <SelectItem value="medium">Medium</SelectItem>
                       <SelectItem value="advance">Advance</SelectItem>

@@ -6,14 +6,16 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-type StudentOrgsParams = {
+type StudentOrgsParams = { 
   organization: any;
+  filter: any
+  // name: any
 };
 
-const StudentOrg = ({ organization }: StudentOrgsParams) => {
+const StudentOrg = ({ organization, filter }: StudentOrgsParams) => {
   const router = useRouter();
-
   return (
+    
     <div className="pb-10 px-4 sm:px-8 lg:px-20">
       <div className="flex items-center gap-2">
         <Flame />
@@ -26,7 +28,7 @@ const StudentOrg = ({ organization }: StudentOrgsParams) => {
       </p>
       {organization.length > 1 && (
         <div className="flex flex-wrap mt-8">
-          {organization.map((curr: IOrganization) => (
+          {organization.filter((item: { orgName: string; })=>{return filter?.toLowerCase() === "" ? true : item.orgName.toLowerCase().includes(filter)}).map((curr: IOrganization) => (
             <div
             onClick={() => {
               router.push(`/student/home/organization/${curr._id}`);

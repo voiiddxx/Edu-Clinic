@@ -1,3 +1,4 @@
+import ListOrg from '@/components/shared/student/ListOrg'
 import StudentModule from '@/components/shared/student/StudentModule'
 import StudentModuleAll from '@/components/shared/student/StudentModuleAll'
 import StudentNav from '@/components/shared/student/StudentNav'

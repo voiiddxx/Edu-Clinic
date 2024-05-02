@@ -68,6 +68,11 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
       ) : (
         <div className="flex gap-5 flex-wrap mt-2 real">
           {allModule.map((curr: IModule, index: number) => (
+            <Link
+            
+            href={`/student/home/module/${curr._id}`}
+            key={curr._id}
+          >
             <div
               className={`rounded-xl w-[296px] h-[428px] shadow-lg  relative`}
             >
@@ -164,15 +169,12 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
                       </p>
                     </div>
                   )}
-                  <Link
-                    className="bg-blue-600 rounded-sm absolute end-2"
-                    href={`/student/home/module/${curr._id}`}
-                    key={curr._id}
-                  >
+                  
+                    <div  className="bg-blue-600 rounded-sm absolute end-2">
                     <p className="text-[12px] text-white mx-[12px] my-[5px]">
                       Learn More
                     </p>
-                  </Link>
+                    </div>
                 </div>
               </div>
               <div className="h-6 w-full"></div>
@@ -182,6 +184,7 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
                     </p> */}
               </div>
             </div>
+                    </Link>
           ))}
         </div>
       )}
