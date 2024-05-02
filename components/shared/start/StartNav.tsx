@@ -25,14 +25,14 @@ const StartNav = () => {
           <div className="h-12 gap-2   border-[1px] border-blue-700 rounded-sm flex items-center px-4">
             <Building2 className="text-blue-700" size={17} />
             <p className="text-sm font-normal text-blue-700">
-              Login as organization
+              Service Provider
             </p>
           </div>
         </Link>
         <Link href={`/student/auth/login`}>
           <div className="h-12 gap-2   bg-blue-700 rounded-sm flex items-center px-4">
             <User className="text-white" size={17} />
-            <p className="text-sm font-normal text-white">Login as student</p>
+            <p className="text-sm font-normal text-white">Service Seeker</p>
           </div>
         </Link>
       </div>

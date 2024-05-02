@@ -54,7 +54,7 @@ const ModuleForm = ({id , type , moduleId , categoryName , moduleCategoryId} : M
         )
       }
       {
-        categoryName=='Academic Advising' && (
+        categoryName=='Alumni Mentoring' && (
           <div>
             <UpskillingModuleForm id={id} type="ADD" moduleId={moduleId} key={id} formType="Academic Advising" moduledategoryid={moduleCategoryId}  />
           </div>

@@ -27,7 +27,7 @@ const StudentModuleAll = ({ allModule }: StudentModuleProps) => {
           Explore Modules
         </h1>
       </div>
-      <p className="text-zinc-500 text-sm mt-2">
+      <p className="text-zinc-500 text-sm mt-2 md:mb-4">
         You Can explore all the modules enlist with the services
       </p>
       {!allModule || allModule.length === 0 ? (

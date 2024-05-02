@@ -20,11 +20,11 @@ type StudentModuleProps = {
 const StudentModule = ({ allModule }: StudentModuleProps) => {
   return (
     <div className="min-h-screen w-full">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center md:mb-2">
         <Flame />
         <h1 className="text-xl font-semibold text-zinc-800 mt-3"> Results </h1>
       </div>
-      <p className="text-zinc-500 text-sm mt-2">Here are your Best Matches</p>
+      <p className="text-zinc-500 text-sm mt-2 md:mb-4">Here are your Best Matches</p>
       {!allModule || allModule.length === 0 ? (
         <div className="flex gap-4 flex-wrap mt-8 real">
         <div className={`border-[1px] border-zinc-100 rounded-lg relative`}>
