@@ -6,6 +6,7 @@ import { UpdateStudentParams } from "@/types";
 import { Plus, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
 const page = async () => {
   const discussReponse = await getDiscuss();
@@ -19,11 +20,11 @@ const page = async () => {
       <StudentNav />
       <div className="w-full min-h-screen md:px-28 px-2">
         <div className="h-24 w-full border-b flex  justify-between items-center">
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center mb-5">
             <h1 className="text-zinc-900 font-semibold text-2xl">
               Discussion Pannel
             </h1>
-            <p>You can discuss whatever query you have</p>
+            <p >You can discuss whatever query you have</p>
           </div>
           <div className="h-10  py-2 px-2 bg-zinc-900 rounded-md flex justify-center items-center gap-1">
             <Plus className="text-zinc-200" />
@@ -45,12 +46,12 @@ const page = async () => {
                       <h1 className="font-medium mt-1">{curr.title}</h1>
                     </div>
                   </div>
-                  <div className="text-sm text-zinc-700 ml-12 mr-20">
+                  <div className="text-sm text-zinc-700 ml-12 md:mr-20 mr-2">
                     {curr.message}
                   </div>
-                  <div className="flex justify-end mr-14">
+                  <div className="flex justify-end md:mr-14">
                     <p className="text-sm text-indigo-400">
-                      Created by | {userData.name}
+                      {userData.name}
                     </p>
                   </div>
                 </div>

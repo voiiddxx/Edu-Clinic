@@ -30,7 +30,7 @@ const page = async ({
           <div className="h-20 border-b flex items-center">
             <h1 className="text-xl font-semibold">{discussDetail.title}</h1>
           </div>
-          <p className="text-indigo-500 mt-4 text-lg">Explained</p>
+          <p className="text-indigo-500 mt-4 ">Explained</p>
           <p className="text-sm mt-4 text-zinc-700">{discussDetail.message}.</p>
 
           <p className="text-indigo-600 mt-5 mb-5 text-lg">Replies</p>

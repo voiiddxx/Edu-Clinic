@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import UpskillingFilter from "../FilterModulesComponents/UpskillingFilter";
+import { getModulewithserviceCategoryId } from "@/lib/database/actions/module.action";
 
 interface FormData {
   name: string;
@@ -33,14 +34,41 @@ interface orgId {
     id: string
 }
 
+interface Module {
+  // Define module properties here
+  name: string;
+  isPaid: string;
+  level: string;
+  creatorId: string,
+  pace: string
+}
+
 function UpskillingForm({id}: orgId) {
   const [data, setData] = useState<FormData>({name:"", type:"", level:"", pace:""});
   const [module, setModule] = useState()
   const [catid, setCatId] = useState<any>()
+  const [moduleById, setModuleById] = useState<Module[]>([])
+  const [name, setName] = useState<any>("")
+  const [recom, setRecom] = useState<any>("")
+
+  useEffect(() => {
+    async function fetchModuleByCat(serviceId: string, organizationId?: string) {
+      try {
+        const modules: Module[] = await getModulewithserviceCategoryId({ categoryId: id });
+        // console.log(JSON.stringify(modules));
+        setModuleById(modules);
+      } catch (error) {
+        console.log("Error fetching modules by id:", error);
+      }
+    }
+    if (id) { // Check if _id exists before fetching module by id
+      fetchModuleByCat(id);
+    }
+  }, [id]);
 
   const formSchema = z.object({
-    name: z.string().min(2, {
-      message: "Institute must be at least 2 characters.",
+    name: z.string().min(1, {
+      message: "Cant be empty",
     }),
     type: z.string().min(2),
     level: z.string(),
@@ -70,7 +98,8 @@ function UpskillingForm({id}: orgId) {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <div className=" ogrid grid-cols-4 gap-2">
+          <div className="grid grid-cols-4 gap-2">
+            <div>
             <FormField
               control={form.control}
               name="name"
@@ -78,12 +107,23 @@ function UpskillingForm({id}: orgId) {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="MERN stack" {...field} />
+                    <Input placeholder="MERN stack" {...field} value={field.value}
+          onChange={(e) => {
+            field.onChange(e);
+            setName(e.target.value); // Call your custom onChange handler
+          }}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <div className="flex flex-col bg-slate-50">
+            {name!=""? (moduleById.filter((curr)=>{return name.toLowerCase() === "" ? true : curr.name.toLowerCase().includes(name.toLowerCase())}).map((curr)=>(
+             <div className="p-2" onClick={()=>setName(curr.name)}>{curr.name}</div>
+            ))):<></>}
+            </div>
+            </div>
+
            <FormField
               control={form.control}
               name="type"
