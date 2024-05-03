@@ -57,6 +57,7 @@ const StudentModule = ({ allModule }: StudentModuleProps) => {
       ) : (
         <div className="flex gap-5 flex-wrap mt-2 real">
           {allModule.map((curr: IModule, index: number) => (
+            <Link href={`/student/home/module/${curr._id}`} key={curr._id}>
             <div
               className={`rounded-xl w-[296px] h-[428px] shadow-lg  relative${
                 index === 0 ? "bg-slate-100 bg-gradient-to-br from-orange-100 to-purple-100 shadow-lg relative" : ""
@@ -177,6 +178,7 @@ const StudentModule = ({ allModule }: StudentModuleProps) => {
                     </p> */}
               </div>
             </div>
+            </Link>
           ))}
         </div>
       )}
