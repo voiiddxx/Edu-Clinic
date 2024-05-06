@@ -54,9 +54,9 @@ const page = async ({
                       </h1>
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center h-auto  py-2">
+                  <div className="mt-3 flex items-center h-auto overflow-hidden  py-2">
                     <article className="text-wrap ...">
-                      <p className="ml-16 text-sm mr-2 overflow-hidden">{curr.message}</p>
+                      <p className="ml-16 text-sm mr-2 ">{curr.message}</p>
                     </article>
                   </div>
                 </div>
