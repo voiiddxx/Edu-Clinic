@@ -35,7 +35,7 @@ import { getOrganizationasPerId } from "@/lib/database/actions/organization.auth
 import ApprovalForm from "./ApprovalForm";
 import Image from "next/image";
 
-const   OrgServices = () => {
+const OrgServices = () => {
   const router = useRouter();
 
   const [ServiceCategoryName, setServiceCategoryName] = useState("");
@@ -43,6 +43,7 @@ const   OrgServices = () => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [Approved, setApproved] = React.useState("");
+  const [loadingServices, setLoadingServices] = React.useState(true);
 
   const [services, setservices] = useState<any>([]);
 
@@ -53,14 +54,13 @@ const   OrgServices = () => {
   let usertoken = "";
 
   const handleService = () => {
-
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("x-auth-token");
       if (token) {
         usertoken = token;
       }
     }
-  
+
     createService({
       service: {
         serviceName: ServiceCategoryName,
@@ -68,12 +68,10 @@ const   OrgServices = () => {
       },
       userToken: usertoken,
     }).then((res) => {
-      console.log("Service Created: " , res);
-      
+      console.log("Service Created: ", res);
     });
-  };  
+  };
 
- 
   const handleAddCategory = () => {
     createServiceCategory({
       category: { name: newcategory },
@@ -85,6 +83,7 @@ const   OrgServices = () => {
     const getAllcategoryList = async () => {
       const res = await getAllServiceCategory();
       res && setcategory(res as IServicecategory[]);
+      setLoadingServices(false);
     };
 
     const getUserServ = async () => {
@@ -105,14 +104,13 @@ const   OrgServices = () => {
         }
       }
       const myOrganization = await getOrganizationasPerId(usertoken);
-      console.log(myOrganization)
+      console.log(myOrganization);
 
       if (myOrganization) {
-        if(myOrganization.orgCategory != "663329c562ec4370f76a871c"){
+        if (myOrganization.orgCategory != "663329c562ec4370f76a871c") {
           setApproved(myOrganization.approvalStatus);
-        }
-        else{
-          setApproved("Approved")
+        } else {
+          setApproved("Approved");
         }
       }
     };
@@ -230,9 +228,7 @@ const   OrgServices = () => {
                               <AlertDialogFooter>
                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                                 <AlertDialogAction
-                                  onClick={() =>
-                                    startTransition(handleService)
-                                  }
+                                  onClick={() => startTransition(handleService)}
                                 >
                                   Submit
                                 </AlertDialogAction>
@@ -259,7 +255,11 @@ const   OrgServices = () => {
             </div>
           </div>
 
-          {services.length < 1 ? (
+          {loadingServices ? (
+            <div className="h-[50vh] bg-white flex justify-center items-center">
+              <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-zinc-500"></div>
+            </div>
+          ) : services.length < 1 ? (
             <div className="w-full min-h-screen flex justify-center items-center ">
               <div className="px-20 py-12 rounded-md mb-24 bg-zinc-200 flex justify-center items-center flex-col">
                 <h1>Sorry, No Data Found</h1>

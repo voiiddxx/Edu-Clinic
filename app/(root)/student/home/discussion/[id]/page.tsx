@@ -48,7 +48,7 @@ const page = async ({
                   </div>
                 </div>
                   <div className="mt-3 flex items-center">
-                    <p className="mx-16 text-sm"> {curr.message} </p>
+                    <p className="mx-16 text-sm flex-wrap"> {curr.message} </p>
                   </div>
                 </div>
               );
