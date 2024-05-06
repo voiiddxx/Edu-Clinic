@@ -5,10 +5,7 @@ import { getDiscussWithId } from "@/lib/database/actions/discussion.action";
 import React from "react";
 import { getStudentDataById } from "@/lib/database/actions/auth.action";
 import { UpdateStudentParams } from "@/types";
-
-const ReplyComponent = React.lazy(
-  () => import("@/components/shared/student/ReplyComponent")
-);
+import ReplyComponent from "@/components/shared/student/ReplyComponent";
 
 const page = async ({
   params: { id },
@@ -67,9 +64,7 @@ const page = async ({
 
           </div>
         </div>
-        <React.Suspense fallback={<>Loading...</>}>
           <ReplyComponent postId={discussDetail._id} />
-        </React.Suspense>
       </div>
     </div>
   );
