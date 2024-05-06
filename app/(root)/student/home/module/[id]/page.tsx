@@ -1,5 +1,4 @@
 import LikeComponenet from "@/components/shared/student/LikeComponenet";
-import ReviewComponent from "@/components/shared/student/ReviewComponent";
 import StudentModule from "@/components/shared/student/StudentModule";
 import StudentNav from "@/components/shared/student/StudentNav";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,9 @@ import { Clock, Flame, Heart, IndianRupee, Sparkle, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+const ReviewComponent = React.lazy(
+  () => import("@/components/shared/student/ReviewComponent")
+);
 
 const Page = async ({
   params: { id },
@@ -100,11 +102,13 @@ const Page = async ({
         </div>
       </div>
       <div className="md:h-20 h-10"></div>
-      <ReviewComponent
-        moduleId={moduleDetails}
-        reviewSize={moduleDetails.review.length}
-        feedbackData={moduleDetails.review}
-      />
+      <React.Suspense fallback={<>...</>}>
+        <ReviewComponent
+          moduleId={moduleDetails}
+          reviewSize={moduleDetails.review.length}
+          feedbackData={moduleDetails.review}
+        />
+      </React.Suspense>
       {/* <StudentModule allModule={allModules}/> */}
     </div>
   );

@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { postFeedBack } from "@/lib/database/actions/module.action";
 import { User } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { getStudentDataById } from "@/lib/database/actions/auth.action";
+import { UpdateStudentParams } from "@/types";
 
 type reviewParams = {
   moduleId: string;
@@ -44,6 +46,11 @@ const ReviewComponent = ({
     setfeedback(res.review as any);
     console.log(res);
   };
+
+  const fetchUserData = async (studentId: UpdateStudentParams) => {
+    return await getStudentDataById(studentId);
+  };
+
   return (
     <div className="md:px-40 md:mb-20 px-5">
       <h1 className="text-xl font-semibold">Feedbacks ({reviewSize}) </h1>
@@ -67,7 +74,9 @@ const ReviewComponent = ({
           </div>
         </div>
         <div className="flex gap-2 flex-col mt-10">
-          {feedback.map((curr: any) => {
+          {feedback.map(async (curr: any) => {
+            const userData = await fetchUserData(curr.student);
+            console.log(curr);
             return (
               <div className="pb-4 w-full border-b  flex items-start gap-4">
                 <div className="flex">
@@ -78,7 +87,7 @@ const ReviewComponent = ({
                   </div>
                 </div>
                 <div className="mt-5">
-                  <p className="font-semibold text-zinc-800">Nikhil Kumar</p>
+                  <p className="font-semibold text-zinc-800">{userData.name}</p>
                   <p className="mr-32 text-sm text-zinc-700">{curr.message}</p>
                 </div>
               </div>

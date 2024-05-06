@@ -19,7 +19,7 @@ const page = async () => {
     <div>
       <StudentNav />
       <div className="w-full min-h-screen md:px-28 px-2">
-        <div className="h-24 w-full border-b flex  justify-between items-center">
+        <div className="h-24 w-full border-b flex  justify-between items-center sticky top-0 bg-white">
           <div className="flex flex-col justify-center mb-5">
             <h1 className="text-zinc-900 font-semibold text-2xl">
               Discussion Pannel
