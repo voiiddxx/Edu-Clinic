@@ -15,8 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createDiscuss } from "@/lib/database/actions/discussion.action";
 import { UploadOnCloudinary } from "@/lib/utils";
+import { useRouter } from 'next/navigation'
+
 
 const AddDiscuss = () => {
+  const router = useRouter()
+
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [image, setImage] = useState<any>("");
@@ -42,8 +46,9 @@ const AddDiscuss = () => {
         image: imageUrl,
       });
       console.log("Discussion posted successfully!", res);
-      // Close the drawer upon successful posting
       setDrawerOpen(false);
+      router.refresh()
+
     } catch (error) {
       console.log("Error while posting discussion:", error);
     }

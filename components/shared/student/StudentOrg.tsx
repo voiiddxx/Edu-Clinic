@@ -28,7 +28,7 @@ const StudentOrg = ({ organization, filter }: StudentOrgsParams) => {
       </p>
       {organization.length > 1 && (
         <div className="flex flex-wrap mt-8">
-          {organization.filter((item: { orgName: string; })=>{return filter?.toLowerCase() === "" ? true : item.orgName.toLowerCase().includes(filter)}).map((curr: IOrganization) => (
+          {organization.filter((item: { orgName: string; })=>{return filter === "" ? true : item.orgName.includes(filter)}).map((curr: IOrganization) => (
             <div
             onClick={() => {
               router.push(`/student/home/organization/${curr._id}`);

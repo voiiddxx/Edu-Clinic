@@ -1,4 +1,3 @@
-import ReplyComponent from "@/components/shared/student/ReplyComponent";
 import StudentNav from "@/components/shared/student/StudentNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +5,10 @@ import { getDiscussWithId } from "@/lib/database/actions/discussion.action";
 import React from "react";
 import { getStudentDataById } from "@/lib/database/actions/auth.action";
 import { UpdateStudentParams } from "@/types";
+
+const ReplyComponent = React.lazy(
+  () => import("@/components/shared/student/ReplyComponent")
+);
 
 const page = async ({
   params: { id },
@@ -27,7 +30,7 @@ const page = async ({
       <StudentNav />
       <div className="md:px-40 px-2 min-h-screen flex flex-col justify-between">
         <div>
-          <div className="h-20 border-b flex items-center">
+          <div className="h-20 border-b flex items-center sticky top-0 bg-white">
             <h1 className="text-xl font-semibold">{discussDetail.title}</h1>
           </div>
           <p className="text-indigo-500 mt-4 ">Explained</p>
@@ -40,22 +43,30 @@ const page = async ({
               console.log(userData);
               return (
                 <div className=" pb-5 w-full border-b hover:bg-slate-100 cursor-pointer my-4">
-                <div className=" flex items-center ">
-                  <div className="h-12 w-12 rounded-full bg-red-400"></div>
-                  <div>
-                  <h1 className="mx-3 text-sm font-semibold">{userData.name}</h1>
-                  <h1 className="text-xs mx-3 font-light  border-b">{userData.instituion}</h1>
+                  <div className=" flex items-center ">
+                    <div className="h-12 w-12 rounded-full bg-red-400"></div>
+                    <div>
+                      <h1 className="mx-3 text-sm font-semibold">
+                        {userData.name}
+                      </h1>
+                      <h1 className="text-xs mx-3 font-light  border-b">
+                        {userData.instituion}
+                      </h1>
+                    </div>
                   </div>
-                </div>
-                  <div className="mt-3 flex items-center">
-                    <p className="mx-16 text-sm flex-wrap"> {curr.message} </p>
+                  <div className="mt-3 flex items-center h-auto  py-2">
+                    <article className="text-wrap ...">
+                      <p className="ml-16 text-sm mr-2 overflow-hidden">{curr.message}</p>
+                    </article>
                   </div>
                 </div>
               );
             })}
           </div>
         </div>
-        <ReplyComponent postId={discussDetail._id} />
+        <React.Suspense fallback={<>Loading...</>}>
+          <ReplyComponent postId={discussDetail._id} />
+        </React.Suspense>
       </div>
     </div>
   );

@@ -4,12 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CreateReplyAction } from "@/lib/database/actions/discussion.action";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
 
 type ReplyProps = {
   postId: string;
 };
 
 const ReplyComponent = ({ postId }: ReplyProps) => {
+  const router = useRouter()
+
   const [replyMessage, setreplyMessage] = useState<string>("");
 
   let usertoken = "";
@@ -30,7 +33,10 @@ const ReplyComponent = ({ postId }: ReplyProps) => {
       repliedUser: usertoken,
     });
     console.log("this is user response", res);
+    router.refresh()
+    setreplyMessage("")
   };
+  
 
   return (
     <div>
@@ -40,6 +46,7 @@ const ReplyComponent = ({ postId }: ReplyProps) => {
             setreplyMessage(e.target.value);
           }}
           placeholder="reply here"
+          value={replyMessage}
         />
         <Button onClick={replyToPost} className="w-full bg-zinc-900 mt-4">
           Submit Reply

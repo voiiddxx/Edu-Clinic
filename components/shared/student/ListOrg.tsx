@@ -15,19 +15,11 @@ type OrganizationProps = {
 
 export default function ListOrg({ organization }: OrganizationProps) {
   const [searchName, setSearchName] = useState<any>("");
-  const [filterationValue, setFilterationValue] = useState<any>()
+  const [filterationValue, setFilterationValue] = useState<any>();
 
-  useEffect(()=>{
-    console.log(searchName)
-  },[])
-
-  const filterOrganization = () => {
-    console.log(searchName)
-    console.log(organization)
-    return organization.filter((org) =>
-      org.orgName?.toLowerCase().trim().includes(searchName.toLowerCase().trim())
-    );
-  };
+  useEffect(() => {
+    console.log(searchName);
+  }, []);
 
   return (
     <div>
@@ -52,7 +44,6 @@ export default function ListOrg({ organization }: OrganizationProps) {
           />
           <Button
             className="h-10 rounded-sm bg-zinc-900 flex justify-center items-center w-44"
-            onClick={()=>{setFilterationValue(filterOrganization())}}
           >
             <p className="text-white">Search Organization</p>
           </Button>
