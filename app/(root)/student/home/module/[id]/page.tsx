@@ -102,7 +102,7 @@ const Page = async ({
         </div>
       </div>
       <div className="md:h-20 h-10"></div>
-      <React.Suspense fallback={<>...</>}>
+      <React.Suspense fallback={<><div className="md:px-40 md:mb-20 px-5 flex align-middle items-center mb-10"><span className="text-xl font-semibold">FeedBacks (</span><div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-zinc-500"></div><span className="text-xl font-semibold">)</span></div></>}>
         <ReviewComponent
           moduleId={moduleDetails}
           reviewSize={moduleDetails.review.length}
