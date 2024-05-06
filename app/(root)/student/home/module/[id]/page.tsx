@@ -67,13 +67,13 @@ const Page = async ({
             <p className="text-sm mt-4 text-zinc-700">{moduleDetails.detail}</p>
             <div className="mt-4 flex gap-5">
               <div className="h-10 w-28 bg-slate-300 rounded-3xl">
-                <div className="h-10 w-64 bg-orange-100 rounded-3xl flex gap-1 justify-center items-center">
+                <div className="h-10 w-64 bg-orange-100 rounded-3xl flex gap-1 pl-5 items-center">
                   <Zap className="text-orange-700" size={17} />
-                  <p className="text-orange-800 font-normal">Web Development</p>
+                  <p className="text-orange-800 font-normal">{moduleDetails.name}</p>
                 </div>
               </div>
             </div>
-            <div className="mt-5 h-10 w-28 bg-green-100 rounded-3xl flex gap-1 justify-center items-center">
+            <div className="mt-5 h-10 w-28 bg-green-100 rounded-3xl flex gap-1 pl-5 items-center">
               <Sparkle className="text-green-800" size={17} />
               <p className="text-green-800 font-normal">
                 {moduleDetails.isPaid}
@@ -82,7 +82,7 @@ const Page = async ({
             <div className="flex items-center mt-7 gap-10">
               <div className="flex items-center gap-2">
                 <Clock className="text-yellow-700" size={17} />
-                <p className="font-semibold">5 January 2025</p>
+                <p className="font-semibold">Open</p>
               </div>
               {moduleDetails.isPaid === "paid" && (
                 <div className="flex gap-2 items-center">
