@@ -38,19 +38,20 @@ const page = async ({
 
           <p className="text-indigo-600 mt-5 mb-5 text-lg">Replies</p>
           <div>
-            {discussDetail.reply.map(async (curr: any) => {
+        <React.Suspense fallback={<>Loading Replies...</>}>
+
+            {React.lazy = discussDetail.reply.map(async (curr: any) => {
               const userData = await fetchUserData(curr.repliedUser);
-              console.log(userData);
               return (
                 <div className=" pb-5 w-full border-b hover:bg-slate-100 cursor-pointer my-4">
                   <div className=" flex items-center ">
                     <div className="h-12 w-12 rounded-full bg-red-400"></div>
                     <div>
                       <h1 className="mx-3 text-sm font-semibold">
-                        {userData.name}
+                        {userData?.name}
                       </h1>
                       <h1 className="text-xs mx-3 font-light  border-b">
-                        {userData.instituion}
+                        {userData?.instituion}
                       </h1>
                     </div>
                   </div>
@@ -62,6 +63,8 @@ const page = async ({
                 </div>
               );
             })}
+        </React.Suspense>
+
           </div>
         </div>
         <React.Suspense fallback={<>Loading...</>}>
