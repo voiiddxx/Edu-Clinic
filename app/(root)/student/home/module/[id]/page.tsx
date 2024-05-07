@@ -69,7 +69,9 @@ const Page = async ({
               <div className="h-10 w-28 bg-slate-300 rounded-3xl">
                 <div className="h-10 w-64 bg-orange-100 rounded-3xl flex gap-1 pl-5 items-center">
                   <Zap className="text-orange-700" size={17} />
-                  <p className="text-orange-800 font-normal">{moduleDetails.name}</p>
+                  <p className="text-orange-800 font-normal">
+                    {moduleDetails.name}
+                  </p>
                 </div>
               </div>
             </div>
@@ -92,7 +94,7 @@ const Page = async ({
               )}
             </div>
             <div>
-              <Link href={`${moduleDetails.url}`}>
+              <Link href={`//${moduleDetails.url}`}>
                 <Button className="w-full md:mt-12 mt-5 bg-zinc-800 hover:bg-blue-700">
                   Visit for more info
                 </Button>
@@ -102,7 +104,17 @@ const Page = async ({
         </div>
       </div>
       <div className="md:h-20 h-10"></div>
-      <React.Suspense fallback={<><div className="md:px-40 md:mb-20 px-5 flex align-middle items-center mb-10"><span className="text-xl font-semibold">FeedBacks (</span><div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-zinc-500"></div><span className="text-xl font-semibold">)</span></div></>}>
+      <React.Suspense
+        fallback={
+          <>
+            <div className="md:px-40 md:mb-20 px-5 flex align-middle items-center mb-10">
+              <span className="text-xl font-semibold">FeedBacks (</span>
+              <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-zinc-500"></div>
+              <span className="text-xl font-semibold">)</span>
+            </div>
+          </>
+        }
+      >
         <ReviewComponent
           moduleId={moduleDetails}
           reviewSize={moduleDetails.review.length}

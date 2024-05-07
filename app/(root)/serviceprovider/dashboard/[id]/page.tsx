@@ -32,7 +32,7 @@ const page = async ({
         <ModulesMainUi moduleCategoryId={data.category._id} serviceId={id} />
       </React.Suspense>
     </div>
-  );
+  );  
 };
 
 export default page;

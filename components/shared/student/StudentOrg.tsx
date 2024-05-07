@@ -26,7 +26,7 @@ const StudentOrg = ({ organization, filter }: StudentOrgsParams) => {
       <p className="text-zinc-500 text-sm mt-2">
         You can explore all organizations here and explore their services
       </p>
-      {organization.length > 1 && (
+      {organization.length > 0 && (
         <div className="flex flex-wrap mt-8">
           {organization.filter((item: { orgName: string; })=>{return filter === "" ? true : item.orgName.includes(filter)}).map((curr: IOrganization) => (
             <div
