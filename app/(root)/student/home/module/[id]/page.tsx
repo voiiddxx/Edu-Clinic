@@ -94,7 +94,7 @@ const Page = async ({
               )}
             </div>
             <div>
-              <Link href={`${moduleDetails.url}`}>
+              <Link href={`//${moduleDetails.url}`}>
                 <Button className="w-full md:mt-12 mt-5 bg-zinc-800 hover:bg-blue-700">
                   Visit for more info
                 </Button>
