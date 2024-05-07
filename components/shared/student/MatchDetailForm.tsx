@@ -18,7 +18,7 @@ function MatchDetailForm() {
   const [option, setOption] = useState(0);
   const [allModules, setAllModules] = useState([]);
   const [serviceCategory, setserviceCategory] = useState<any>(null);
-  const [id, setId] = useState("65d9a0eec157630852c3c0fe")
+  const [id, setId] = useState("6639c3b27913b1112327950f")
 
   useEffect(() => {
     const getAllServCategory = async () => {
@@ -49,12 +49,15 @@ function MatchDetailForm() {
       <CompetitiveExamForm id={id}/>
       </>;
     } else if (option === 2) {
-      return <HealthCounForm id={id}/>;
+      return <PlacementOpportunityForm id={id}/>;
     } else if (option === 3) {
       return <ScholorshioFinancialAidForm id={id}/>;
     } else if (option === 4) {
-      return <AcademicAdvisingForm id={id}/>;
+      return <HealthCounForm id={id}/>;
     } else if (option === 5) {
+      return <AcademicAdvisingForm id={id}/>;
+      
+    } else if (option===6){
       return (
         <div className="min-h-screen w-full">
           <div className="h-24 w-full border-b flex flex-col justify-center">
@@ -73,13 +76,10 @@ function MatchDetailForm() {
           </div>
         </div>
       );
-    } else if (option===6){
-      return <InternshipForm id={id}/>;
     }
     else if (option===7){
-      return <PlacementOpportunityForm id={id}/>;
+      return <InternshipForm id={id}/>;
     }
-    
     console.log("Testing");
   };
   
