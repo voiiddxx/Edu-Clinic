@@ -107,7 +107,7 @@ const OrgServices = () => {
       console.log(myOrganization);
 
       if (myOrganization) {
-        if (myOrganization.orgCategory != "663329c562ec4370f76a871c") {
+        if (myOrganization.orgCategory != "6639d49c3215cb4cf09e89d0") {
           setApproved(myOrganization.approvalStatus);
         } else {
           setApproved("Approved");
